@@ -1,0 +1,34 @@
+.navbar-container .navbar-right .right-element {
+  margin-top: 28px;
+  padding: 5px 10px 5px 10px;
+}
+
+.navbar-container .navbar-right .register {
+  grid-column-start: register;
+  grid-column-end: login;
+}
+
+.navbar-container .navbar-right .login {
+  grid-column-start: login;
+  grid-column-end: end;
+}
+
+.navbar-container .navbar-right .login-link {
+  text-decoration: none;
+  border: 2px solid #fb6542;
+  border-radius: 4px;
+  text-align: center;
+  padding: 10px 20px 10px 20px;
+  font-size: 20px;
+  color: #fb6542;
+  font-weight: 600;
+  -webbit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.navbar-container .navbar-right .login-link:hover {
+  background-color: #fb6542;
+  color: #fff;
+  -webbit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
