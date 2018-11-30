@@ -1,0 +1,46 @@
+.navbar-container {
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  height: 90px;
+  width: 100%;
+  border-bottom: 1px solid #dedede;
+  display: grid;
+  grid-template-columns: [logo]1.5fr [search]3.5fr [navbar-right]5fr [end];
+}
+
+.navbar-container .logo-container {
+  margin-top: 15px;
+  text-align: center;
+  grid-column-start: logo;
+  grid-column-end: search;
+}
+
+.navbar-container .logo-container .logo {
+  height: 60px;
+  width: 60px;
+}
+
+.navbar-container .search {
+  margin-top: 25px;
+  text-align: center;
+  width: 100%;
+  grid-column-start: search;
+  grid-column-end: navbar-right;
+}
+
+.navbar-container .search .search-input {
+  padding: 10px;
+  width: 100%;
+  font-size: 15px;
+  border: 1px solid #cecece;
+  border-radius: 4px;
+}
+
+.navbar-container .navbar-right {
+  width: 100%;
+  grid-column-start: navbar-right;
+  grid-column-end: end;
+  display: grid;
+  grid-template-columns: [begin]8fr [register]2fr [login]2fr [end];
+}

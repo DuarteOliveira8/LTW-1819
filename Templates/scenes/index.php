@@ -1,3 +1,7 @@
+<?php
+  include('../shared-components/navbar/NavbarIndex.php');
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -7,12 +11,6 @@
   </head>
 
   <body>
-    <header>
-        <img src="../assets/images/icon.png" alt="Reddit Icon" width="50px"/>
-
-        <h1><a href="index.php">Reddit Boards</a></h1>
-        <h2>Where fake news have no place!</h2>
-
-    </header>
+    <?php navbar() ?>
   </body>
 </html>
