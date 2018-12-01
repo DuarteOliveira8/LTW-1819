@@ -3,7 +3,7 @@
   <html>
     <head>
         <meta charset="utf-8">
-        <title>Reddit</title>
+        <title>Webbit</title>
         <link href="../../css/index.css" rel="stylesheet">
     </head>
 
