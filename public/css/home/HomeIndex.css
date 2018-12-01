@@ -1,0 +1,19 @@
+.home-container {
+  margin-top: 90px;
+  margin-bottom: 60px;
+}
+
+.home-container .section-title {
+  font-size: 3em;
+  font-weight: 600;
+  margin-top: 30px;
+  padding: 5px;
+  width: 50%;
+  border-bottom: 1px solid #fb6542;
+}
+
+.home-container .section-container {
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 60px;
+}

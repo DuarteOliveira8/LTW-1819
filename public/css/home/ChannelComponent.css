@@ -1,0 +1,37 @@
+.home-container .section-container .channel-comp-container {
+  border: 4px solid #cecece;
+  border-radius: 10px;
+  width: 20%;
+  height: 200px;
+  margin-top: 30px;
+}
+
+.home-container .section-container .channel-comp-container .channel-background {
+  width: 100%;
+  height: 50%;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  background-image: url('/images/default-background.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.home-container .section-container .channel-comp-container .channel-name {
+  font-weight: 600;
+  font-size: 2em;
+  padding: 5px;
+}
+
+.home-container .section-container .channel-comp-container .channel-posts-num {
+  font-weight: 600;
+  padding: 5px;
+}
+
+.home-container .section-container .channel-comp-container .channel-subs {
+  font-weight: 600;
+  padding: 5px;
+}

@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="../../../css/navbar/navbar-right/LoggedOut.css">
+<link rel="stylesheet" href="/css/navbar/navbar-right/LoggedOut.css">
 
 <?php function loggedOut() { ?>
   <div class="right-element register">
