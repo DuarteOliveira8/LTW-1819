@@ -1,3 +1,7 @@
-<?php function input($type) { ?>
-  <input class="login" type="<? $type ?>" name="email" required>
+<?php function input($type, $title, $placeholder) { ?>
+  <div class="inputTitle">
+    <?= $title ?>
+  </div>
+
+  <input class="input" type="<?php $type ?>" name="email" placeholder="<?= $placeholder ?>" required>
 <?php } ?>
