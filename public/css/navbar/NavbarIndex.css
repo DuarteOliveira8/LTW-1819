@@ -10,14 +10,21 @@
 }
 
 .navbar-container .logo-container {
-  margin-top: 15px;
-  text-align: center;
+  margin-top: 10px;
   grid-column-start: logo;
   grid-column-end: search;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.navbar-container .logo-container .logo {
-  height: 60px;
+.navbar-container .logo-container .logo-name {
+  height: 20px;
+  width: 90px;
+}
+
+.navbar-container .logo-container .logo-rabbit {
+  height: 70px;
   width: 60px;
 }
 

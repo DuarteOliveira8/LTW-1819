@@ -1,0 +1,6 @@
+.home-container .section-container .channels-display {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
