@@ -1,7 +1,7 @@
 .home-container .banner-container {
   height: calc(50vh - 90px);
   width: 100%;
-  background-image: url('../../images/lamp.jpeg');
+  background-image: url('/images/lamp.jpeg');
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;

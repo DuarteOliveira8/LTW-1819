@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="/css/scenes/home/HomeIndex.css">
+
 <?php
 include('../../shared-components/Header.php');
 include('../../shared-components/navbar/NavbarIndex.php');
@@ -11,8 +13,6 @@ include('../../shared-components/Footer.php');
 getHeader();
 getNavbar();
 ?>
-
-<link rel="stylesheet" href="/css/home/HomeIndex.css">
 
 <div class="home-container">
   <?php

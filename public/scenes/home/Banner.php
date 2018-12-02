@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/home/Banner.css">
+<link rel="stylesheet" href="/css/scenes/home/Banner.css">
 
 <?php function getBanner() { ?>
   <div class="banner-container">

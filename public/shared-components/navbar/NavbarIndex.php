@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/navbar/NavbarIndex.css">
+<link rel="stylesheet" href="/css/shared-components/navbar/NavbarIndex.css">
 
 <?php
 include('navbar-right/LoggedOut.php');

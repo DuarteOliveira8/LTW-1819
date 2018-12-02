@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/home/ChannelComponent.css">
+<link rel="stylesheet" href="/css/scenes/home/ChannelComponent.css">
 
 <?php function getChannelComponent() { ?>
   <div class="channel-comp-container">

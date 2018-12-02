@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/home/MainChannels.css">
+<link rel="stylesheet" href="/css/scenes/home/MainChannels.css">
 
 <?php function getMainChannels() { ?>
   <div class="section-container">

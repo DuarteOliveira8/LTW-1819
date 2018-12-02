@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/Post.css">
+<link rel="stylesheet" href="/css/shared-components/Post.css">
 
 <?php function getPost() { ?>
   <div class="post-container">

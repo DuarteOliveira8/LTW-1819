@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/login/login.css">
+<link rel="stylesheet" href="/css/scenes/login/login.css">
 
 <?php
 include('../../shared-components/input/Input.php');
