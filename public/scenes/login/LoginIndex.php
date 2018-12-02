@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/css/scenes/login/login.css">
 
 <?php
-include('../../shared-components/input/Input.php');
-include('../../shared-components/Header.php');
-include('../../shared-components/Footer.php');
+include('shared-components/input/Input.php');
+include('shared-components/Header.php');
+include('shared-components/Footer.php');
 
 getHeader();
 ?>

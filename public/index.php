@@ -11,5 +11,9 @@ switch ($request_uri[0]) {
   case '/login':
     require 'scenes/login/LoginIndex.php';
     break;
+
+  default:
+    echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
+    break;
 }
 ?>
