@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/css/shared-components/navbar/NavbarIndex.css">
 
 <?php
-include('navbar-right/LoggedOut.php');
-include('navbar-right/LoggedIn.php');
-include('../../shared-components/input/Input.php');
+include('shared-components/navbar/navbar-right/LoggedOut.php');
+include('shared-components/navbar/navbar-right/LoggedIn.php');
+include('shared-components/input/Input.php');
 ?>
 
 <?php function getNavbar() { ?>
