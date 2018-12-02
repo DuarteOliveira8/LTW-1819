@@ -43,25 +43,11 @@
 
 .login-box .email {
   margin-top: 30px;
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.login-box .email .inputTitle {
-  font-size: 14px;
-  text-align: left;
-  font-weight: bold;
+  margin-bottom: 40px;
 }
 
 .login-box .password {
-  padding-left: 5px;
-  padding-right: 5px;
-}
-
-.login-box .password .inputTitle {
-  font-size: 14px;
-  text-align: left;
-  font-weight: bold;
+  margin-bottom: 40px;
 }
 
 .login-box .submitLogin .submitButton {
