@@ -11,7 +11,7 @@
 
     <div class="loginWelcome">Log In</div>
 
-    <div class="createAcc">Don't have an account? Create account.</div>
+    <div class="createAcc">Don't have an account? <a href="#">Create account</a>.</div>
 
     <div class="email">
       <?php input('email', "Email address:", "Insert your email address"); ?>
