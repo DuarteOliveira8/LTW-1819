@@ -6,6 +6,6 @@
   </div>
 
   <div class="right-element login">
-    <a href="#" class="login-link">Login</a>
+    <a href="/login" class="login-link">Login</a>
   </div>
 <?php } ?>

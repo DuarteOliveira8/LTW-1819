@@ -1,0 +1,6 @@
+DirectoryIndex index.php
+
+RewriteEngine on
+RewriteBase /
+
+RewriteRule ^(.*)\/(\?.*)?$ $1$2 [R=301,L]

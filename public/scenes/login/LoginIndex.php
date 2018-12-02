@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="/css/scenes/login/login.css">
 
 <?php
-include('../../shared-components/input/Input.php');
-include('../../shared-components/Header.php');
-include('../../shared-components/Footer.php');
+include('shared-components/input/Input.php');
+include('shared-components/Header.php');
+include('shared-components/Footer.php');
 
 getHeader();
 ?>
@@ -12,7 +12,7 @@ getHeader();
   <div class="login-box">
 
     <div class="loginLogo">
-      <a href="#"><img src="/images/webbit-rabbit.png" alt="Webbit logo" height="75px" width="65px"/></a>
+      <a href="/"><img src="/images/webbit-rabbit.png" alt="Webbit logo" height="75px" width="65px"/></a>
     </div>
 
     <div class="loginWelcome">Log In</div>
