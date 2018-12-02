@@ -1,6 +1,5 @@
-<?php include('../../shared-components/input-component/InputIndex.php') ?>
+<?php include('../../shared-components/input/Input.php') ?>
 <link rel="stylesheet" href="/css/login/login.css">
-<link rel="stylesheet" href="/css/input/input.css">
 
 <div class="container">
   <div class="login-box">
@@ -14,11 +13,11 @@
     <div class="createAcc">Don't have an account? <a href="#">Create account</a>.</div>
 
     <div class="email">
-      <?php input('email', "Email address:", "Insert your email address"); ?>
+      <?php input('email', "Email address:", "email", "Insert your email address", true); ?>
     </div>
 
     <div class="password">
-      <?php input('password', "Password:", "Insert your password"); ?>
+      <?php input('password', "Password:", "password", "Insert your password", true); ?>
     </div>
 
     <div class="submitLogin">

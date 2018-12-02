@@ -1,9 +1,10 @@
+<link rel="stylesheet" href="/css/navbar/NavbarIndex.css">
+
 <?php
 include('navbar-right/LoggedOut.php');
 include('navbar-right/LoggedIn.php');
+include('../../shared-components/input/Input.php');
 ?>
-
-<link rel="stylesheet" href="/css/navbar/NavbarIndex.css">
 
 <?php function getNavbar() { ?>
   <div class="navbar-container">
@@ -15,7 +16,7 @@ include('navbar-right/LoggedIn.php');
     </a>
 
     <div class="search">
-      <input type="text" placeholder="Search..." class="search-input">
+      <?php input('text', "", "search", "Search...", false); ?>
     </div>
 
     <div class="navbar-right">
