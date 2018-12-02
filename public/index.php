@@ -8,7 +8,7 @@ switch ($request_uri[0]) {
     require 'scenes/home/HomeIndex.php';
     break;
 
-  case '/login':
+  case ('/login' || '/login/'):
     require 'scenes/login/LoginIndex.php';
     break;
 
