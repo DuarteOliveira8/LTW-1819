@@ -33,8 +33,12 @@
 .login-box .createAcc {
   margin-top: 5px;
   text-align: left;
-  font-size: 16px;
+  font-size: 14px;
   color: gray;
+}
+
+.login-box .createAcc a {
+  color: grey;
 }
 
 .login-box .email {
@@ -44,7 +48,7 @@
 }
 
 .login-box .email .inputTitle {
-  font-size: 19px;
+  font-size: 14px;
   text-align: left;
   font-weight: bold;
 }
@@ -55,18 +59,20 @@
 }
 
 .login-box .password .inputTitle {
-  font-size: 19px;
+  font-size: 14px;
   text-align: left;
   font-weight: bold;
 }
 
 .login-box .submitLogin .submitButton {
-  background-color: #FB6542;
-  color: white;
+  background-color: #fff;
+  cursor: pointer;
+  color: #FB6542;
   width: 100%;
   height: 30px;
+  padding: 5px 0px 5px 0px;
   margin: 5px auto 40px auto;
-  border: 1px solid #cecece;
+  border: 1px solid #FB6542;
   border-radius: 6px;
   font-size: 16px;
   font-weight: bold;
@@ -76,6 +82,6 @@
 
 .login-box .submitLogin .submitButton:hover {
   background-color: white;
-  color: #FB6542;
-  border-color: #FB6542;
+  color: #fff;
+  background-color: #FB6542;
 }
