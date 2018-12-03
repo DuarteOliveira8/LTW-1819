@@ -7,7 +7,7 @@ else
   $path = $request_uri[0];
 
 switch ($path) {
-  case '/':
+  case '':
     require 'scenes/home/HomeIndex.php';
     break;
 
