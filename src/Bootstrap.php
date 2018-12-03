@@ -1,7 +1,12 @@
 <?php
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
-switch ($request_uri[0]) {
+if ($request_uri[0][strlen($request_uri[0])-1] == '/')
+  $path = substr($request_uri[0], 0, strlen($request_uri[0])-1);
+else
+  $path = $request_uri[0];
+
+switch ($path) {
   case '/':
     require 'scenes/home/HomeIndex.php';
     break;
@@ -10,15 +15,7 @@ switch ($request_uri[0]) {
     require 'scenes/login/LoginIndex.php';
     break;
 
-  case '/login/':
-    require 'scenes/login/LoginIndex.php';
-    break;
-
   case '/profile':
-    require 'scenes/profile/ProfileIndex.php';
-    break;
-
-  case '/profile/':
     require 'scenes/profile/ProfileIndex.php';
     break;
 
