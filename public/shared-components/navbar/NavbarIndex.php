@@ -8,7 +8,7 @@ include('shared-components/input/Input.php');
 
 <?php function getNavbar() { ?>
   <div class="navbar-container">
-    <a href="#">
+    <a href="/">
       <div class="logo-container">
         <img src="/images/webbit-name.png" alt="" class="logo-name">
         <img src="/images/webbit-rabbit.png" alt="" class="logo-rabbit">
