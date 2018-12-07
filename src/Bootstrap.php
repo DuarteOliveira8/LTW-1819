@@ -23,6 +23,10 @@ switch ($path) {
     require 'scenes/register/RegisterIndex.php';
     break;
 
+  case '/channel':
+    require 'scenes/channel/ChannelIndex.php';
+    break;
+
   default:
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;

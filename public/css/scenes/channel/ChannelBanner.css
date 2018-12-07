@@ -1,0 +1,4 @@
+.ch-banner-container .content .channel-banner-image {
+  height: calc(50vh - 90px);
+  display: table;
+}
