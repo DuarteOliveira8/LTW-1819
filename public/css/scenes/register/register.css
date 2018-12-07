@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.register-box {
+  border: 2px solid #FB6542;
+  width: 20%;
+  height: auto;
+  border-radius: 10px;
+  padding: 20px 35px 20px 35px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: bold;
+  margin: 60px 0px;
+}
+
+.register-box .registerLogo {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.register-box .registerWelcome {
+  text-align: left;
+  font-size: 28px;
+}
+
+.register-box .createAcc {
+  margin-top: 5px;
+  text-align: left;
+  font-size: 14px;
+  color: gray;
+}
+
+.register-box .createAcc a {
+  color: grey;
+}
+
+.register-box .username {
+  margin-top: 30px;
+  margin-bottom: 35px;
+}
+
+.register-box .first-name {
+  margin-bottom: 35px;
+}
+
+.register-box .last-name {
+  margin-bottom: 35px;
+}
+
+.register-box .bday {
+  margin-bottom: 35px;
+}
+
+.register-box .email {
+  margin-bottom: 35px;
+}
+
+.register-box .password {
+  margin-bottom: 35px;
+}
+
+.register-box .confirm-password {
+  margin-bottom: 35px;
+}
+
+.register-box .submitRegister .submitButton {
+  background-color: #fff;
+  cursor: pointer;
+  color: #FB6542;
+  width: 100%;
+  height: 30px;
+  padding: 5px 0px 5px 0px;
+  margin: 5px auto 0px auto;
+  border: 1px solid #FB6542;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.register-box .submitRegister .submitButton:hover {
+  background-color: white;
+  color: #fff;
+  background-color: #FB6542;
+}
