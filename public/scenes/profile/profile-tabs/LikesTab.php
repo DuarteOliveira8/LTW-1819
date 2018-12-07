@@ -1,5 +1,5 @@
-<?php function getProfilePosts() { ?>
-  <div class="tab-container">
+<?php function getProfileLikes() { ?>
+  <div class="tab-container" hidden>
     <?php
     for ($i=0; $i < 8; $i++) {
       getPost();

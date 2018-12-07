@@ -12,6 +12,7 @@
   height: 100%;
   width: 20%;
   display: table;
+  cursor: pointer;
 }
 
 .profile-container .profile-nav-container .profile-tab.selected {
