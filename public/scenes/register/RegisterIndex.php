@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/register/register.css">
+<link rel="stylesheet" href="/css/scenes/register/register.css">
 
 <?php
 include('../../shared-components/input/Input.php');
@@ -35,7 +35,7 @@ getHeader();
       </div>
 
       <div class="bday">
-        <?php select("Birth date:", "bday", required) ?>
+        <?php dateInput("Birth date:", "bday", required); ?>
       </div>
 
       <div class="email">
