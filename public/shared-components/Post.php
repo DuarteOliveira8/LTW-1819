@@ -22,6 +22,12 @@
         Post
       </div>
 
+      <a href="/profile" class="user">
+        <div class="user-avatar" style="background-image: url('/images/default-profile.png')"></div>
+
+        <div class="username">Firstname Lastname</div>
+      </a>
+
       <div class="post-date">
         dd/mm/yyyy
       </div>

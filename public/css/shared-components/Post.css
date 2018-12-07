@@ -10,13 +10,13 @@
 .post-container .post-header {
   margin-bottom: 10px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .post-container .post-header .post-votes {
   display: grid;
-  align-items: baseline;
+  align-items: center;
   grid-template-columns: [arrows]1fr [votes]2fr [end];
   grid-template-rows: [up]auto [down]auto [end];
 }
@@ -60,6 +60,30 @@
   font-size: 1.5em;
   font-weight: 600;
   color: #fb6542;
+}
+
+.post-container .post-header .user {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  width: 25%;
+  text-decoration: none;
+}
+
+.post-container .post-header .user .user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.post-container .post-header .user .username {
+  margin-left: 10%;
 }
 
 .post-container .post-header .post-date {
