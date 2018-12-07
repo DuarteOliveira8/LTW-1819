@@ -2,7 +2,7 @@
 
 <?php function loggedOut() { ?>
   <div class="right-element register">
-    <a href="#" class="login-link">Register</a>
+    <a href="/register" class="login-link">Register</a>
   </div>
 
   <div class="right-element login">

@@ -13,12 +13,12 @@ getHeader();
   <div class="register-box">
 
     <div class="registerLogo">
-      <a href="#"><img src="/images/webbit-rabbit.png" alt="Webbit logo" height="75px" width="65px"/></a>
+      <a href="/"><img src="/images/webbit-rabbit.png" alt="Webbit logo" height="75px" width="65px"/></a>
     </div>
 
     <div class="registerWelcome">Create account</div>
 
-    <div class="createAcc">Already have an account? <a href="#">Log in</a>.</div>
+    <div class="createAcc">Already have an account? <a href="/login">Log in</a>.</div>
 
     <form method="POST">
 
@@ -35,7 +35,7 @@ getHeader();
       </div>
 
       <div class="bday">
-        <?php dateInput("Birth date:", "bday", required); ?>
+        <?php dateInput("Birth date:", true); ?>
       </div>
 
       <div class="email">
