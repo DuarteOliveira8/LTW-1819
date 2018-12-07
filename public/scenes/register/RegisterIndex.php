@@ -1,10 +1,10 @@
-<link rel="stylesheet" href="/css/scenes/register/register.css">
+<link rel="stylesheet" href="/css/scenes/register/RegisterIndex.css">
 
 <?php
-include('../../shared-components/input/Input.php');
-include('../../shared-components/input/DateInput.php');
-include('../../shared-components/Header.php');
-include('../../shared-components/Footer.php');
+include('shared-components/input/Input.php');
+include('shared-components/input/DateInput.php');
+include('shared-components/Header.php');
+include('shared-components/Footer.php');
 
 getHeader();
 ?>

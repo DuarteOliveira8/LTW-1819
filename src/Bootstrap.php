@@ -6,8 +6,12 @@ switch ($request_uri[0]) {
     require 'scenes/home/HomeIndex.php';
     break;
 
-  case ('/login' || '/login/'):
+  case '/login':
     require 'scenes/login/LoginIndex.php';
+    break;
+
+  case '/register':
+    require 'scenes/register/RegisterIndex.php';
     break;
 
   default:
