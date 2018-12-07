@@ -1,0 +1,30 @@
+.profile-container .profile-nav-container {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #cecece;
+}
+
+.profile-container .profile-nav-container .profile-tab {
+  text-align: center;
+  height: 100%;
+  width: 20%;
+  display: table;
+  cursor: pointer;
+}
+
+.profile-container .profile-nav-container .profile-tab.selected {
+  border-bottom: 1px solid #fb6542;
+}
+
+.profile-container .profile-nav-container .profile-tab .tab-text {
+  display: table-cell;
+  vertical-align: middle;
+  font-weight: 600;
+}
+
+.profile-container .profile-nav-container .profile-tab.selected .tab-text {
+  color: #fb6542;
+}
