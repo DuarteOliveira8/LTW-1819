@@ -27,7 +27,7 @@ getNavbar();
   ?>
 </div>
 
-<script type="text/javascript" src="/js/ProfileNav.js">
+<script type="text/javascript" src="/js/scenes/profile/ProfileNav.js">
 
 </script>
 
