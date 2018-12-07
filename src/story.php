@@ -70,7 +70,7 @@ function getRecentStories() {
 
 //Most Upvoted Stories
 
-function getRecentStories() {        
+function getMostUpvotedStories() {        
         global $dbh;
         try {
             $stmt = $dbh->prepare('SELECT ID, Title, Text, UpvoteRatio, StoryDate FROM STORY ORDER BY UpvoteRatio DESC');

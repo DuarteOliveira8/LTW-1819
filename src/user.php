@@ -155,17 +155,17 @@
 
 //Change Info
 
-function changeInfo($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate) {
-    global $dbh;
-    try {
-        $stmt = $dbh->prepare('UPDATE USER SET FirstName = ?, LastName = ?, Bio = ?, Avatar = ?, BirthDate = ? WHERE ID = ?');
-        if($stmt->execute(array($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate)));
-            return true;
-        else
-            return false;
-    }catch(PDOException $e) {
-        return null;
+    function changeInfo($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate) {
+        global $dbh;
+        try {
+            $stmt = $dbh->prepare('UPDATE USER SET FirstName = ?, LastName = ?, Bio = ?, Avatar = ?, BirthDate = ? WHERE ID = ?');
+            if($stmt->execute(array($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate)));
+                return true;
+            else
+                return false;
+        }catch(PDOException $e) {
+            return null;
+        }
     }
-}
-    
+        
 ?>
