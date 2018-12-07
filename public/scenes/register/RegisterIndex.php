@@ -13,7 +13,7 @@ getHeader();
   <div class="register-box">
 
     <div class="registerLogo">
-      <a href="#"><img src="/images/webbit-rabbit.png" alt="Webbit logo" height="75px" width="65px"/></a>
+      <a href="/"><img src="/images/webbit-rabbit.png" alt="Webbit logo" height="75px" width="65px"/></a>
     </div>
 
     <div class="registerWelcome">Create account</div>
