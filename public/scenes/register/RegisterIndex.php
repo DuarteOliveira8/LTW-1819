@@ -18,7 +18,7 @@ getHeader();
 
     <div class="registerWelcome">Create account</div>
 
-    <div class="createAcc">Already have an account? <a href="#">Log in</a>.</div>
+    <div class="createAcc">Already have an account? <a href="/login">Log in</a>.</div>
 
     <form method="POST">
 
