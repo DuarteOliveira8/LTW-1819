@@ -4,6 +4,7 @@
   text-align: justify;
   border: 3px solid #fb6542;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .post-container .post-header {
@@ -27,11 +28,19 @@
   grid-row-end: down;
 }
 
+.post-container .post-header .post-votes .vote-arrow-link:nth-of-type(1):hover .vote-arrow-icon {
+  fill: green;
+}
+
 .post-container .post-header .post-votes .vote-arrow-link:nth-of-type(2) {
   grid-column-start: arrows;
   grid-column-end: votes;
   grid-row-start: down;
   grid-row-end: end;
+}
+
+.post-container .post-header .post-votes .vote-arrow-link:nth-of-type(2):hover .vote-arrow-icon {
+  fill: red;
 }
 
 .post-container .post-header .post-votes .vote-arrow-link .vote-arrow-icon {
