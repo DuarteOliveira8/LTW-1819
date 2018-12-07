@@ -35,7 +35,7 @@ getHeader();
       </div>
 
       <div class="bday">
-        <?php dateInput("Birth date:", "bday", required); ?>
+        <?php dateInput("Birth date:", true); ?>
       </div>
 
       <div class="email">
