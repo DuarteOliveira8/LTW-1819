@@ -3,7 +3,9 @@
 <?php
 include('shared-components/Header.php');
 include('shared-components/navbar/NavbarIndex.php');
-include('scenes/channel/ChannelBanner.php');
+include('scenes/channel/Banner.php');
+include('scenes/channel/RecentPosts.php');
+include('scenes/channel/Rules.php');
 include('shared-components/Footer.php');
 
 getHeader();
@@ -11,9 +13,14 @@ getNavbar();
 ?>
 
 <div class="channel-container">
-  <?php
-  getChannelBanner();
-  ?>
+  <?php getChannelBanner(); ?>
+
+  <div class="content">
+    <?php
+    getRecentPosts();
+    getRules();
+    ?>
+  </div>
 </div>
 
 <?php getFooter(); ?>

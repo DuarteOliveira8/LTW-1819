@@ -1,0 +1,32 @@
+.channel-container .content .rules-container {
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky;
+  border-left: 1px solid #cecece;
+  background-color: rgba(251, 101, 66, 0.05);
+}
+
+.channel-container .content .rules-container .rules-title {
+  font-size: 3em;
+}
+
+.channel-container .content .rules-container .rule-list {
+  list-style: none;
+  counter-reset: item;
+  width: 100%;
+  margin-left: 10%;
+}
+
+.channel-container .content .rules-container .rule {
+  font-size: 1.5em;
+  counter-increment: item;
+  margin-bottom: 5px;
+}
+
+.channel-container .content .rules-container .rule:before {
+  font-size: 1.7em;
+  content: counter(item);
+  margin-right: 5%;
+}

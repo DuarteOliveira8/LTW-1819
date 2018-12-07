@@ -1,0 +1,44 @@
+.banner-container {
+  height: 40vh;
+  min-height: 200px;
+  position: relative;
+}
+
+.banner-container .channel-banner-image {
+  height: 40vh;
+  min-height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 100%;
+  position: absolute;
+}
+
+.banner-container .overlay {
+  height: 40vh;
+  min-height: 200px;
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.banner-container .basic-info {
+  position: absolute;
+  font-weight: 600;
+  right: 30;
+  top: 30;
+  text-align: right;
+}
+
+.banner-container .basic-info .channel-name {
+  font-size: 5em;
+  color: #fff;
+}
+
+.banner-container .basic-info .channel-slogan {
+  font-size: 2em;
+  color: #fff;
+}
