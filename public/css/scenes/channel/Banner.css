@@ -1,0 +1,79 @@
+.banner-container {
+  height: 40vh;
+  min-height: 200px;
+  position: relative;
+}
+
+.banner-container .channel-banner-image {
+  height: 40vh;
+  min-height: 260px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  width: 100%;
+  position: absolute;
+  z-index: -2;
+}
+
+.banner-container .overlay {
+  height: 40vh;
+  min-height: 260px;
+  position: absolute;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+.banner-container .basic-info {
+  position: absolute;
+  font-weight: 600;
+  right: 30;
+  top: 30;
+  text-align: right;
+}
+
+.banner-container .basic-info .channel-name {
+  font-size: 5em;
+  color: #fff;
+}
+
+.banner-container .basic-info .channel-slogan {
+  font-size: 2em;
+  color: #fff;
+}
+
+.banner-container .basic-info .channel-subs {
+  font-size: 1.3em;
+  color: #fff;
+  margin-top: 20px;
+}
+
+.banner-container .basic-info .channel-posts {
+  font-size: 1.3em;
+  color: #fff;
+  margin-top: 10px;
+}
+
+.banner-container .sub-button {
+  border-radius: 4px;
+  border: 2px solid #fb6542;
+  background-color: transparent;
+  color: #fb6542;
+  left: 30;
+  top: 30;
+  position: absolute;
+  text-align: center;
+  padding: 10px 15px 10px 15px;
+  z-index: 5;
+  font-size: 2em;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.banner-container .sub-button:hover {
+  color: #fff;
+  background-color: #fb6542;
+}

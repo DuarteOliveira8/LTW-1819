@@ -1,0 +1,10 @@
+.channel-container {
+  margin-top: 90px;
+  width: 100%;
+}
+
+.channel-container .content {
+  display: grid;
+  grid-template-columns: 3.5fr 1.5fr;
+  position: relative;
+}

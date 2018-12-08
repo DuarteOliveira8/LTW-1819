@@ -1,0 +1,9 @@
+.channel-container .posts-container {
+  margin: 30px 5% 30px 5%;
+  grid-column: 1;
+}
+
+.channel-container .posts-container .recent-title {
+  font-weight: 600;
+  font-size: 3em;
+}

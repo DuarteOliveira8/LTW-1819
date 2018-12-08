@@ -2,7 +2,7 @@
 
 <?php function getChannelComponent() { ?>
     <div class="channel-comp-container">
-      <a href="#">
+      <a href="/channel">
         <div class="channel-background" style="background-image: url('/images/default-background.jpg');"></div>
 
         <div class="channel-name">
