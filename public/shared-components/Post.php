@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/shared-components/Post.css">
 
 <?php function getPost() { ?>
-  <div class="post-container" onclick="document.location.href='#'">
+  <div class="post-container" onclick="(e) => { e.stopPropagation(); document.location.href='#'; }">
     <div class="post-header">
       <div class="post-votes">
         <a href="#" class="vote-arrow-link">

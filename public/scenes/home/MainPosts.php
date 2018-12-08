@@ -1,7 +1,7 @@
 <?php function getMainPosts() { ?>
   <div class="section-container">
     <div class="section-title">
-      Main Posts
+      Recent Posts
     </div>
 
     <div class="channels-display">
