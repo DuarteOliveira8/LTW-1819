@@ -19,7 +19,7 @@ CREATE TABLE RULES(
 	ID		 INTEGER PRIMARY KEY AUTOINCREMENT,
 	Title		 STRING NOT NULL,
 	Description	 STRING NOT NULL,
-	idChannel	 INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL	
+	idChannel	 INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL
 );
 
 
@@ -32,14 +32,14 @@ CREATE TABLE CHANNEL(
 
 
 CREATE TABLE USER(
-	ID		 INTEGER PRIMARY KEY AUTOINCREMENT,
+	ID		 		 INTEGER PRIMARY KEY AUTOINCREMENT,
 	Username	 STRING NOT NULL UNIQUE,
 	FirstName	 STRING NOT NULL,
 	LastName	 STRING NOT NULL,
-	Email		 STRING NOT NULL UNIQUE,
+	Email		   STRING NOT NULL UNIQUE,
 	Password	 CHAR (256) NOT NULL,
-	Bio		 STRING NOT NULL,
-	Avatar		 STRING DEFAULT "default.jpg",
+	Bio		     STRING DEFAULT "",
+	Avatar		 STRING DEFAULT "default-profile.png",
 	BirthDate	 DATE NOT NULL
 );
 
@@ -49,8 +49,8 @@ CREATE TABLE STORY(
 	Text		 STRING,
 	StoryDate	 DATE NOT NULL,
 	idAuthor	 INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL,
-	UpvoteRatio	 INTEGER, 
-	ChannelStory	 INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL 	
+	UpvoteRatio	 INTEGER,
+	ChannelStory	 INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL
 );
 
 CREATE TABLE COMMENT(
@@ -69,7 +69,7 @@ CREATE TABLE SUBSCRIBER(
     	UserID,
     	ChannelID
     )
-); 
+);
 
 CREATE TABLE UPVOTE(
 	StoryID    	 INTEGER REFERENCES STORY(ID) ON DELETE CASCADE,
@@ -87,7 +87,7 @@ CREATE TABLE DOWNVOTE(
         StoryID,
         UserID
     )
-);  
+);
 
 
 
@@ -102,7 +102,7 @@ DROP TRIGGER IF EXISTS RemoveDownvote;
 CREATE TRIGGER CheckBeforeUpvote
 BEFORE INSERT ON UPVOTE
 FOR EACH ROW
-WHEN EXISTS (SELECT * FROM DOWNVOTE WHERE (DOWNVOTE.StoryID=NEW.StoryID and DOWNVOTE.UserID=NEW.UserID))	
+WHEN EXISTS (SELECT * FROM DOWNVOTE WHERE (DOWNVOTE.StoryID=NEW.StoryID and DOWNVOTE.UserID=NEW.UserID))
 BEGIN
 	SELECT RAISE(rollback, "You cant upvote and downvote the same post");
 END;
@@ -111,7 +111,7 @@ END;
 CREATE TRIGGER CheckBeforeDownvote
 BEFORE INSERT ON DOWNVOTE
 FOR EACH ROW
-WHEN EXISTS (SELECT * FROM UPVOTE WHERE (UPVOTE.StoryID=NEW.StoryID and UPVOTE.UserID=NEW.UserID))	
+WHEN EXISTS (SELECT * FROM UPVOTE WHERE (UPVOTE.StoryID=NEW.StoryID and UPVOTE.UserID=NEW.UserID))
 BEGIN
 	SELECT RAISE(rollback, "You cant upvote and downvote the same post");
 END;
@@ -121,28 +121,28 @@ CREATE TRIGGER AddUpvote
 AFTER INSERT ON UPVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (Story.ID = NEW.StoryID);	 	 	   
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (Story.ID = NEW.StoryID);
 END;
 
 CREATE TRIGGER AddDownvote
 AFTER INSERT ON DOWNVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (Story.ID = NEW.StoryID);	 	 	   
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (Story.ID = NEW.StoryID);
 END;
 
 CREATE TRIGGER RemoveUpvote
 AFTER DELETE ON UPVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (Story.ID = NEW.StoryID);	 	 	   
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (Story.ID = NEW.StoryID);
 END;
 
 CREATE TRIGGER RemoveDownvote
 AFTER DELETE ON DOWNVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (Story.ID = NEW.StoryID);	 	    
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (Story.ID = NEW.StoryID);
 END;
 
 
@@ -159,7 +159,7 @@ INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, B
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('CrisFCP12','Cristina','Ferreira','cristi@hotmail.com', '235711', 'hello 11', '2.jpg','2005-12-31');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('Matilde12','Matilde','Santos','matildesantos12@gmail.com', 'matildesantos', 'hello 12', '1.jpg','2012-12-12');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('BrunoRekicho','Bruno','Sousa','Rekicho@gmail.com', 'vcketaA94', 'hello 13', '4.jpg','1999-02-18');
-INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('DiogoLuisXX','Diogo','Luís','XXLuisXX@hotmail.com', 'drowssap', 'hello 14', '3.jpg','1997-08-30');
+INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('DiogoLuisXX','Diogo','Luï¿½s','XXLuisXX@hotmail.com', 'drowssap', 'hello 14', '3.jpg','1997-08-30');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('KatarinaMendes','Catarina','Mendes','KataMendes@hotmail.com', 'Money', 'hello 15', '1.jpg','1996-10-08');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('Championships','Meek','Mill','MeekMilly@gmail.com', '123123123', 'hello 16', '4.jpg','1987-03-12');
 

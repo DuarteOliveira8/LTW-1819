@@ -2,27 +2,24 @@
 
 // Add new User
 
-    function createUser($username, $firstname, $lastname, $email, $password, $bio, $avatar, $birthdate){
-        global $dbh;
-        try {
-  		    $stmt = $dbh->prepare('INSERT INTO USER(Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES (:Username, :FirstName, :LastName, :Email, :Password, :Bio, :Avatar, :BirthDate)');
-  		    $stmt->bindParam(':Username', $username);
-            $stmt->bindParam(':FirstName', $firstname);
-            $stmt->bindParam(':LastName', $lastname);
-            $stmt->bindParam(':Email', $email);
-            $stmt->bindParam(':Password', $password);
-            $stmt->bindParam(':Bio', $bio);
-            $stmt->bindParam(':Avatar', $avatar);
-            $stmt->bindParam(':BirthDate', $birthdate);
+    function createUser($username, $firstname, $lastname, $email, $password, $birthdate){
+      global $dbh;
+      try {
+		    $stmt = $dbh->prepare('INSERT INTO USER(Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES (:Username, :FirstName, :LastName, :Email, :Password, :Bio, :Avatar, :BirthDate)');
+		    $stmt->bindParam(':Username', $username);
+        $stmt->bindParam(':FirstName', $firstname);
+        $stmt->bindParam(':LastName', $lastname);
+        $stmt->bindParam(':Email', $email);
+        $stmt->bindParam(':Password', $password);
+        $stmt->bindParam(':BirthDate', $birthdate);
 
-            if($stmt->execute())
-                return $dbh->lastInsertId();
-            else
-                return -1;
-        }catch(PDOException $e) {
-            return -1;
-        }
-           
+        if($stmt->execute())
+          return $dbh->lastInsertId();
+        else
+          return -1;
+      }catch(PDOException $e) {
+          return -1;
+      }
     }
 
 
@@ -37,7 +34,7 @@
 				return true;
 			else
 				return false;
-		
+
 		} catch(PDOException $e) {
 			return false;
 		}
@@ -49,7 +46,7 @@
         try {
           $stmt = $dbh->prepare('SELECT ID FROM USER WHERE Username = ?');
           $stmt->execute(array($username));
-          return $stmt->fetchAll();
+          return $stmt->fetch();
         }catch(PDOException $e) {
           return -1;
         }
@@ -57,7 +54,7 @@
 
 // Get all users
 
-    function getUsers() {        
+    function getUsers() {
         global $dbh;
         try {
             $stmt = $dbh->prepare('SELECT Username FROM USER');
@@ -68,10 +65,10 @@
         }
     }
 
-    
+
 // Get all stories from a user
 
-    function getUserStories($idAuthor) {        
+    function getUserStories($idAuthor) {
         global $dbh;
         try {
             $stmt = $dbh->prepare('SELECT ID, Title, Text FROM STORY WHERE idAuthor = ?');
@@ -167,5 +164,5 @@
             return null;
         }
     }
-        
+
 ?>
