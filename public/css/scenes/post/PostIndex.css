@@ -1,0 +1,100 @@
+.container {
+  margin-top: 90px;
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.post-container {
+  height: calc(50vh - 90px);
+  padding: 10px;
+  text-align: justify;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.post-container .post-header {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.post-container .post-header .post-votes {
+  display: grid;
+  align-items: center;
+  grid-template-columns: [arrows]1fr [votes]2fr [end];
+  grid-template-rows: [up]auto [down]auto [end];
+}
+
+.post-container .post-header .post-votes .vote-arrow-link:nth-of-type(1):hover .vote-arrow-icon {
+  fill: #fb6542;
+}
+
+.post-container .post-header .post-votes .vote-arrow-link:nth-of-type(2) {
+  grid-column-start: arrows;
+  grid-column-end: votes;
+  grid-row-start: down;
+  grid-row-end: end;
+}
+
+.post-container .post-header .post-votes .vote-arrow-link:nth-of-type(2):hover .vote-arrow-icon {
+  fill: blue;
+}
+
+.post-container .post-header .post-votes .vote-arrow-link .vote-arrow-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.post-container .post-header .post-votes .votes-num {
+  grid-column-start: votes;
+  grid-column-end: end;
+  grid-row-start: up;
+  grid-row-end: end;
+  margin-left: 10px;
+}
+
+.post-container .post-header .post-title {
+  font-size: 2em;
+  font-weight: 600;
+  color: #fb6542;
+}
+
+.post-container .post-header .user {
+  display: flex;
+  align-items: center;
+  margin-left: 5%;
+  width: 25%;
+  text-decoration: none;
+}
+
+.post-container .post-header .user .user-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+}
+
+.post-container .post-header .user .username {
+  margin-left: 10%;
+}
+
+.post-container .post-header .post-date {
+  margin-left: 5%;
+}
+
+.post-container .post-description {
+  text-align: justify;
+  margin-left: 5%;
+  margin-right: 20%;
+  font-size: 18px;
+}

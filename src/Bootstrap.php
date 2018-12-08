@@ -25,6 +25,10 @@ switch ($path) {
     require 'scenes/register/RegisterIndex.php';
     break;
 
+  case '/post':
+    require 'scenes/post/PostIndex.php';
+    break;
+
   case '/channel':
     require 'scenes/channel/ChannelIndex.php';
     break;
