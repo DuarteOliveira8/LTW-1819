@@ -126,7 +126,7 @@
         global $dbh;
         try {
             $stmt = $dbh->prepare('UPDATE USER SET Email = ? WHERE ID = ?');
-            if($stmt->execute(array($ID, $Email)));
+            if($stmt->execute(array($ID, $Email)))
                 return true;
             else
                 return false;
@@ -141,7 +141,7 @@
         global $dbh;
         try {
             $stmt = $dbh->prepare('UPDATE USER SET Password = ? WHERE ID = ?');
-            if($stmt->execute(array($ID, $Password)));
+            if($stmt->execute(array($ID, $Password)))
                 return true;
             else
                 return false;
@@ -156,7 +156,7 @@
         global $dbh;
         try {
             $stmt = $dbh->prepare('UPDATE USER SET FirstName = ?, LastName = ?, Bio = ?, Avatar = ?, BirthDate = ? WHERE ID = ?');
-            if($stmt->execute(array($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate)));
+            if($stmt->execute(array($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate)))
                 return true;
             else
                 return false;

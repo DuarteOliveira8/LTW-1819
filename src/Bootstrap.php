@@ -1,6 +1,4 @@
 <?php
-$db = new PDO('sqlite:webbit.db');
-
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
 if ($request_uri[0][strlen($request_uri[0])-1] == '/')
