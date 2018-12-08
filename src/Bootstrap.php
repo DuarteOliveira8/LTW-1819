@@ -14,13 +14,17 @@ switch ($path) {
   case '/login':
     require 'scenes/login/LoginIndex.php';
     break;
-    
+
   case '/profile':
     require 'scenes/profile/ProfileIndex.php';
     break;
-    
+
   case '/register':
     require 'scenes/register/RegisterIndex.php';
+    break;
+
+  case '/post':
+    require 'scenes/post/PostIndex.php';
     break;
 
   default:
