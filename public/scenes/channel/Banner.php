@@ -12,8 +12,20 @@
       </div>
 
       <div class="channel-slogan">
-        Don't touch code.
+        Don't touch my code.
+      </div>
+
+      <div class="channel-subs">
+        147k subscribers
+      </div>
+
+      <div class="channel-posts">
+        32k posts
       </div>
     </div>
+
+    <button type="button" name="subscribe" class="sub-button">
+      Subscribe
+    </button>
   </div>
 <?php } ?>
