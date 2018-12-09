@@ -2,7 +2,7 @@
 
 <?php function getChannelBanner() { ?>
   <div class="banner-container">
-    <div class="channel-banner-image" style="background-image: url('/images/spaghetti.jpg')"></div>
+    <div class="channel-banner-image" style="background-image: url('/assets/images/spaghetti.jpg')"></div>
 
     <div class="overlay"></div>
 

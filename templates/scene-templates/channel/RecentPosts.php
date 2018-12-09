@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/scenes/channel/RecentPosts.css">
 
 <?php
-include('shared-components/Post.php')
+  include('templates/shared-components/Post.php')
 ?>
 
 <?php function getRecentPosts() { ?>
