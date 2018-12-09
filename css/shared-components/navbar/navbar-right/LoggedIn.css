@@ -21,6 +21,7 @@
   right: 4%;
   top: 90px;
   background-color: #fff;
+  outline: none;
 }
 
 .navbar-container .navbar-right .options-layout .triangle {

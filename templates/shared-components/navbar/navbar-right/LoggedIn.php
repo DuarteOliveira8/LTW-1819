@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/shared-components/navbar/navbar-right/LoggedIn.css">
 
 <?php function loggedIn() { ?>
-  <div class="options-layout" tabIndex="-1" onBlur="hiddenVis()" >
+  <div class="options-layout" hidden>
     <div class="triangle-border"></div>
     <div class="triangle"></div>
 
@@ -31,4 +31,6 @@
   </div>
 
   <div class="user-avatar" style="background-image: url('/assets/images/default-profile.png');"></div>
+
+  <script type="text/javascript" src="/js/shared-components/Navbar.js"></script>
 <?php } ?>
