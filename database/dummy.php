@@ -1,5 +1,7 @@
 <?php
 $passwords = [
+                'pedro123',
+                'qwerty99',
                 'qwerty',
                 '12345',
                 '987654321',

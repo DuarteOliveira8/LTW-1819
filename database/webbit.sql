@@ -16,18 +16,18 @@ DROP TABLE IF EXISTS DOWNVOTE;
 
 
 CREATE TABLE RULES(
-	ID		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	Title		 STRING NOT NULL,
-	Description	 STRING NOT NULL,
-	idChannel	 INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL
+	ID		 	 			INTEGER PRIMARY KEY AUTOINCREMENT,
+	Title					STRING NOT NULL,
+	Description	 	STRING NOT NULL,
+	idChannel	 		INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL
 );
 
 
 CREATE TABLE CHANNEL(
-	ID		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	Name		 STRING NOT NULL,
-	Description	 STRING NOT NULL,
-	idCreator	 INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL
+	ID		 				INTEGER PRIMARY KEY AUTOINCREMENT,
+	Name		 			STRING NOT NULL,
+	Description	 	STRING NOT NULL,
+	idCreator	 		INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL
 );
 
 
@@ -44,49 +44,40 @@ CREATE TABLE USER(
 );
 
 CREATE TABLE STORY(
-	ID		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	Title		 STRING NOT NULL,
-	Text		 STRING,
-	StoryDate	 DATE NOT NULL,
-	idAuthor	 INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL,
-	UpvoteRatio	 INTEGER,
-	ChannelStory	 INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL
+	ID		 				INTEGER PRIMARY KEY AUTOINCREMENT,
+	Title		 			STRING NOT NULL,
+	Description		STRING,
+	StoryDate	 		DATE NOT NULL,
+	idAuthor	 		INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL,
+	UpvoteRatio	 	INTEGER,
+	ChannelStory	INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE NOT NULL
 );
 
 CREATE TABLE COMMENT(
-	ID		 INTEGER PRIMARY KEY AUTOINCREMENT,
-	Text		 STRING NOT NULL,
-	CommentDate	 DATE NOT NULL,
-	idStory		 INTEGER REFERENCES STORY(ID) ON DELETE CASCADE NOT NULL,
-	idAuthor	 INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL,
-	idComment	 INTEGER REFERENCES COMMENT(ID) ON DELETE CASCADE
+	ID		 				INTEGER PRIMARY KEY AUTOINCREMENT,
+	Description		STRING NOT NULL,
+	CommentDate	 	DATE NOT NULL,
+	idStory		 		INTEGER REFERENCES STORY(ID) ON DELETE CASCADE NOT NULL,
+	idAuthor	 		INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL,
+	idComment	 		INTEGER REFERENCES COMMENT(ID) ON DELETE CASCADE
 );
 
 CREATE TABLE SUBSCRIBER(
-	UserID    	 INTEGER REFERENCES USER(ID) ON DELETE CASCADE,
-    ChannelID 	 INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE,
-    PRIMARY KEY (
-    	UserID,
-    	ChannelID
-    )
+	UserID    	 	INTEGER REFERENCES USER(ID) ON DELETE CASCADE,
+  ChannelID 	 	INTEGER REFERENCES CHANNEL(ID) ON DELETE CASCADE,
+  PRIMARY KEY 	(UserID, ChannelID)
 );
 
 CREATE TABLE UPVOTE(
-	StoryID    	 INTEGER REFERENCES STORY(ID) ON DELETE CASCADE,
-    UserID		 INTEGER REFERENCES USER(ID) ON DELETE CASCADE,
-    PRIMARY KEY (
-    	StoryID,
-    	UserID
-    )
+	StoryID    	 	INTEGER REFERENCES STORY(ID) ON DELETE CASCADE,
+  UserID			 	INTEGER REFERENCES USER(ID) ON DELETE CASCADE,
+  PRIMARY KEY 	(StoryID, UserID)
 );
 
 CREATE TABLE DOWNVOTE(
-	StoryID    	 INTEGER REFERENCES STORY(ID) ON DELETE CASCADE,
-    UserID		 INTEGER REFERENCES USER(ID) ON DELETE CASCADE,
-    PRIMARY KEY (
-        StoryID,
-        UserID
-    )
+	StoryID    	 	INTEGER REFERENCES STORY(ID) ON DELETE CASCADE,
+  UserID		 		INTEGER REFERENCES USER(ID) ON DELETE CASCADE,
+  PRIMARY KEY 	(StoryID, UserID)
 );
 
 
@@ -104,48 +95,50 @@ BEFORE INSERT ON UPVOTE
 FOR EACH ROW
 WHEN EXISTS (SELECT * FROM DOWNVOTE WHERE (DOWNVOTE.StoryID=NEW.StoryID and DOWNVOTE.UserID=NEW.UserID))
 BEGIN
-	SELECT RAISE(rollback, "You cant upvote and downvote the same post");
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (Story.ID = NEW.StoryID);
+	DELETE FROM DOWNVOTE WHERE (DOWNVOTE.UserID=NEW.UserID AND DOWNVOTE.StoryID=NEW.StoryID);
 END;
-
 
 CREATE TRIGGER CheckBeforeDownvote
 BEFORE INSERT ON DOWNVOTE
 FOR EACH ROW
 WHEN EXISTS (SELECT * FROM UPVOTE WHERE (UPVOTE.StoryID=NEW.StoryID and UPVOTE.UserID=NEW.UserID))
 BEGIN
-	SELECT RAISE(rollback, "You cant upvote and downvote the same post");
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (Story.ID = NEW.StoryID);
+	DELETE FROM UPVOTE WHERE (UPVOTE.UserID=NEW.UserID AND UPVOTE.StoryID=NEW.StoryID);
 END;
-
 
 CREATE TRIGGER AddUpvote
 AFTER INSERT ON UPVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (Story.ID = NEW.StoryID);
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (STORY.ID = NEW.StoryID);
 END;
 
 CREATE TRIGGER AddDownvote
 AFTER INSERT ON DOWNVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (Story.ID = NEW.StoryID);
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (STORY.ID = NEW.StoryID);
 END;
 
 CREATE TRIGGER RemoveUpvote
 AFTER DELETE ON UPVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (Story.ID = NEW.StoryID);
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio - 1 WHERE (STORY.ID = OLD.StoryID);
 END;
 
 CREATE TRIGGER RemoveDownvote
 AFTER DELETE ON DOWNVOTE
 FOR EACH ROW
 BEGIN
-	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (Story.ID = NEW.StoryID);
+	UPDATE STORY SET UpvoteRatio = UpvoteRatio + 1 WHERE (STORY.ID = OLD.StoryID);
 END;
 
 
+INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('Pedro','Pedro','Gonçalves','pedro@gmail.com', '2702cb34ee041711b9df0c67a8d5c9de02110c80e3fc966ba8341456dbc9ef2b', 'Sim.', '3.jpg','1998-10-16');
+INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('DuarteOliveira8','Duarte','Oliveira','duarte@gmail.com', 'd5b64690663f2177ef0da201b741b84cd4659fdcb7fa2e2440c4f1e4ee8b2aba', 'Sim.', '3.jpg','1998-10-16');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('MariaNeves19','Maria','Neves','Maneves@gmail.com', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5', 'hello 1', '3.jpg','1998-08-15');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('SilvaJoao','Joao','Silva','JS1982@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'hello 2', '2.jpg','1994-03-15');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('Peixoto98','Leonor','Peixoto','LPEMAIL@hotmail.com', '8a9bcf1e51e812d0af8465a8dbcc9f741064bf0af3b3d08e6b0246437c19f7fb', 'hello 3', '2.jpg','1999-09-25');
@@ -180,37 +173,37 @@ INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-Be Nice.','We do not 
 INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-No repost.','Dont repost any post that was previously on this channel',5);
 
 
-INSERT INTO STORY (Title,Text,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('Im about to tell my boss I stole almost $5000 from my company','No one even has a clue the money is missing but I just cant hide it anymore.... I just posted this to vent and maybe help with my anxiety','2018-11-30',2,0,1);
-INSERT INTO STORY (Title,Text,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('Our idea of God tells us more about ourselves than about Him.-Thomas Merton',NULL,'2018-12-01',10,0,5);
-INSERT INTO STORY (Title,Text,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('I fear one day I will meet God, he Will sneeze and I wont know what to say. - Ronnie Shakes',NULL,'2018-12-01',12,0,5);
-INSERT INTO STORY (Title,Text,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('What are schools called that i can attend in holidays.','I live in Melbourne and am seriously falling behind in work. I was wondering what are the schools called that I can attend in the holidays so I can catch up on work.','2018-11-20',6,0,4);
-INSERT INTO STORY (Title,Text,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('You Are Living Proof That God Has A Sense Of Humor',NULL,'2018-11-05',14,0,3);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('Im about to tell my boss I stole almost $5000 from my company','No one even has a clue the money is missing but I just cant hide it anymore.... I just posted this to vent and maybe help with my anxiety','2018-11-30',2,0,1);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('Our idea of God tells us more about ourselves than about Him.-Thomas Merton',NULL,'2018-12-01',10,0,5);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('I fear one day I will meet God, he Will sneeze and I wont know what to say. - Ronnie Shakes',NULL,'2018-12-01',12,0,5);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('What are schools called that i can attend in holidays.','I live in Melbourne and am seriously falling behind in work. I was wondering what are the schools called that I can attend in the holidays so I can catch up on work.','2018-11-20',6,0,4);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('You Are Living Proof That God Has A Sense Of Humor',NULL,'2018-11-05',14,0,3);
 
 
-INSERT INTO COMMENT(Text,CommentDate,idStory,idAuthor,idComment) VALUES ('Tell him you stole $4,999. Thats a different class of felony.','2018-11-30',1,1,NULL);
-INSERT INTO COMMENT(Text,CommentDate,idStory,idAuthor,idComment) VALUES ('Someone hire this man','2018-12-01',1,5,1);
-INSERT INTO COMMENT(Text,CommentDate,idStory,idAuthor,idComment) VALUES ('Haha. Thank you','2018-12-01',1,1,2);
-INSERT INTO COMMENT(Text,CommentDate,idStory,idAuthor,idComment) VALUES ('Comment 101010','2018-12-01',1,10,2);
-INSERT INTO COMMENT(Text,CommentDate,idStory,idAuthor,idComment) VALUES ('Very Inspirational','2018-12-01',3,16,NULL);
-INSERT INTO COMMENT(Text,CommentDate,idStory,idAuthor,idComment) VALUES ('Feels Bad.','2018-12-06',5,4,NULL);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Tell him you stole $4,999. Thats a different class of felony.','2018-11-30',1,1,NULL);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Someone hire this man','2018-12-01',1,5,1);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Haha. Thank you','2018-12-01',1,1,2);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Comment 101010','2018-12-01',1,10,2);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Very Inspirational','2018-12-01',3,16,NULL);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Feels Bad.','2018-12-06',5,4,NULL);
 
 
-INSERT INTO SUBSCRIBER(UserID,ChannelID) VALUES (2,1);
-INSERT INTO SUBSCRIBER(UserID,ChannelID) VALUES (1,1);
-INSERT INTO SUBSCRIBER(UserID,ChannelID) VALUES (5,1);
-INSERT INTO SUBSCRIBER(UserID,ChannelID) VALUES (16,4);
-INSERT INTO SUBSCRIBER(UserID,ChannelID) VALUES (12,5);
-INSERT INTO SUBSCRIBER(UserID,ChannelID) VALUES (9,1);
+INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (2,1);
+INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (1,1);
+INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (5,1);
+INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (16,4);
+INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (12,5);
+INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (9,1);
 
 
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (1,1);
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (1,6);
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (1,12);
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (5,1);
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (3,11);
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (4,8);
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (4,9);
-INSERT INTO UPVOTE(StoryID,UserID) VALUES (2,3);
-INSERT INTO DOWNVOTE(StoryID,UserID) VALUES (1,14);
-INSERT INTO DOWNVOTE(StoryID,UserID) VALUES (5,4);
-INSERT INTO DOWNVOTE(StoryID,UserID) VALUES (5,11);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (1,1);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (1,6);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (1,12);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (5,1);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (3,11);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (4,8);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (4,9);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (2,3);
+INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (1,14);
+INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (5,4);
+INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (5,11);

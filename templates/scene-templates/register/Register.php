@@ -17,7 +17,7 @@
 
       <div class="createAcc">Already have an account? <a href="/login">Log in</a>.</div>
 
-      <form method="POST">
+      <form method="POST" action="/actions/auth/Register.php">
 
         <div class="username">
           <?php input('text', "Username:", "username", "Your username", true); ?>
@@ -50,6 +50,12 @@
         <div class="submitRegister">
           <button class="submitButton" type="submit">Register</button>
         </div>
+
+        <?php if (isset($_SESSION['ERROR'])): ?>
+          <div class="form-error">
+            <?php echo $_SESSION['ERROR'] ?>
+          </div>
+        <?php endif; ?>
       </form>
     </div>
   </div>

@@ -20,7 +20,12 @@ include('templates/shared-components/input/Input.php');
     </div>
 
     <div class="navbar-right">
-      <?php loggedOut() ?>
+      <?php
+        if (isset($_SESSION['userID']))
+          loggedIn();
+        else
+          loggedOut();
+      ?>
     </div>
   </div>
 <?php } ?>

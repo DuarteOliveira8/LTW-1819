@@ -1,0 +1,71 @@
+.navbar-container .navbar-right .user-avatar {
+  background-position: center;
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #fb6542;
+  grid-column: login;
+  cursor: pointer;
+  margin-right: 50px;
+}
+
+.navbar-container .navbar-right .options-layout {
+  z-index: 10000;
+  position: absolute;
+  border: 1px solid #cecece;
+  right: 4%;
+  top: 90px;
+  background-color: #fff;
+  outline: none;
+}
+
+.navbar-container .navbar-right .options-layout .triangle {
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #ffffff;
+  position: absolute;
+  top: -10px;
+  left: 101px;
+}
+
+.navbar-container .navbar-right .options-layout .triangle-border {
+  width: 0;
+  height: 0;
+  border-left: 11px solid transparent;
+  border-right: 11px solid transparent;
+  border-bottom: 11px solid #dedede;
+  position: absolute;
+  top: -11px;
+  left: 100px;
+}
+
+.navbar-container .navbar-right .options-layout .username {
+  padding: 20px 25px 0px 25px;
+  text-align: center;
+}
+
+.navbar-container .navbar-right .options-layout .options-line {
+  margin: 20px 15px 20px 15px;
+}
+
+.navbar-container .navbar-right .options-layout .options {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-container .navbar-right .options-layout .options .options-link {
+  padding: 0px 25px 20px 25px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar-container .navbar-right .options-layout .options .options-link:hover {
+  color: #fb6542;
+}
