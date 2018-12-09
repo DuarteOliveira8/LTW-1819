@@ -51,4 +51,5 @@
   grid-column-end: end;
   display: grid;
   grid-template-columns: [begin]8fr [register]2fr [login]2fr [end];
+  align-items: center;
 }

@@ -1,5 +1,4 @@
 .navbar-container .navbar-right .right-element {
-  margin-top: 28px;
   padding: 5px 10px 5px 10px;
 }
 
@@ -13,7 +12,7 @@
   grid-column-end: end;
 }
 
-.navbar-container .navbar-right .login-link {
+.navbar-container .navbar-right .navbar-link {
   text-decoration: none;
   border: 2px solid #fb6542;
   border-radius: 4px;
@@ -26,9 +25,7 @@
   transition-duration: 0.3s;
 }
 
-.navbar-container .navbar-right .login-link:hover {
+.navbar-container .navbar-right .navbar-link:hover {
   background-color: #fb6542;
   color: #fff;
-  -webbit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
 }
