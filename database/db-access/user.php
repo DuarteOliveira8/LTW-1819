@@ -3,22 +3,57 @@
 
   // Add new User
   function createUser($username, $firstname, $lastname, $email, $password, $birthdate){
-    global $dbh;
-    try {
-	    $stmt = $dbh->prepare('INSERT INTO USER(Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES (:Username, :FirstName, :LastName, :Email, :Password, :Bio, :Avatar, :BirthDate)');
-	    $stmt->bindParam(':Username', $username);
-      $stmt->bindParam(':FirstName', $firstname);
-      $stmt->bindParam(':LastName', $lastname);
-      $stmt->bindParam(':Email', $email);
-      $stmt->bindParam(':Password', $password);
-      $stmt->bindParam(':BirthDate', $birthdate);
+    $db = Database::getInstance()->getDB();
+    $hashedPW = hash('sha256', $password);
 
-      if($stmt->execute())
-        return $dbh->lastInsertId();
+    try {
+	    $stmt = $db->prepare('INSERT INTO USER(Username, FirstName, LastName, Email, Password, BirthDate) VALUES (?, ?, ?, ?, ?, ?)');
+
+      if($stmt->execute(array($username, $firstname, $lastname, $email, $hashedPW, $birthdate)))
+        return $db->lastInsertId();
       else
         return -1;
     }catch(PDOException $e) {
       return -1;
+    }
+  }
+
+  function isUsernameValid($username) {
+    $db = Database::getInstance()->getDB();
+
+    if (!preg_match('/[0-9a-zA-Z]+$/', $username)) {
+      echo "hello";
+      return false;
+    }
+
+    try {
+      $stmt = $db->prepare('SELECT * FROM USER WHERE Username = ?');
+      $stmt->execute(array($username));
+      $user = $stmt->fetch();
+
+      if ($user !== false)
+        return false;
+      else
+        return true;
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  function isEmailValid($email) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT * FROM USER WHERE Email = ?');
+      $stmt->execute(array($email));
+      $user = $stmt->fetch();
+
+      if ($user !== false)
+        return false;
+      else
+        return true;
+    } catch (PDOException $e) {
+      return false;
     }
   }
 
@@ -31,7 +66,7 @@
       $stmt = $db->prepare('SELECT * FROM USER WHERE Email = ? AND Password = ?');
       $stmt->execute(array($email, $hashedPW));
       $user = $stmt->fetch();
-      
+
       if ($user !== false)
         return $user['ID'];
       else

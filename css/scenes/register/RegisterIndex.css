@@ -91,3 +91,10 @@
   color: #fff;
   background-color: #FB6542;
 }
+
+.register-box .form-error {
+  width: 100%;
+  text-align: center;
+  color: #f00;
+  margin-top: 10px;
+}
