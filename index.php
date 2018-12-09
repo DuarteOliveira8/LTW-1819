@@ -8,27 +8,27 @@ else
 
 switch ($path) {
   case '':
-    require 'scenes/home/HomeIndex.php';
+    require './scenes/HomeIndex.php';
     break;
 
   case '/login':
-    require 'scenes/login/LoginIndex.php';
+    require 'scenes/LoginIndex.php';
     break;
 
   case '/profile':
-    require 'scenes/profile/ProfileIndex.php';
+    require 'scenes/ProfileIndex.php';
     break;
 
   case '/register':
-    require 'scenes/register/RegisterIndex.php';
+    require 'scenes/RegisterIndex.php';
     break;
 
   case '/post':
-    require 'scenes/post/PostIndex.php';
+    require 'scenes/PostIndex.php';
     break;
 
   case '/channel':
-    require 'scenes/channel/ChannelIndex.php';
+    require 'scenes/ChannelIndex.php';
     break;
 
   default:
