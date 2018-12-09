@@ -24,7 +24,7 @@
         Manage account
       </a>
 
-      <a class="options-link" href="/">
+      <a class="options-link" href="actions/auth/Logout.php">
         Log out
       </a>
     </div>
