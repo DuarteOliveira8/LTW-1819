@@ -2,10 +2,10 @@
 
 <?php function getBanner() { ?>
   <div class="banner-container">
-    <img src="/images/default-background.jpg" alt="" class="background-image">
+    <img src="/assets/images/default-background.jpg" alt="" class="background-image">
 
     <div class="basic-info">
-      <img src="/images/default-profile.png" alt="" class="profile-picture">
+      <img src="/assets/images/default-profile.png" alt="" class="profile-picture">
 
       <div class="profile-name">
         Firstname Lastname

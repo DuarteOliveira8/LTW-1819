@@ -1,13 +1,13 @@
 <?php
-include('shared-components/Header.php');
-include('shared-components/navbar/NavbarIndex.php');
-include('scenes/profile/Banner.php');
-include('scenes/profile/ProfileNav.php');
-include("shared-components/Post.php");
-include('scenes/profile/profile-tabs/CommentsTab.php');
-include('scenes/profile/profile-tabs/PostsTab.php');
-include('scenes/profile/profile-tabs/LikesTab.php');
-include('shared-components/Footer.php');
+include('templates/shared-components/Header.php');
+include('templates/shared-components/navbar/NavbarIndex.php');
+include('templates/scene-templates/profile/Banner.php');
+include('templates/scene-templates/profile/ProfileNav.php');
+include("templates/shared-components/Post.php");
+include('templates/scene-templates/profile/profile-tabs/CommentsTab.php');
+include('templates/scene-templates/profile/profile-tabs/PostsTab.php');
+include('templates/scene-templates/profile/profile-tabs/LikesTab.php');
+include('templates/shared-components/Footer.php');
 
 getHeader();
 getNavbar();
