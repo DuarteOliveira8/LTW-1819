@@ -8,8 +8,8 @@
   <?php } ?>
 
   <?php if ($required): ?>
-    <input class="input" type="<?php $type ?>" name="<?php $name ?>" placeholder="<?= $placeholder ?>" required>
+    <input class="input" type="<?= $type ?>" name="<?= $name ?>" placeholder="<?= $placeholder ?>" required>
   <?php else: ?>
-    <input class="input" type="<?php $type ?>" name="<?php $name ?>" placeholder="<?= $placeholder ?>">
+    <input class="input" type="<?= $type ?>" name="<?= $name ?>" placeholder="<?= $placeholder ?>">
   <?php endif; ?>
 <?php } ?>

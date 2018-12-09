@@ -17,7 +17,7 @@
 
       <div class="createAcc">Don't have an account? <a href="/register">Create account</a>.</div>
 
-      <form method="POST">
+      <form method="POST" action="actions/auth/Login.php">
         <div class="email">
           <?php input('email', "Email address:", "email", "Insert your email address", true); ?>
         </div>
@@ -29,6 +29,12 @@
         <div class="submitLogin">
           <button class="submitButton" type="submit">Log In</button>
         </div>
+
+        <?php if(isset($_SESSION['ERROR'])): ?>
+          <div class="form-error">
+            <?php echo $_SESSION['ERROR']; ?>
+          </div>
+        <?php endif; ?>
       </form>
     </div>
   </div>

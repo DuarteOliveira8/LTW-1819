@@ -1,4 +1,5 @@
 <?php
+  include_once('../../includes/Database.php');
 
   // Add new User
   function createUser($username, $firstname, $lastname, $email, $password, $birthdate){
@@ -17,10 +18,29 @@
       else
         return -1;
     }catch(PDOException $e) {
-        return -1;
+      return -1;
     }
   }
 
+  // Validate User
+  function authenticateUser($email, $password) {
+    $db = Database::getInstance()->getDB();
+    $hashedPW = hash('sha256', $password);
+
+    try {
+      $stmt = $db->prepare('SELECT * FROM USER WHERE Email = ? AND Password = ?');
+      $stmt->execute(array($email, $hashedPW));
+      $user = $stmt->fetch();
+      
+      if ($user !== false)
+        return $user['ID'];
+      else
+        return -1;
+    } catch (PDOException $e) {
+      return -1;
+    }
+
+  }
 
   // Delete user
   function deleteUser($UserID){
