@@ -146,6 +146,8 @@ BEGIN
 END;
 
 
+INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('Pedro','Pedro','Gonçalves','pedro@gmail.com', '2702cb34ee041711b9df0c67a8d5c9de02110c80e3fc966ba8341456dbc9ef2b', 'Sim.', '3.jpg','1998-10-16');
+INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('DuarteOliveira8','Duarte','Oliveira','duarte@gmail.com', 'd5b64690663f2177ef0da201b741b84cd4659fdcb7fa2e2440c4f1e4ee8b2aba', 'Sim.', '3.jpg','1998-10-16');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('MariaNeves19','Maria','Neves','Maneves@gmail.com', '65e84be33532fb784c48129675f9eff3a682b27168c0ea744b2cf58ee02337c5', 'hello 1', '3.jpg','1998-08-15');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('SilvaJoao','Joao','Silva','JS1982@gmail.com', '5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5', 'hello 2', '2.jpg','1994-03-15');
 INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, BirthDate) VALUES ('Peixoto98','Leonor','Peixoto','LPEMAIL@hotmail.com', '8a9bcf1e51e812d0af8465a8dbcc9f741064bf0af3b3d08e6b0246437c19f7fb', 'hello 3', '2.jpg','1999-09-25');
