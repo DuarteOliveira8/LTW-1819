@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/shared-components/navbar/navbar-right/LoggedIn.css">
 
 <?php function loggedIn() { ?>
-  <div class="options-layout" hidden>
+  <div class="options-layout" tabindex="-1" hidden>
     <div class="triangle-border"></div>
     <div class="triangle"></div>
 
@@ -12,21 +12,21 @@
     <hr class='options-line'>
 
     <div class="options">
-      <a class="options-link" href="/profile">
+      <div class="options-link" onclick="location.href='/profile'">
         My profile
-      </a>
+      </div>
 
-      <a class="options-link" href="/">
+      <div class="options-link" onclick="location.href='/'">
         My channels
-      </a>
+      </div>
 
-      <a class="options-link" href="/">
+      <div class="options-link" onclick="location.href='/'">
         Manage account
-      </a>
+      </div>
 
-      <a class="options-link" href="actions/auth/Logout.php">
+      <div class="options-link" onclick="location.href='/actions/auth/Logout.php'">
         Log out
-      </a>
+      </div>
     </div>
   </div>
 

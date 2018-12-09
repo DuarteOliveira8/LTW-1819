@@ -63,6 +63,7 @@
 .navbar-container .navbar-right .options-layout .options .options-link {
   padding: 0px 25px 20px 25px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .navbar-container .navbar-right .options-layout .options .options-link:hover {
