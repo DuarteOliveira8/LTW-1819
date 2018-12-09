@@ -1,0 +1,15 @@
+.comments-section-container {
+  padding: 10px;
+  text-align: justify;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.comments-container {
+  text-align: justify;
+}
+
+.comments-title {
+  font-size: 20px;
+  text-decoration: underline;
+}
