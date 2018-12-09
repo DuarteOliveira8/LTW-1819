@@ -89,3 +89,8 @@
 .post-container .post-header .post-date {
   margin-left: 5%;
 }
+
+.post-container .post-comments-num {
+  margin-top: 1%;
+  font-size: 14px;
+}
