@@ -157,11 +157,31 @@
     }
   }
 
+  //Get all votes from a user
+  function getUserVotes($UserID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT DISTINCT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+                            FROM STORY, UPVOTE, DOWNVOTE
+                            WHERE ((UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)
+                                  OR
+                                  (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID))
+                            ORDER BY STORY.StoryDate DESC
+                          ');
+      $stmt->execute(array($UserID, $UserID));
+      return $stmt->fetchAll();
+    }catch(PDOException $e) {
+      return false;
+    }
+  }
+
   // Get all upvotes from a user
   function getUserUpvotes($UserID) {
-    global $dbh;
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT STORY.ID, STORY.TITLE, STORY.Text FROM UPVOTE,STORY WHERE (UserID = ? AND STORY.ID = UPVOTE.StoryID AND UserID=UPVOTE.UserID)');
+      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory FROM STORY, UPVOTE WHERE (UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)');
       $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -169,6 +189,18 @@
     }
   }
 
+  // Get all upvotes from a user
+  function getUserDownvotes($UserID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory FROM STORY, DOWNVOTE WHERE (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID)');
+      $stmt->execute(array($UserID));
+      return $stmt->fetchAll();
+    }catch(PDOException $e) {
+      return null;
+    }
+  }
 
   // Get all channels subscribed
   function getUserSubscribed($UserID) {

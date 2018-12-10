@@ -23,6 +23,10 @@ switch ($path) {
     require 'user-endpoint/UserSubs.php';
     break;
 
+  case '/api/user/votes':
+    require 'user-endpoint/UserVotes.php';
+    break;
+
   default:
     echo json_encode(array('error' => '404_not_found'));
     break;
