@@ -8,11 +8,11 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($user = getUser($_SESSION['userID'])) == false) {
+    if (($channels = getUserSubscribed($_SESSION['userID'])) == false) {
       echo json_encode(array('error' => 'null'));
     }
     else {
-      echo json_encode($user);
+      echo json_encode($channels);
     }
   }
   elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {

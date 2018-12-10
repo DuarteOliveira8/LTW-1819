@@ -19,8 +19,12 @@ switch ($path) {
     require 'user-endpoint/UserComments.php';
     break;
 
+  case '/api/user/subscribed':
+    require 'user-endpoint/UserSubs.php';
+    break;
+
   default:
-    echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
+    echo json_encode(array('error' => '404_not_found'));
     break;
 }
 ?>

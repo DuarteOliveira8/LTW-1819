@@ -171,14 +171,15 @@
 
 
   // Get all channels subscribed
-  function getUserSubscribe($UserID) {
-    global $dbh;
+  function getUserSubscribed($UserID) {
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT CHANNEL.ID, CHANNEL.Name FROM SUBSCRIBER, CHANNEL WHERE (UserID = ? AND STORY.ID = UPVOTE.StoryID AND UserID=UPVOTE.UserID)');
+      $stmt = $db->prepare('SELECT CHANNEL.Name, CHANNEL.Description FROM SUBSCRIBER, CHANNEL WHERE (SUBSCRIBER.UserID = ? AND SUBSCRIBER.ChannelID = CHANNEL.ID)');
       $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 
