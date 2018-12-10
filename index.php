@@ -39,6 +39,10 @@ switch ($path) {
     require 'scenes/CreatePostIndex.php';
     break;
 
+  case '/manage-account':
+    require 'scenes/ManageAccountIndex.php';
+    break;
+
   default:
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;

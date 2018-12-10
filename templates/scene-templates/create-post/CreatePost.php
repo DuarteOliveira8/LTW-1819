@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/scenes/post/CreatePost.css">
+<link rel="stylesheet" href="/css/scenes/create-post/CreatePost.css">
 
 <?php
   include('templates/shared-components/input/TextArea.php');

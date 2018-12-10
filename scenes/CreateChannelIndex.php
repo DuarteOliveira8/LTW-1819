@@ -8,7 +8,7 @@
   getHeader();
   getNavbar();
 ?>
-<link rel="stylesheet" href="/css/scenes/channel/CreateChannelIndex.css">
+<link rel="stylesheet" href="/css/scenes/create-channel/CreateChannelIndex.css">
 
 <div class="container">
   <?php

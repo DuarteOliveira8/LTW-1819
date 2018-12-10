@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/css/scenes/channel/CreateChannel.css">
+<link rel="stylesheet" href="/css/scenes/create-channel/CreateChannel.css">
 
 <?php function getCreateChannel() { ?>
     <div class="create-box">

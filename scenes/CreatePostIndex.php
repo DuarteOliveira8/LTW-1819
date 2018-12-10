@@ -8,7 +8,7 @@
   getHeader();
   getNavbar();
 ?>
-<link rel="stylesheet" href="/css/scenes/post/CreatePostIndex.css">
+<link rel="stylesheet" href="/css/scenes/create-post/CreatePostIndex.css">
 
 <div class="container">
   <?php

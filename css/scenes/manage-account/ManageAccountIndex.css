@@ -1,0 +1,6 @@
+.container {
+  margin-top: 90px;
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: 60% 40%;
+}
