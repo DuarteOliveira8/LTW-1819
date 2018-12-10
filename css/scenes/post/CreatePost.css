@@ -22,16 +22,16 @@
   font-size: 28px;
 }
 
-.create-box .channel-name {
+.create-box .post-title {
   margin-top: 30px;
   margin-bottom: 35px;
 }
 
-.create-box .channel-description {
+.create-box .post-description {
   margin-bottom: 35px;
 }
 
-.create-box .submitChannel .submitButton {
+.create-box .submitPost .submitButton {
   background-color: #fff;
   cursor: pointer;
   color: #FB6542;
@@ -47,7 +47,7 @@
   transition-duration: 0.3s;
 }
 
-.create-box .submitChannel .submitButton:hover {
+.create-box .submitPost .submitButton:hover {
   background-color: white;
   color: #fff;
   background-color: #FB6542;

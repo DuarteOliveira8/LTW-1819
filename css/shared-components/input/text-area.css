@@ -1,0 +1,14 @@
+.text-area {
+  width: 100%;
+  padding: 10px 15px 10px 15px;
+  border: 1px solid #cecece;
+  border-radius: 4px;
+  resize: none;
+}
+
+.textareaTitle {
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: left;
+  font-weight: bold;
+}
