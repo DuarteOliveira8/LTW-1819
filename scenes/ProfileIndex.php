@@ -1,14 +1,14 @@
 <?php
-  include('includes/Session.php');
-  include('templates/shared-components/Header.php');
-  include('templates/shared-components/navbar/NavbarIndex.php');
-  include('templates/scene-templates/profile/Banner.php');
-  include('templates/scene-templates/profile/ProfileNav.php');
-  include("templates/shared-components/Post.php");
-  include('templates/scene-templates/profile/profile-tabs/CommentsTab.php');
-  include('templates/scene-templates/profile/profile-tabs/PostsTab.php');
-  include('templates/scene-templates/profile/profile-tabs/LikesTab.php');
-  include('templates/shared-components/Footer.php');
+  include_once('includes/Session.php');
+  include_once('templates/shared-components/Header.php');
+  include_once('templates/shared-components/navbar/NavbarIndex.php');
+  include_once('templates/scene-templates/profile/Banner.php');
+  include_once('templates/scene-templates/profile/ProfileNav.php');
+  include_once("templates/shared-components/Post.php");
+  include_once('templates/scene-templates/profile/profile-tabs/CommentsTab.php');
+  include_once('templates/scene-templates/profile/profile-tabs/PostsTab.php');
+  include_once('templates/scene-templates/profile/profile-tabs/LikesTab.php');
+  include_once('templates/shared-components/Footer.php');
 
   getHeader();
   getNavbar();
