@@ -8,11 +8,11 @@ else
 
 switch ($path) {
   case '/api/user':
-    require 'User.php';
+    require 'user-endpoint/User.php';
     break;
 
   case '/api/user/posts':
-    require 'UserPosts.php';
+    require 'user-endpoint/UserPosts.php';
     break;
 
   default:

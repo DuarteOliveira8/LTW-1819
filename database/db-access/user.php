@@ -131,27 +131,29 @@
 
 
   // Get all stories from a user
-  function getUserStories($idAuthor) {
-    global $dbh;
+  function getUserPosts($idAuthor) {
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT ID, Title, Text FROM STORY WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT ID, Title, Description FROM STORY WHERE idAuthor = ?');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 
 
   // Get all comments from a user
   function getUserComments($idAuthor) {
-    global $dbh;
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT ID, Text FROM COMMENT WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT ID, Description FROM COMMENT WHERE idAuthor = ?');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 
