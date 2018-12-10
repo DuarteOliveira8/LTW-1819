@@ -22,7 +22,6 @@
     $db = Database::getInstance()->getDB();
 
     if (!preg_match('/[0-9a-zA-Z]+$/', $username)) {
-      echo "hello";
       return false;
     }
 
@@ -247,17 +246,66 @@
     }
   }
 
-  //Change user email
-  function changeEmail($ID,$Email) {
-    global $dbh;
+  function isUsernameValidForUpdate($UserID, $username) {
+    $db = Database::getInstance()->getDB();
+
+    if (!preg_match('/[0-9a-zA-Z]+$/', $username)) {
+      return false;
+    }
+
     try {
-      $stmt = $dbh->prepare('UPDATE USER SET Email = ? WHERE ID = ?');
-      if($stmt->execute(array($ID, $Email)))
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Username = ?
+                          ');
+      $stmt->execute(array($username));
+      $user = $stmt->fetch();
+
+      if ($user !== false && $user['ID'] !== $UserID)
+        return false;
+      else
+        return true;
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  //Change user email
+  function isEmailValidForUpdate($UserID, $Email) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Email = ?
+                          ');
+      $stmt->execute(array($email));
+      $user = $stmt->fetch();
+
+      if ($user !== false && $user['ID'] !== $UserID)
+        return false;
+      else
+        return true;
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  //Change Info
+  function updateUser($UserID, $Username, $FirstName, $LastName, $Email, $Bio, $BirthDate) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('UPDATE USER
+                            SET Username = ?, FirstName = ?, LastName = ?, Email = ?, Bio = ?, BirthDate = ?
+                            WHERE ID = ?
+                          ');
+      if($stmt->execute(array($Username, $FirstName, $LastName, $Email, $Bio, $BirthDate, $UserID)))
         return true;
       else
         return false;
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 
@@ -267,20 +315,6 @@
     try {
       $stmt = $dbh->prepare('UPDATE USER SET Password = ? WHERE ID = ?');
       if($stmt->execute(array($ID, $Password)))
-        return true;
-      else
-        return false;
-    }catch(PDOException $e) {
-      return null;
-    }
-  }
-
-  //Change Info
-  function changeInfo($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate) {
-    global $dbh;
-    try {
-      $stmt = $dbh->prepare('UPDATE USER SET FirstName = ?, LastName = ?, Bio = ?, Avatar = ?, BirthDate = ? WHERE ID = ?');
-      if($stmt->execute(array($ID,$FirstName,$LastName,$Bio,$Avatar,$BirthDate)))
         return true;
       else
         return false;
