@@ -135,7 +135,7 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT ID, Title, Description FROM STORY WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT Title, Description, StoryDate, UpvoteRatio, ChannelStory FROM STORY WHERE idAuthor = ?');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -149,7 +149,7 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT ID, Description FROM COMMENT WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT Description, CommentDate, idStory, idComment FROM COMMENT WHERE idAuthor = ?');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
     }catch(PDOException $e) {

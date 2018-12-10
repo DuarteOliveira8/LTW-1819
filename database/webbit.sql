@@ -46,7 +46,7 @@ CREATE TABLE USER(
 CREATE TABLE STORY(
 	ID		 				INTEGER PRIMARY KEY AUTOINCREMENT,
 	Title		 			STRING NOT NULL,
-	Description		STRING,
+	Description		STRING NOT NULL,
 	StoryDate	 		DATE NOT NULL,
 	idAuthor	 		INTEGER REFERENCES USER(ID) ON DELETE CASCADE NOT NULL,
 	UpvoteRatio	 	INTEGER,
@@ -158,41 +158,40 @@ INSERT INTO USER (Username, FirstName, LastName, Email, Password, Bio, Avatar, B
 
 
 INSERT INTO CHANNEL (Name, Description, idCreator) VALUES ('Advice','This is a place where you can ask for advice on any subject',1);
-INSERT INTO CHANNEL (Name, Description, idCreator) VALUES ('Music','Insert your favourite musics in this place so we can discuss it.',4);
+INSERT INTO CHANNEL (Name, Description, idCreator) VALUES ('Music','Insert your favourite musics in this place so we can discuss it.',2);
 INSERT INTO CHANNEL (Name, Description, idCreator) VALUES ('Funny','Welcome to Funny: Webbits largest humour depository',1);
 INSERT INTO CHANNEL (Name, Description, idCreator) VALUES ('School','Insert your doubts about school subjects.',10);
-INSERT INTO CHANNEL (Name, Description, idCreator) VALUES ('Quotes','For your favorite quotes. Current quotes, historic quotes, movie quotes, song lyric quotes,...',12);
+INSERT INTO CHANNEL (Name, Description, idCreator) VALUES ('Quotes','For your favorite quotes. Current quotes, historic quotes, movie quotes, song lyric quotes,...',2);
 
 
 INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-Be Nice.','We do not tolerate trolling, harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil actions.',1);
 INSERT INTO RULES (Title,Description,idChannel) VALUES ('2-Posts must ask for advice.','No posts offering general unsolicited advice.',1);
 INSERT INTO RULES (Title,Description,idChannel) VALUES ('3-No spam.','No posts that dont belong in this channel.',1);
 INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-No leaks or piracy.','No links to unauthorized music leaks or promotion of piracy.',2);
-INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-No Dark Jokes.','We do not tolerate harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil jokes.',3);
+INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-No Dark Jokes.','We do not tolerate harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil jokes.',2);
 INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-Be Nice.','We do not tolerate trolling, harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil actions.',4);
 INSERT INTO RULES (Title,Description,idChannel) VALUES ('1-No repost.','Dont repost any post that was previously on this channel',5);
 
 
 INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('Im about to tell my boss I stole almost $5000 from my company','No one even has a clue the money is missing but I just cant hide it anymore.... I just posted this to vent and maybe help with my anxiety','2018-11-30',2,0,1);
-INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('Our idea of God tells us more about ourselves than about Him.-Thomas Merton',NULL,'2018-12-01',10,0,5);
-INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('I fear one day I will meet God, he Will sneeze and I wont know what to say. - Ronnie Shakes',NULL,'2018-12-01',12,0,5);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('Our idea of God tells us more about ourselves than about Him.-Thomas Merton','yes.','2018-12-01',2,0,5);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('I fear one day I will meet God, he Will sneeze and I wont know what to say. - Ronnie Shakes','no.','2018-12-01',12,0,5);
 INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('What are schools called that i can attend in holidays.','I live in Melbourne and am seriously falling behind in work. I was wondering what are the schools called that I can attend in the holidays so I can catch up on work.','2018-11-20',6,0,4);
-INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('You Are Living Proof That God Has A Sense Of Humor',NULL,'2018-11-05',14,0,3);
+INSERT INTO STORY (Title,Description,StoryDate,idAuthor,UpvoteRatio,ChannelStory) VALUES ('You Are Living Proof That God Has A Sense Of Humor','hello.','2018-11-05',14,0,3);
 
 
 INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Tell him you stole $4,999. Thats a different class of felony.','2018-11-30',1,1,NULL);
 INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Someone hire this man','2018-12-01',1,5,1);
-INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Haha. Thank you','2018-12-01',1,1,2);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Haha. Thank you','2018-12-01',1,2,2);
 INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Comment 101010','2018-12-01',1,10,2);
-INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Very Inspirational','2018-12-01',3,16,NULL);
+INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Very Inspirational','2018-12-01',3,2,NULL);
 INSERT INTO COMMENT (Description,CommentDate,idStory,idAuthor,idComment) VALUES ('Feels Bad.','2018-12-06',5,4,NULL);
 
 
 INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (2,1);
 INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (1,1);
-INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (5,1);
 INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (16,4);
-INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (12,5);
+INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (2,5);
 INSERT INTO SUBSCRIBER (UserID,ChannelID) VALUES (9,1);
 
 
@@ -200,10 +199,13 @@ INSERT INTO UPVOTE (StoryID,UserID) VALUES (1,1);
 INSERT INTO UPVOTE (StoryID,UserID) VALUES (1,6);
 INSERT INTO UPVOTE (StoryID,UserID) VALUES (1,12);
 INSERT INTO UPVOTE (StoryID,UserID) VALUES (5,1);
-INSERT INTO UPVOTE (StoryID,UserID) VALUES (3,11);
+INSERT INTO UPVOTE (StoryID,UserID) VALUES (2,11);
 INSERT INTO UPVOTE (StoryID,UserID) VALUES (4,8);
 INSERT INTO UPVOTE (StoryID,UserID) VALUES (4,9);
 INSERT INTO UPVOTE (StoryID,UserID) VALUES (2,3);
 INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (1,14);
 INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (5,4);
 INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (5,11);
+INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (2,8);
+INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (2,11);
+INSERT INTO DOWNVOTE (StoryID,UserID) VALUES (2,1);

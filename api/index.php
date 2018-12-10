@@ -15,6 +15,10 @@ switch ($path) {
     require 'user-endpoint/UserPosts.php';
     break;
 
+  case '/api/user/comments':
+    require 'user-endpoint/UserComments.php';
+    break;
+
   default:
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;
