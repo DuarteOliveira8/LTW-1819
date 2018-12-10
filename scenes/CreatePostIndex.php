@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/css/scenes/channel/CreateChannelIndex.css">
+<link rel="stylesheet" href="/css/scenes/post/CreatePostIndex.css">
 
 <?php
   include('templates/shared-components/Header.php');
   include('templates/shared-components/navbar/NavbarIndex.php');
-  include('templates/scene-templates/channel/CreateChannel.php');
+  include('templates/scene-templates/post/CreatePost.php');
   include('templates/shared-components/Footer.php');
 
   getHeader();
@@ -12,7 +12,7 @@
 
 <div class="container">
   <?php
-    getCreateChannel();
+    getCreatePost();
   ?>
 </div>
 
