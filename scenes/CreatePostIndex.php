@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/css/scenes/post/CreatePostIndex.css">
+<link rel="stylesheet" href="/css/scenes/create-post/CreatePostIndex.css">
 
 <?php
   include('templates/shared-components/Header.php');
   include('templates/shared-components/navbar/NavbarIndex.php');
-  include('templates/scene-templates/post/CreatePost.php');
+  include('templates/scene-templates/create-post/CreatePost.php');
   include('templates/shared-components/Footer.php');
 
   getHeader();
