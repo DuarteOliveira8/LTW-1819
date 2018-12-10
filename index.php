@@ -43,6 +43,10 @@ switch ($path) {
     require 'scenes/ManageAccountIndex.php';
     break;
 
+  case '/manage-channel':
+    require 'scenes/ManageChannelIndex.php';
+    break;
+
   default:
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;

@@ -1,0 +1,99 @@
+.manage-container {
+  margin-left: 150px;
+  margin-bottom: 0px;
+  grid-column-start: 1;
+  width: 75%;
+}
+
+.manage-container .manageTitle {
+  font-size: 40px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #FB6542;
+  width: 50%;
+}
+
+.manage-container .inputTitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.manage-container .input {
+  margin-bottom: 30px;
+}
+
+.manage-container .textareaTitle {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.manage-container .text-area {
+  margin-bottom: 20px;
+}
+
+.manage-container .submitChanges .submitButton {
+  background-color: #fff;
+  cursor: pointer;
+  color: #FB6542;
+  width: 35%;
+  height: 40px;
+  padding: 5px 0px 5px 0px;
+  margin: 5px auto 0px auto;
+  border: 1px solid #FB6542;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.manage-container .submitChanges .submitButton:hover {
+  background-color: white;
+  color: #fff;
+  background-color: #FB6542;
+}
+
+.changeBanner-container {
+  grid-column-start: 2;
+  margin-top: 100px;
+  margin-left: 25px;
+  width: 50%;
+}
+
+.changeBanner-container .bannerPicTitle {
+  font-size: 30px;
+}
+
+.changeBanner-container .bannerPic {
+  width: 30em;
+  height: 15em;
+  border-radius: 5%;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  border: 1px solid #FB6542;
+  margin-bottom: 20px;
+}
+
+.changeBanner-container .submitBanner .submitButton {
+  background-color: #fff;
+  cursor: pointer;
+  color: #FB6542;
+  width: 35%;
+  height: 40px;
+  padding: 5px 0px 5px 0px;
+  margin: 5px auto 0px auto;
+  border: 1px solid #FB6542;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.changeBanner-container .submitBanner .submitButton:hover {
+  background-color: white;
+  color: #fff;
+  background-color: #FB6542;
+}
