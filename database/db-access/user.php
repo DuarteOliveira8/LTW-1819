@@ -1,5 +1,5 @@
 <?php
-  include_once('../../includes/Database.php');
+  include_once(__DIR__ . '/../../includes/Database.php');
 
   // Add new User
   function createUser($username, $firstname, $lastname, $email, $password, $birthdate){
@@ -27,7 +27,10 @@
     }
 
     try {
-      $stmt = $db->prepare('SELECT * FROM USER WHERE Username = ?');
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Username = ?
+                          ');
       $stmt->execute(array($username));
       $user = $stmt->fetch();
 
@@ -44,7 +47,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT * FROM USER WHERE Email = ?');
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Email = ?
+                          ');
       $stmt->execute(array($email));
       $user = $stmt->fetch();
 
@@ -63,7 +69,10 @@
     $hashedPW = hash('sha256', $password);
 
     try {
-      $stmt = $db->prepare('SELECT * FROM USER WHERE Email = ? AND Password = ?');
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Email = ? AND Password = ?
+                          ');
       $stmt->execute(array($email, $hashedPW));
       $user = $stmt->fetch();
 
@@ -92,6 +101,22 @@
   	}
   }
 
+  // Get user with id
+  function getUser($userID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar
+                            FROM USER
+                            WHERE Id = ?
+                          ');
+      $stmt->execute(array($userID));
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
   //Get id with username
   function getID($username) {
     global $dbh;
@@ -118,24 +143,70 @@
 
 
   // Get all stories from a user
-  function getUserStories($idAuthor) {
-    global $dbh;
+  function getUserPosts($idAuthor) {
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT ID, Title, Text FROM STORY WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT Title, Description, StoryDate, UpvoteRatio, ChannelStory
+                            FROM STORY
+                            WHERE idAuthor = ?
+                            ORDER BY StoryDate DESC
+                          ');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 
 
   // Get all comments from a user
   function getUserComments($idAuthor) {
-    global $dbh;
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT ID, Text FROM COMMENT WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT Description, CommentDate, idStory, idComment
+                            FROM COMMENT
+                            WHERE idAuthor = ?
+                            ORDER BY CommentDate DESC
+                          ');
       $stmt->execute(array($idAuthor));
+      return $stmt->fetchAll();
+    }catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  //Get all votes from a user
+  function getUserVotes($UserID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT DISTINCT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+                            FROM STORY, UPVOTE, DOWNVOTE
+                            WHERE ((UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)
+                                  OR
+                                  (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID))
+                            ORDER BY STORY.StoryDate DESC
+                          ');
+      $stmt->execute(array($UserID, $UserID));
+      return $stmt->fetchAll();
+    }catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get all upvotes from a user
+  function getUserUpvotes($UserID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+                            FROM STORY, UPVOTE
+                            WHERE (UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)
+                            ORDER BY STORY.StoryDate DESC
+                          ');
+      $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return null;
@@ -143,10 +214,15 @@
   }
 
   // Get all upvotes from a user
-  function getUserUpvotes($UserID) {
-    global $dbh;
+  function getUserDownvotes($UserID) {
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT STORY.ID, STORY.TITLE, STORY.Text FROM UPVOTE,STORY WHERE (UserID = ? AND STORY.ID = UPVOTE.StoryID AND UserID=UPVOTE.UserID)');
+      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+                            FROM STORY, DOWNVOTE
+                            WHERE (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID)
+                            ORDER BY STORY.StoryDate DESC
+                          ');
       $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -154,16 +230,20 @@
     }
   }
 
-
   // Get all channels subscribed
-  function getUserSubscribe($UserID) {
-    global $dbh;
+  function getUserSubscribed($UserID) {
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT CHANNEL.ID, CHANNEL.Name FROM SUBSCRIBER, CHANNEL WHERE (UserID = ? AND STORY.ID = UPVOTE.StoryID AND UserID=UPVOTE.UserID)');
+      $stmt = $db->prepare('SELECT CHANNEL.Name, CHANNEL.Description
+                            FROM SUBSCRIBER, CHANNEL
+                            WHERE (SUBSCRIBER.UserID = ? AND SUBSCRIBER.ChannelID = CHANNEL.ID)
+                            ORDER BY CHANNEL.Name
+                          ');
       $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 
