@@ -1,0 +1,149 @@
+.manage-container {
+  margin-left: 150px;
+  margin-bottom: 0px;
+  grid-column-start: 1;
+  width: 75%;
+}
+
+.avatarPassword-container {
+  grid-column-start: 2;
+  grid-column-end: 2;
+  margin-top: 100px;
+  margin-left: 25px;
+  width: 50%;
+}
+
+.manage-container .manageTitle {
+  font-size: 40px;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #FB6542;
+  width: 50%;
+}
+
+.manage-container .inputTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.manage-container .input {
+  margin-bottom: 30px;
+}
+
+.manage-container .selectChain {
+  margin-bottom: 15px;
+}
+
+.manage-container .selectTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.manage-container .textareaTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.manage-container .user-bio .text-area {
+  height: 20%;
+  margin-bottom: 30px;
+}
+
+.manage-container .submitChanges .submitButton {
+  background-color: #fff;
+  cursor: pointer;
+  color: #FB6542;
+  width: 35%;
+  height: 30px;
+  padding: 5px 0px 5px 0px;
+  margin: 5px auto 0px auto;
+  border: 1px solid #FB6542;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.manage-container .submitChanges .submitButton:hover {
+  background-color: white;
+  color: #fff;
+  background-color: #FB6542;
+}
+
+.avatarPassword-container .avatarPicTitle {
+  font-size: 32px;
+}
+
+.avatarPassword-container .avatarPic {
+  width: 10em;
+  height: 10em;
+  border-radius: 50%;
+  background-position: center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  border: 1px solid #FB6542;
+  margin-bottom: 20px;
+}
+
+.avatarPassword-container .submitAvatar {
+  margin-bottom: 50px;
+}
+
+.avatarPassword-container .submitAvatar .submitButton{
+  background-color: #fff;
+  cursor: pointer;
+  color: #FB6542;
+  width: 35%;
+  height: 30px;
+  padding: 5px 0px 5px 0px;
+  margin: 5px auto 0px 15px;
+  border: 1px solid #FB6542;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.avatarPassword-container .submitAvatar .submitButton:hover {
+  background-color: white;
+  color: #fff;
+  background-color: #FB6542;
+}
+
+.avatarPassword-container .password-container .passwordTitle {
+  font-size: 32px;
+}
+
+.avatarPassword-container .password-container .inputTitle{
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.avatarPassword-container .password-container .input{
+  margin-bottom: 20px;
+}
+
+.avatarPassword-container .submitPassword .submitButton{
+  background-color: #fff;
+  cursor: pointer;
+  color: #FB6542;
+  width: 35%;
+  height: 30px;
+  padding: 5px 0px 5px 0px;
+  margin: 5px auto 0px auto;
+  border: 1px solid #FB6542;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.avatarPassword-container .submitPassword .submitButton:hover {
+  background-color: white;
+  color: #fff;
+  background-color: #FB6542;
+}
