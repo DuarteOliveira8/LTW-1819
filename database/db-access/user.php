@@ -1,5 +1,5 @@
 <?php
-  include_once('../../includes/Database.php');
+  include_once(__DIR__ . '/../../includes/Database.php');
 
   // Add new User
   function createUser($username, $firstname, $lastname, $email, $password, $birthdate){
@@ -90,6 +90,19 @@
   	} catch(PDOException $e) {
   		return false;
   	}
+  }
+
+  // Get user with id
+  function getUser($userID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar FROM USER WHERE Id = ?');
+      $stmt->execute(array($userID));
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+      return false;
+    }
   }
 
   //Get id with username

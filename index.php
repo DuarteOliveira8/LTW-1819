@@ -8,7 +8,7 @@ else
 
 switch ($path) {
   case '':
-    require './scenes/HomeIndex.php';
+    require 'scenes/HomeIndex.php';
     break;
 
   case '/login':
@@ -43,4 +43,9 @@ switch ($path) {
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;
 }
+
+// idea
+// case (preg_match('#^/api/user/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
+//   echo $matches['id'];
+//   break;
 ?>
