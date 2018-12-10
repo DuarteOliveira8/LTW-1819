@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/channel/ChannelIndex.css">
-
 <?php
   include('includes/Session.php');
   include('templates/shared-components/Header.php');
@@ -12,6 +10,7 @@
   getHeader();
   getNavbar();
 ?>
+<link rel="stylesheet" href="/css/scenes/channel/ChannelIndex.css">
 
 <div class="channel-container">
   <?php

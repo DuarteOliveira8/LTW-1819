@@ -1,7 +1,5 @@
-<link rel="stylesheet" href="/css/scenes/home/HomeIndex.css">
-
 <?php
-  include('includes/Session.php');
+  include_once('includes/Session.php');
   include('templates/shared-components/Header.php');
   include('templates/shared-components/navbar/NavbarIndex.php');
   include('templates/scene-templates/home/Banner.php');
@@ -14,6 +12,7 @@
   getHeader();
   getNavbar();
 ?>
+<link rel="stylesheet" href="/css/scenes/home/HomeIndex.css">
 
 <div class="home-container">
   <?php
