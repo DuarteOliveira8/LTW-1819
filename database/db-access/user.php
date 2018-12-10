@@ -27,7 +27,10 @@
     }
 
     try {
-      $stmt = $db->prepare('SELECT * FROM USER WHERE Username = ?');
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Username = ?
+                          ');
       $stmt->execute(array($username));
       $user = $stmt->fetch();
 
@@ -44,7 +47,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT * FROM USER WHERE Email = ?');
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Email = ?
+                          ');
       $stmt->execute(array($email));
       $user = $stmt->fetch();
 
@@ -63,7 +69,10 @@
     $hashedPW = hash('sha256', $password);
 
     try {
-      $stmt = $db->prepare('SELECT * FROM USER WHERE Email = ? AND Password = ?');
+      $stmt = $db->prepare('SELECT *
+                            FROM USER
+                            WHERE Email = ? AND Password = ?
+                          ');
       $stmt->execute(array($email, $hashedPW));
       $user = $stmt->fetch();
 
@@ -97,7 +106,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar FROM USER WHERE Id = ?');
+      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar
+                            FROM USER
+                            WHERE Id = ?
+                          ');
       $stmt->execute(array($userID));
       return $stmt->fetch();
     } catch (PDOException $e) {
@@ -135,7 +147,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Title, Description, StoryDate, UpvoteRatio, ChannelStory FROM STORY WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT Title, Description, StoryDate, UpvoteRatio, ChannelStory
+                            FROM STORY
+                            WHERE idAuthor = ?
+                            ORDER BY StoryDate DESC
+                          ');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -149,7 +165,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Description, CommentDate, idStory, idComment FROM COMMENT WHERE idAuthor = ?');
+      $stmt = $db->prepare('SELECT Description, CommentDate, idStory, idComment
+                            FROM COMMENT
+                            WHERE idAuthor = ?
+                            ORDER BY CommentDate DESC
+                          ');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -181,7 +201,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory FROM STORY, UPVOTE WHERE (UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)');
+      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+                            FROM STORY, UPVOTE
+                            WHERE (UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)
+                            ORDER BY STORY.StoryDate DESC
+                          ');
       $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -194,7 +218,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory FROM STORY, DOWNVOTE WHERE (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID)');
+      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+                            FROM STORY, DOWNVOTE
+                            WHERE (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID)
+                            ORDER BY STORY.StoryDate DESC
+                          ');
       $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -207,7 +235,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT CHANNEL.Name, CHANNEL.Description FROM SUBSCRIBER, CHANNEL WHERE (SUBSCRIBER.UserID = ? AND SUBSCRIBER.ChannelID = CHANNEL.ID)');
+      $stmt = $db->prepare('SELECT CHANNEL.Name, CHANNEL.Description
+                            FROM SUBSCRIBER, CHANNEL
+                            WHERE (SUBSCRIBER.UserID = ? AND SUBSCRIBER.ChannelID = CHANNEL.ID)
+                            ORDER BY CHANNEL.Name
+                          ');
       $stmt->execute(array($UserID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
