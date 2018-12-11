@@ -135,7 +135,7 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.Title, STORY.Description, STORY.StoryDate, USER.Username, STORY.UpvoteRatio, STORY.ChannelStory
+      $stmt = $db->prepare('SELECT DISTINCT STORY.Title, STORY.Description, STORY.StoryDate, USER.Username, USER.Avatar, STORY.UpvoteRatio, STORY.ChannelStory
                             FROM STORY, USER
                             WHERE STORY.idAuthor = ? AND STORY.idAuthor = USER.ID
                             ORDER BY STORY.StoryDate DESC
