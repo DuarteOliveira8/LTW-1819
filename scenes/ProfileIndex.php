@@ -5,7 +5,7 @@
   include_once('templates/scene-templates/profile/Banner.php');
   include_once('templates/scene-templates/profile/ProfileNav.php');
   include_once("templates/shared-components/Post.php");
-  include_once('templates/scene-templates/profile/profile-tabs/CommentsTab.php');
+  include_once('templates/scene-templates/profile/profile-tabs/SubscriptionsTab.php');
   include_once('templates/scene-templates/profile/profile-tabs/PostsTab.php');
   include_once('templates/scene-templates/profile/profile-tabs/LikesTab.php');
   include_once('templates/shared-components/Footer.php');
