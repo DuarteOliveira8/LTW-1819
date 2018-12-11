@@ -82,22 +82,6 @@
     } catch (PDOException $e) {
       return -1;
     }
-
-  }
-
-  // Delete user
-  function deleteUser($UserID){
-    global $dbh;
-    try {
-  		$stmt = $dbh->prepare('DELETE FROM USER WHERE ID = :ID');
-  		$stmt->bindParam(':ID', $UserID);
-  		if($stmt->execute())
-  			return true;
-  		else
-  			return false;
-  	} catch(PDOException $e) {
-  		return false;
-  	}
   }
 
   // Get user with id
@@ -132,27 +116,16 @@
     }
   }
 
-  //Get id with username
-  function getID($username) {
-    global $dbh;
-    try {
-      $stmt = $dbh->prepare('SELECT ID FROM USER WHERE Username = ?');
-      $stmt->execute(array($username));
-      return $stmt->fetch();
-    }catch(PDOException $e) {
-      return -1;
-    }
-  }
-
   // Get all users
   function getUsers() {
-    global $dbh;
+    $db = Database::getInstance()->getDB();
+
     try {
-        $stmt = $dbh->prepare('SELECT Username FROM USER');
-        $stmt->execute(array($idChannel));
-        return $stmt->fetchAll();
+      $stmt = $db->prepare('SELECT Username FROM USER');
+      $stmt->execute();
+      return $stmt->fetchAll();
     }catch(PDOException $e) {
-        return null;
+      return null;
     }
   }
 

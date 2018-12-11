@@ -27,6 +27,14 @@ switch ($path) {
     require 'user-endpoint/UserVotes.php';
     break;
 
+  case '/api/user/upvotes':
+    require 'user-endpoint/UserUpvotes.php';
+    break;
+
+  case '/api/user/downvotes':
+    require 'user-endpoint/UserDownvotes.php';
+    break;
+
   case '/api/user/password':
     require 'user-endpoint/UserPassword.php';
     break;

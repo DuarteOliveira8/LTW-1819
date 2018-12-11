@@ -15,7 +15,4 @@
       echo json_encode($votes);
     }
   }
-  elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo json_encode(array('error' => 'under_construction'));
-  }
 ?>
