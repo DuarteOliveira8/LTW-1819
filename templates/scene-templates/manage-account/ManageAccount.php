@@ -10,6 +10,7 @@
 
       <h2 class="manageTitle">Manage Account</h2>
 
+      <div class="general-info-form">
         <div class="username">
           <?php input('text', "Username:", "username", "Your Username", true); ?>
         </div>
@@ -37,6 +38,8 @@
         <div class="submitChanges">
           <button class="submitButton" type="submit">Save</button>
         </div>
+      </div>
+
     </div>
 
     <div class="avatarPassword-container">
