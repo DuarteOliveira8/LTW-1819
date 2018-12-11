@@ -37,7 +37,7 @@
   function getChannelStories($ChannelStory) {
     global $dbh;
     try {
-      $stmt = $dbh->prepare('SELECT ID, Title, Text, StoryDate FROM STORY WHERE ChannelStory = ?');
+      $stmt = $dbh->prepare('SELECT ID, Title, Description, StoryDate FROM STORY WHERE ChannelStory = ?');
       $stmt->execute(array($ChannelStory));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -49,7 +49,7 @@
   function getRecentStories() {
     global $dbh;
     try {
-      $stmt = $dbh->prepare('SELECT ID, Title, Text, UpvoteRatio, StoryDate FROM STORY ORDER BY StoryDate DESC');
+      $stmt = $dbh->prepare('SELECT ID, Title, Description, UpvoteRatio, StoryDate FROM STORY ORDER BY StoryDate DESC');
       $stmt->execute();
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -61,7 +61,7 @@
   function getMostUpvotedStories() {
     global $dbh;
     try {
-      $stmt = $dbh->prepare('SELECT ID, Title, Text, UpvoteRatio, StoryDate FROM STORY ORDER BY UpvoteRatio DESC');
+      $stmt = $dbh->prepare('SELECT ID, Title, Description, UpvoteRatio, StoryDate FROM STORY ORDER BY UpvoteRatio DESC');
       $stmt->execute();
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -111,7 +111,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('DELETE FROM UPVOTE WHERE StoryID = ? AND UserID= ?');
+      $stmt = $db->prepare('DELETE
+                            FROM UPVOTE
+                            WHERE StoryID = ? AND UserID= ?
+                          ');
 
     	if($stmt->execute(array($story, $user)))
     		return true;
@@ -164,7 +167,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-    	$stmt = $db->prepare('DELETE FROM DOWNVOTE WHERE StoryID = ? AND UserID= ?');
+    	$stmt = $db->prepare('DELETE
+                            FROM DOWNVOTE
+                            WHERE StoryID = ? AND UserID= ?
+                          ');
 
     	if($stmt->execute(array($story, $user)))
     		return true;
@@ -172,6 +178,60 @@
     		return false;
     } catch(PDOException $e) {
     	return false;
+    }
+  }
+
+  // Add new comment
+  function createComment($description, $date, $story, $author, $comment){
+    $db = Database::getInstance()->getDB();
+
+    try {
+	    $stmt = $db->prepare('INSERT INTO COMMENT(Description, CommentDate, idStory, idAuthor)
+                            VALUES (?, ?, ?, ?, ?)
+                          ');
+
+      if($stmt->execute($description, $date, $story, $author, $comment))
+        return $db->lastInsertId();
+      else
+        return -1;
+    }catch(PDOException $e) {
+      return -1;
+    }
+  }
+
+  // Delete comment
+  function deleteComment($commentID){
+    $db = Database::getInstance()->getDB();
+
+    try {
+    	$stmt = $db->prepare('DELETE
+                            FROM COMMENT
+                            WHERE ID = ?
+                          ');
+
+    	if($stmt->execute($commentID))
+    		return true;
+    	else
+    		return false;
+  	} catch(PDOException $e) {
+  		return false;
+  	}
+  }
+
+  // Get all comments of a story
+  function getComments($idStory) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT *
+                            FROM COMMENT
+                            WHERE idStory=?
+                            ORDER BY CommentDate DESC
+                          ');
+      $stmt->execute(array($idStory));
+      return $stmt->fetchAll();
+    }catch(PDOException $e) {
+      return null;
     }
   }
 
