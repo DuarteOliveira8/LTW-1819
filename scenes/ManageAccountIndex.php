@@ -17,9 +17,7 @@
   ?>
 </div>
 
-<script type="text/javascript" src="/js/scenes/manage-account/ManageAccount.js">
-
-</script>
+<script type="text/javascript" src="/js/scenes/manage-account/ManageAccount.js"></script>
 
 <?php
   getFooter();
