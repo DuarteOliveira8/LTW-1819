@@ -22,7 +22,12 @@
       echo json_encode(array('error' => 'wrong_file_type'));
     }
     elseif (updateUserAvatar($_SESSION['userID'], $request["Avatar"])) {
-      echo json_encode(array('success' => 'avatar_updated'));
+      if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
+        echo json_encode(array('error' => 'null'));
+      }
+      else {
+        echo json_encode($avatar);
+      }
     }
     else {
       echo json_encode(array('error' => 'null'));

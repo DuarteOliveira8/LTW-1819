@@ -1,6 +1,7 @@
 <?php
-// Add new channel
+  include_once(__DIR__ . '/../../includes/Database.php');
 
+  // Add new channel
     function createChannel($ChannelName, $ChannelDescription,$Creator){
         global $dbh;
         try {
@@ -15,7 +16,28 @@
         }catch(PDOException $e) {
             return -1;
         }
-           
+
+    }
+
+    // Get channel
+    function getChannel($ChannelName) {
+      $db = Database::getInstance()->getDB();
+
+      try {
+        $stmt = $db->prepare('SELECT *
+                              FROM CHANNEL
+                              WHERE Name = ?
+                            ');
+        $stmt->execute(array($ChannelName));
+        $channel = $stmt->fetch();
+
+        if ($channel !== false)
+          return $channel['ID'];
+        else
+          return -1;
+      } catch (PDOException $e) {
+        return -1;
+      }
     }
 
 
@@ -30,7 +52,7 @@
 				return true;
 			else
 				return false;
-		
+
 		} catch(PDOException $e) {
 			return false;
 		}
@@ -39,7 +61,7 @@
 
 // Get all channels
 
-    function getChannels() {        
+    function getChannels() {
         global $dbh;
         try {
             $stmt = $dbh->prepare('SELECT ID, Name, Description FROM CHANNEL');
