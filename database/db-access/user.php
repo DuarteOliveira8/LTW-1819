@@ -105,7 +105,23 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar
+      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, BirthDate
+                            FROM USER
+                            WHERE Id = ?
+                          ');
+      $stmt->execute(array($userID));
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get user avatar with id
+  function getUserAvatar($userID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT Avatar
                             FROM USER
                             WHERE Id = ?
                           ');
@@ -301,6 +317,24 @@
                             WHERE ID = ?
                           ');
       if($stmt->execute(array($Username, $FirstName, $LastName, $Email, $Bio, $BirthDate, $UserID)))
+        return true;
+      else
+        return false;
+    }catch(PDOException $e) {
+      return false;
+    }
+  }
+
+  //Change Info
+  function updateUserAvatar($UserID, $Avatar) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('UPDATE USER
+                            SET Avatar = ?
+                            WHERE ID = ?
+                          ');
+      if($stmt->execute(array($Avatar, $UserID)))
         return true;
       else
         return false;

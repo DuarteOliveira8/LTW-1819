@@ -31,6 +31,10 @@ switch ($path) {
     require 'user-endpoint/UserPassword.php';
     break;
 
+  case '/api/user/avatar':
+    require 'user-endpoint/UserAvatar.php';
+    break;
+
   default:
     echo json_encode(array('error' => '404_not_found'));
     break;
