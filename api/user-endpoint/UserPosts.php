@@ -23,12 +23,6 @@
     if (($ChannelID = getChannel($request['Channel'])) == -1) {
       echo json_encode(array('error' => 'Channel does not exist'));
     }
-    elseif (!preg_match("/[a-zA-Z0-9\s_\\.\,\-\(\):]+/", $request['Title'])) {
-      echo json_encode(array('error' => 'Channel name invalid'));
-    }
-    elseif (!preg_match("/[a-zA-Z0-9\s_\\.\,\-\(\):]+/", $request['Description'])) {
-      echo json_encode(array('error' => 'Description invalid'));
-    }
     elseif (createStory($request['Title'], $request['Description'], $request['Date'], $_SESSION['userID'], $ChannelID) !== -1) {
       echo json_encode(array('success' => 'story_created'));
     }
