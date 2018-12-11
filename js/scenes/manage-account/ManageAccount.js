@@ -15,7 +15,7 @@ function fillGeneralInfoForm(uName, fName, lName, uBio, bDay, bMonth, bYear) {
 let fillGeneralRequest = new XMLHttpRequest();
 
 fillGeneralRequest.onreadystatechange = function() {
-  if (this.readyState = 4 && this.status == 200) {
+  if (this.readyState === 4 && this.status === 200) {
     let response = JSON.parse(this.responseText);
     let parsedDate = response.BirthDate.split("-");
     let year = parsedDate[0];

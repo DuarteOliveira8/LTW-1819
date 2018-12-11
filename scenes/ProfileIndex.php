@@ -28,8 +28,8 @@
   ?>
 </div>
 
-<script type="text/javascript" src="/js/scenes/profile/ProfileNav.js">
+<script type="text/javascript" src="/js/scenes/profile/ProfileNav.js"></script>
 
-</script>
+<script type="text/javascript" src="/js/scenes/profile/Profile.js"></script>
 
 <?php getFooter(); ?>

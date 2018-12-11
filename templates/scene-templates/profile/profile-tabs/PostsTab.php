@@ -1,9 +1,9 @@
 <?php function getProfilePosts() { ?>
-  <div class="tab-container">
+  <div class="tab-container" id="posts">
     <?php
-    for ($i=0; $i < 8; $i++) {
-      getPost();
-    }
+    // for ($i=0; $i < 8; $i++) {
+    //   getPost();
+    // }
     ?>
   </div>
 <?php } ?>
