@@ -19,12 +19,28 @@ switch ($path) {
     require 'user-endpoint/UserComments.php';
     break;
 
-  case '/api/user/subscribed':
+  case '/api/user/subscribe':
     require 'user-endpoint/UserSubs.php';
     break;
 
   case '/api/user/votes':
     require 'user-endpoint/UserVotes.php';
+    break;
+
+  case '/api/user/upvotes':
+    require 'user-endpoint/UserUpvotes.php';
+    break;
+
+  case '/api/user/downvotes':
+    require 'user-endpoint/UserDownvotes.php';
+    break;
+
+  case '/api/user/password':
+    require 'user-endpoint/UserPassword.php';
+    break;
+
+  case '/api/user/avatar':
+    require 'user-endpoint/UserAvatar.php';
     break;
 
   default:

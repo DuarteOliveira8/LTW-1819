@@ -1,8 +1,6 @@
 <?php
   include_once(__DIR__ . '/../../includes/Session.php');
   include_once(__DIR__ . '/../../database/db-access/user.php');
-  include_once(__DIR__ . '/../../database/db-access/story.php');
-  include_once(__DIR__ . '/../../database/db-access/channel.php');
 
   if (!isset($_SESSION['userID'])) {
     echo json_encode(array('error' => 'user_not_logged_in'));
@@ -10,21 +8,26 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($posts = getUserPosts($_SESSION['userID'])) == false) {
+    if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
       echo json_encode(array('error' => 'null'));
     }
     else {
-      echo json_encode($posts);
+      echo json_encode($avatar);
     }
   }
   elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $request = json_decode(file_get_contents('php://input'), true);
 
-    if (($ChannelID = getChannel($request['Channel'])) == -1) {
-      echo json_encode(array('error' => 'Channel does not exist'));
+    if (!preg_match('/^([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.jpg|.jpeg)$/', $request["Avatar"])) {
+      echo json_encode(array('error' => 'wrong_file_type'));
     }
-    elseif (createStory($request['Title'], $request['Description'], $request['Date'], $_SESSION['userID'], $ChannelID) !== -1) {
-      echo json_encode(array('success' => 'story_created'));
+    elseif (updateUserAvatar($_SESSION['userID'], $request["Avatar"])) {
+      if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
+        echo json_encode(array('error' => 'null'));
+      }
+      else {
+        echo json_encode($avatar);
+      }
     }
     else {
       echo json_encode(array('error' => 'null'));

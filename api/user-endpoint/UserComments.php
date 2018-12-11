@@ -15,7 +15,4 @@
       echo json_encode($comments);
     }
   }
-  elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    echo json_encode(array('error' => 'under_construction'));
-  }
 ?>
