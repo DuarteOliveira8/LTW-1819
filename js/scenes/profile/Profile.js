@@ -30,7 +30,7 @@ function getPost(title, numVotes, postDate, postDesc) {
       </div>
 
       <a href="/profile" class="user">
-        <div class="user-avatar" style="background-image: url('/assets/images/default-profile.png')"></div> <!-- do later -->
+        <div class="user-avatar" style="background-image: url('/assets/images/users/default-profile.png')"></div> <!-- do later -->
 
         <div class="username">
         </div>

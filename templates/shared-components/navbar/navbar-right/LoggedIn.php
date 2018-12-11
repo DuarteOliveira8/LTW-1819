@@ -30,7 +30,7 @@
     </div>
   </div>
 
-  <div class="user-avatar" style="background-image: url('/assets/images/default-profile.png');"></div>
+  <div class="user-avatar" style="background-image: url('/assets/images/users/default-profile.png');"></div>
 
   <script type="text/javascript" src="/js/shared-components/Navbar.js"></script>
 <?php } ?>

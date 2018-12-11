@@ -89,7 +89,7 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, BirthDate
+      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar, BirthDate
                             FROM USER
                             WHERE Id = ?
                           ');
