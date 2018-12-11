@@ -135,10 +135,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Title, Description, StoryDate, UpvoteRatio, ChannelStory
-                            FROM STORY
-                            WHERE idAuthor = ?
-                            ORDER BY StoryDate DESC
+      $stmt = $db->prepare('SELECT DISTINCT STORY.Title, STORY.Description, STORY.StoryDate, USER.Username, STORY.UpvoteRatio, STORY.ChannelStory
+                            FROM STORY, USER
+                            WHERE STORY.idAuthor = ? AND STORY.idAuthor = USER.ID
+                            ORDER BY STORY.StoryDate DESC
                           ');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
