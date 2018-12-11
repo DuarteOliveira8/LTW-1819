@@ -19,7 +19,7 @@ switch ($path) {
     require 'user-endpoint/UserComments.php';
     break;
 
-  case '/api/user/subscribed':
+  case '/api/user/subscribe':
     require 'user-endpoint/UserSubs.php';
     break;
 
