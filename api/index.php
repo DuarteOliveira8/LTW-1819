@@ -27,6 +27,10 @@ switch ($path) {
     require 'user-endpoint/UserVotes.php';
     break;
 
+  case '/api/user/password':
+    require 'user-endpoint/UserPassword.php';
+    break;
+
   default:
     echo json_encode(array('error' => '404_not_found'));
     break;

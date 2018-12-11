@@ -310,16 +310,21 @@
   }
 
   //Change password
-  function changePassword($ID,$Password) {
-    global $dbh;
+  function updateUserPassword($UserID, $Password) {
+    $db = Database::getInstance()->getDB();
+    $hashedPW = hash('sha256', $Password);
+
     try {
-      $stmt = $dbh->prepare('UPDATE USER SET Password = ? WHERE ID = ?');
-      if($stmt->execute(array($ID, $Password)))
+      $stmt = $db->prepare('UPDATE USER
+                            SET Password = ?
+                            WHERE ID = ?
+                          ');
+      if($stmt->execute(array($hashedPW, $UserID)))
         return true;
       else
         return false;
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 

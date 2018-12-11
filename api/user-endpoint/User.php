@@ -8,7 +8,6 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    echo "string";
     if (($user = getUser($_SESSION['userID'])) == false) {
       echo json_encode(array('error' => 'null'));
     }
