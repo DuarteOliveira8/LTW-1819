@@ -135,10 +135,12 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.Title, STORY.Description, STORY.StoryDate, USER.Username, USER.Avatar, STORY.UpvoteRatio, STORY.ChannelStory
-                            FROM STORY, USER
-                            WHERE STORY.idAuthor = ? AND STORY.idAuthor = USER.ID
-                            ORDER BY STORY.StoryDate DESC
+      $stmt = $db->prepare('SELECT DISTINCT S1.Title, S1.Description, S1.StoryDate, USER.Username, USER.Avatar, S1.UpvoteRatio, S1.ChannelStory, (SELECT count(*)
+                                                                                                                                                  FROM STORY S2, COMMENT
+                                                                                                                                                  WHERE S2.ID = S1.ID AND S1.ID = COMMENT.idStory) AS Comments
+                            FROM STORY S1, USER
+                            WHERE S1.idAuthor = ? AND S1.idAuthor = USER.ID
+                            ORDER BY S1.StoryDate DESC
                           ');
       $stmt->execute(array($idAuthor));
       return $stmt->fetchAll();
