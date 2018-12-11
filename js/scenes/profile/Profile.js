@@ -1,6 +1,6 @@
 let posts = document.getElementById('posts');
 
-function getPost(title, numVotes, postDate, postDesc) {
+function getPost(title, numVotes, username, postDate, postDesc, numComments, userAvatar) {
 
   let post = document.createElement("DIV");
   post.className = "post-container";
@@ -30,7 +30,7 @@ function getPost(title, numVotes, postDate, postDesc) {
       </div>
 
       <a href="/profile" class="user">
-        <div class="user-avatar" style="background-image: url('/assets/images/users/default-profile.png')"></div> <!-- do later -->
+        <div class="user-avatar" style="background-image: url('/assets/images/users/default-profile.png')"></div>
 
         <div class="username">
         </div>
@@ -49,10 +49,11 @@ function getPost(title, numVotes, postDate, postDesc) {
 
   post.querySelector(".votes-num").textContent = numVotes;
   post.querySelector(".post-title").textContent = title;
-  //post.querySelector(".username").textContent = username;
+  post.querySelector(".username").textContent = username;
   post.querySelector(".post-date").textContent = postDate;
   post.querySelector(".post-description").textContent = postDesc;
-  //post.querySelector(".post-comments-num").textContent = numComments;
+  post.querySelector(".post-comments-num").textContent = numComments + " Comments";
+  post.querySelector(".user-avatar").style.backgroundImage = "url('/assets/images/users/" + userAvatar + "')";
 
   posts.appendChild(post);
 }
@@ -63,7 +64,7 @@ showProfilePosts.onreadystatechange = function() {
   if (this.readyState === 4 && this.status === 200) {
     let response = JSON.parse(this.responseText);
     for(let i = 0; i < response.length; i++) {
-      getPost(response[i].Title, response[i].UpvoteRatio, response[i].StoryDate, response[i].Description);
+      getPost(response[i].Title, response[i].UpvoteRatio, response[i].Username, response[i].StoryDate, response[i].Description, response[i].Comments, response[i].Avatar);
     }
   }
 };
