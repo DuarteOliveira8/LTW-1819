@@ -21,7 +21,7 @@
   function isUsernameValid($username) {
     $db = Database::getInstance()->getDB();
 
-    if (!preg_match('/[0-9a-zA-Z]+$/', $username)) {
+    if (!preg_match('/[0-9a-zA-Z_-]+$/', $username)) {
       return false;
     }
 

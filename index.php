@@ -15,7 +15,7 @@ switch ($path) {
     require 'scenes/LoginIndex.php';
     break;
 
-  case '/profile':
+  case (preg_match('#^/profile/([0-9a-zA-Z_-]+)$#', $path) ? true : false):
     require 'scenes/ProfileIndex.php';
     break;
 
