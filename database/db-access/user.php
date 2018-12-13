@@ -85,15 +85,15 @@
   }
 
   // Get user with id
-  function getUser($userID) {
+  function getUser($username) {
     $db = Database::getInstance()->getDB();
 
     try {
       $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar, BirthDate
                             FROM USER
-                            WHERE Id = ?
+                            WHERE Username = ?
                           ');
-      $stmt->execute(array($userID));
+      $stmt->execute(array($username));
       return $stmt->fetch();
     } catch (PDOException $e) {
       return false;

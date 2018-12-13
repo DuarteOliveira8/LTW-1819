@@ -7,7 +7,7 @@ else
   $path = $request_uri[0];
 
 switch ($path) {
-  case '/api/user':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)$#', $path, $matches) ? true : false):
     require 'user-endpoint/User.php';
     break;
 
