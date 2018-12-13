@@ -28,15 +28,15 @@
       exit;
     }
 
-    if ($_SESSION['userID'] !== getID($matches['username'])) {
+    $request = json_decode(file_get_contents('php://input'), true);
+
+    if ($_SESSION['userID'].$_SESSION['csrf'] !== getID($matches['username']).$_SERVER['HTTP_CSRF']) {
       echo json_encode([
         'success' => false,
-        'error' => 'Username does not correspond with user'
+        'error' => 'user validation error'
       ]);
       exit;
     }
-
-    $request = json_decode(file_get_contents('php://input'), true);
 
     if (!isUsernameValidForUpdate($_SESSION['userID'], $request['Username'])) {
       echo json_encode([
