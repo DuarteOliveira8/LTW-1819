@@ -4,20 +4,28 @@
   include_once(__DIR__ . '/../../database/db-access/story.php');
   include_once(__DIR__ . '/../../database/db-access/channel.php');
 
-  if (!isset($_SESSION['userID'])) {
-    echo json_encode(array('error' => 'user_not_logged_in'));
-    exit;
-  }
-
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($posts = getUserPosts($_SESSION['userID'])) == false) {
-      echo json_encode(array('error' => 'null'));
+    if (($posts = getUserPosts($matches['username'])) == false) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'Username doesn\'t exist'
+      ]);
     }
     else {
       echo json_encode($posts);
     }
   }
   elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!isset($_SESSION['userID'])) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'User not logged in'
+      ]);
+      exit;
+    }
+
+    $username = getUsername($_SESSION['userID']);
+
     $request = json_decode(file_get_contents('php://input'), true);
 
     if (($ChannelID = getChannel($request['Channel'])) == -1) {

@@ -4,36 +4,71 @@
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (($user = getUser($matches['username'])) == false) {
-      echo json_encode(array('error' => 'null'));
+      echo json_encode([
+        'success' => false,
+        'error' => 'username does not exist'
+      ]);
+      exit;
     }
-    else {
-      echo json_encode($user);
-    }
+
+    echo json_encode([
+      'success' => true,
+      'data' => $user
+    ]);
+    exit;
   }
-  elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_SESSION['userID'])) {
-      echo json_encode(array('error' => 'user_not_logged_in'));
+      echo json_encode([
+        'success' => false,
+        'error' => 'User not logged in'
+      ]);
+      exit;
+    }
+
+    if ($_SESSION['userID'] !== getID($matches['username'])) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'Username does not correspond with user'
+      ]);
       exit;
     }
 
     $request = json_decode(file_get_contents('php://input'), true);
 
     if (!isUsernameValidForUpdate($_SESSION['userID'], $request['Username'])) {
-      echo json_encode(array('error' => 'Username is not valid!'));
+      echo json_encode([
+        'success' => false,
+        'error' => 'Username not valid'
+      ]);
+      exit;
     }
-    elseif (!isEmailValidForUpdate($_SESSION['userID'], $request['Email'])) {
-      echo json_encode(array('error' => 'Email is not valid!'));
+
+    if (!isEmailValidForUpdate($_SESSION['userID'], $request['Email'])) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'Email not valid'
+      ]);
+      exit;
     }
-    elseif (updateUser($_SESSION['userID'], $request['Username'], $request['FirstName'], $request['LastName'], $request['Email'], $request['Bio'], $request['BirthDate'])) {
-      if (($user = getUser($_SESSION['userID'])) == false) {
-        echo json_encode(array('error' => 'null'));
-      }
-      else {
-        echo json_encode($user);
-      }
+
+    if (updateUser($_SESSION['userID'], $request['Username'], $request['FirstName'], $request['LastName'], $request['Email'], $request['Bio'], $request['BirthDate'])) {
+      $username = getUsername($_SESSION['userID']);
+      $user = getUser($username);
+      echo json_encode([
+        'success' => true,
+        'data' => $user
+      ]);
+      exit;
     }
-    else {
-      echo json_encode(array('error' => 'null'));
-    }
+
+    echo json_encode([
+      'success' => false,
+      'error' => 'null'
+    ]);
+
+    exit;
   }
 ?>

@@ -11,7 +11,7 @@ switch ($path) {
     require 'user-endpoint/User.php';
     break;
 
-  case '/api/user/posts':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/posts$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserPosts.php';
     break;
 

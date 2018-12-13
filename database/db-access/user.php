@@ -84,6 +84,38 @@
     }
   }
 
+  // Get username with id
+  function getID($username) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT ID
+                            FROM USER
+                            WHERE Username = ?
+                          ');
+      $stmt->execute(array($username));
+      return $stmt->fetch()['ID'];
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get user id with username
+  function getUsername($userID) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT Username
+                            FROM USER
+                            WHERE ID = ?
+                          ');
+      $stmt->execute(array($userID));
+      return $stmt->fetch()['Username'];
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
   // Get user with id
   function getUser($username) {
     $db = Database::getInstance()->getDB();
@@ -131,7 +163,7 @@
 
 
   // Get all stories from a user
-  function getUserPosts($idAuthor) {
+  function getUserPosts($author) {
     $db = Database::getInstance()->getDB();
 
     try {
@@ -139,10 +171,10 @@
                                                                                                                                                   FROM STORY S2, COMMENT
                                                                                                                                                   WHERE S2.ID = S1.ID AND S1.ID = COMMENT.idStory) AS Comments
                             FROM STORY S1, USER
-                            WHERE S1.idAuthor = ? AND S1.idAuthor = USER.ID
+                            WHERE USER.Username = ? AND S1.idAuthor = USER.ID
                             ORDER BY S1.StoryDate DESC
                           ');
-      $stmt->execute(array($idAuthor));
+      $stmt->execute(array($author));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return false;
