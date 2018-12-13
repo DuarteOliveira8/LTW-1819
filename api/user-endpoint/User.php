@@ -6,7 +6,7 @@
     if (($user = getUser($matches['username'])) == false) {
       echo json_encode([
         'success' => false,
-        'error' => 'username does not exist'
+        'error' => 'username'
       ]);
       exit;
     }
@@ -23,7 +23,7 @@
     if (!isset($_SESSION['userID'])) {
       echo json_encode([
         'success' => false,
-        'error' => 'User not logged in'
+        'error' => 'not_logged_in'
       ]);
       exit;
     }
@@ -33,7 +33,7 @@
     if ($_SESSION['userID'].$_SESSION['csrf'] !== getID($matches['username']).$_SERVER['HTTP_CSRF']) {
       echo json_encode([
         'success' => false,
-        'error' => 'user validation error'
+        'error' => 'validation'
       ]);
       exit;
     }
@@ -41,7 +41,7 @@
     if (!isUsernameValidForUpdate($_SESSION['userID'], $request['Username'])) {
       echo json_encode([
         'success' => false,
-        'error' => 'Username not valid'
+        'error' => 'username'
       ]);
       exit;
     }
@@ -49,7 +49,7 @@
     if (!isEmailValidForUpdate($_SESSION['userID'], $request['Email'])) {
       echo json_encode([
         'success' => false,
-        'error' => 'Email not valid'
+        'error' => 'email'
       ]);
       exit;
     }
@@ -68,7 +68,6 @@
       'success' => false,
       'error' => 'null'
     ]);
-
     exit;
   }
 ?>

@@ -39,7 +39,7 @@ switch ($path) {
     require 'user-endpoint/UserPassword.php';
     break;
 
-  case '/api/user/avatar':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/avatar#', $path, $matches) ? true : false):
     require 'user-endpoint/UserAvatar.php';
     break;
 

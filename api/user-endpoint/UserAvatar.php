@@ -2,35 +2,69 @@
   include_once(__DIR__ . '/../../includes/Session.php');
   include_once(__DIR__ . '/../../database/db-access/user.php');
 
-  if (!isset($_SESSION['userID'])) {
-    echo json_encode(array('error' => 'user_not_logged_in'));
+  if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'null'
+      ]);
+      exit;
+    }
+
+    echo json_encode([
+      'success' => true,
+      'data' => $avatar
+    ]);
     exit;
   }
 
-  if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
-      echo json_encode(array('error' => 'null'));
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!isset($_SESSION['userID'])) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'not_logged_in'
+      ]);
+      exit;
     }
-    else {
-      echo json_encode($avatar);
-    }
-  }
-  elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
     $request = json_decode(file_get_contents('php://input'), true);
 
+    if ($_SESSION['userID'].$_SESSION['csrf'] !== getID($matches['username']).$_SERVER['HTTP_CSRF']) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'validation'
+      ]);
+      exit;
+    }
+
     if (!preg_match('/^([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.jpg|.jpeg)$/', $request["Avatar"])) {
-      echo json_encode(array('error' => 'wrong_file_type'));
+      echo json_encode([
+        'success' => false,
+        'error' => 'file_name'
+      ]);
+      exit;
     }
-    elseif (updateUserAvatar($_SESSION['userID'], $request["Avatar"])) {
+
+    if (updateUserAvatar($_SESSION['userID'], $request["Avatar"])) {
       if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
-        echo json_encode(array('error' => 'null'));
+        echo json_encode([
+          'success' => false,
+          'error' => 'null'
+        ]);
+        exit;
       }
-      else {
-        echo json_encode($avatar);
-      }
+
+      echo json_encode([
+        'success' => true,
+        'data' => $avatar
+      ]);
+      exit;
     }
-    else {
-      echo json_encode(array('error' => 'null'));
-    }
+
+    echo json_encode([
+      'success' => false,
+      'error' => 'null'
+    ]);
+    exit;
   }
 ?>
