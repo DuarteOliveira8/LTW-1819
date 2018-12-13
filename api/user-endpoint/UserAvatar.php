@@ -3,7 +3,7 @@
   include_once(__DIR__ . '/../../database/db-access/user.php');
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
+    if (($avatar = getUserAvatar($matches['username'])) == false) {
       echo json_encode([
         'success' => false,
         'error' => 'null'

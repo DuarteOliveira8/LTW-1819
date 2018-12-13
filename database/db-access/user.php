@@ -133,15 +133,15 @@
   }
 
   // Get user avatar with id
-  function getUserAvatar($userID) {
+  function getUserAvatar($username) {
     $db = Database::getInstance()->getDB();
 
     try {
       $stmt = $db->prepare('SELECT Avatar
                             FROM USER
-                            WHERE Id = ?
+                            WHERE Username = ?
                           ');
-      $stmt->execute(array($userID));
+      $stmt->execute(array($username));
       return $stmt->fetch();
     } catch (PDOException $e) {
       return false;
@@ -183,16 +183,16 @@
 
 
   // Get all comments from a user
-  function getUserComments($idAuthor) {
+  function getUserComments($username) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Description, CommentDate, idStory, idComment
-                            FROM COMMENT
-                            WHERE idAuthor = ?
+      $stmt = $db->prepare('SELECT Description, CommentDate, idStory, idComment, USER.Username, USER.Avatar
+                            FROM COMMENT, USER
+                            WHERE USER.Username = ? AND USER.ID = COMMENT.idAuthor
                             ORDER BY CommentDate DESC
                           ');
-      $stmt->execute(array($idAuthor));
+      $stmt->execute(array($username));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return false;

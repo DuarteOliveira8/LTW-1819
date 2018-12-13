@@ -13,8 +13,23 @@
       else
         return -1;
     }catch(PDOException $e) {
-      echo $e->getMessage();
       return -1;
+    }
+  }
+
+  // gets story with ID
+  function getStory($idStory) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT Title, Description, StoryDate, USER.Username, USER.Avatar, UpvoteRatio, ChannelStory
+                            FROM STORY, USER
+                            WHERE STORY.ID = ? AND STORY.idAuthor = USER.ID
+                          ');
+      $stmt->execute(array($idStory));
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+      return false;
     }
   }
 
@@ -186,11 +201,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-	    $stmt = $db->prepare('INSERT INTO COMMENT(Description, CommentDate, idStory, idAuthor)
+	    $stmt = $db->prepare('INSERT INTO COMMENT(Description, CommentDate, idStory, idAuthor, idComment)
                             VALUES (?, ?, ?, ?, ?)
                           ');
 
-      if($stmt->execute($description, $date, $story, $author, $comment))
+      if($stmt->execute(array($description, $date, $story, $author, $comment)))
         return $db->lastInsertId();
       else
         return -1;

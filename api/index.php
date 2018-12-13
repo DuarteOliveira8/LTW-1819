@@ -15,7 +15,7 @@ switch ($path) {
     require 'user-endpoint/UserPosts.php';
     break;
 
-  case '/api/user/comments':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/comments#', $path, $matches) ? true : false):
     require 'user-endpoint/UserComments.php';
     break;
 
