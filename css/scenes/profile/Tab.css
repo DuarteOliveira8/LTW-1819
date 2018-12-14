@@ -3,3 +3,13 @@
   margin-left: 10%;
   margin-right: 10%;
 }
+
+.profile-container .tab-container#subscriptions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.profile-container .tab-container[hidden]{
+  display: none !important;
+}
