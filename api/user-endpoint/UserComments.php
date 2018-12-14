@@ -4,6 +4,14 @@
   include_once(__DIR__ . '/../../database/db-access/story.php');
   include_once(__DIR__ . '/../../database/db-access/comment.php');
 
+  if (($user = getUser($matches['username'])) == false) {
+    echo json_encode([
+      'success' => false,
+      'error' => 'username'
+    ]);
+    exit;
+  }
+
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (($comments = getUserComments($matches['username'])) == false) {
       echo json_encode([
