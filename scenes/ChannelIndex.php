@@ -26,4 +26,6 @@
   </div>
 </div>
 
+<script type="module" src="/js/scenes/channel/Channel.js"></script>
+
 <?php getFooter(); ?>
