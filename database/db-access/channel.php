@@ -19,6 +19,33 @@
     }
   }
 
+  // Get channel stories
+  function getChannelPosts($offset, $channel) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT STORY.id,
+                                   STORY.title,
+                                   STORY.description,
+                                   STORY.upvoteRatio,
+                                   STORY.storyDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   (SELECT count(*)
+                                    FROM STORYCOMMENT
+                                    WHERE STORY.id = STORYCOMMENT.storyId) AS comments
+                            FROM STORY, USER
+                            WHERE STORY.channel = ? AND STORY.idAuthor = USER.id
+                            ORDER BY STORY.storyDate DESC
+                            LIMIT 8 OFFSET ?
+                          ');
+      $stmt->execute(array($channel, $offset));
+      return $stmt->fetchAll();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
   // Get channel
   function getChannel($channelName) {
     $db = Database::getInstance()->getDB();
@@ -40,8 +67,7 @@
     }
   }
 
-
-// Delete channel
+  // Delete channel
   function deleteChannel($ChannelID){
     global $dbh;
     try {

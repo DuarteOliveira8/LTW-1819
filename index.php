@@ -27,7 +27,7 @@ switch ($path) {
     require 'scenes/PostIndex.php';
     break;
 
-  case '/channel':
+  case (preg_match('#^/channel/([0-9a-zA-Z_-]+)$#', $path) ? true : false):
     require 'scenes/ChannelIndex.php';
     break;
 
@@ -51,8 +51,12 @@ switch ($path) {
     require 'scenes/MyChannelsIndex.php';
     break;
 
-  default:
+  case '/404':
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
+    break;
+
+  default:
+    header('Location: /404');
     break;
 }
 

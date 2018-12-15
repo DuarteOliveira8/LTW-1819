@@ -50,18 +50,6 @@
   	}
   }
 
-  //Get all stories from a channel
-  function getChannelStories($ChannelStory) {
-    global $dbh;
-    try {
-      $stmt = $dbh->prepare('SELECT ID, Title, Description, StoryDate FROM STORY WHERE ChannelStory = ?');
-      $stmt->execute(array($ChannelStory));
-      return $stmt->fetchAll();
-    }catch(PDOException $e) {
-      return null;
-    }
-  }
-
   //Most Recent Stories
   function getRecentStories($offset) {
     $db = Database::getInstance()->getDB();
