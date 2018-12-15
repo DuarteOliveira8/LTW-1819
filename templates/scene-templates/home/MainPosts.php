@@ -4,7 +4,7 @@
       Recent Posts
     </div>
 
-    <div class="channels-display">
+    <div class="section-display">
       <?php for ($i=0; $i < 8; $i++) {
         getPost();
       } ?>

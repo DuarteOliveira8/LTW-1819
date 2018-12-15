@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/shared-components/ChannelComponent.css">
-
 <?php function getChannelComponent() { ?>
     <div class="channel-comp-container">
       <a href="/channel">
