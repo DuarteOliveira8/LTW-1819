@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/login/login.css">
-
 <?php
   include('templates/shared-components/input/Input.php');
 ?>
