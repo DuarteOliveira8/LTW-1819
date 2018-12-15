@@ -1,4 +1,3 @@
-
 function fillGeneralInfoForm(uName, fName, lName, uBio, bDay, bMonth, bYear, email, avatar) {
 
   document.getElementsByName("username")[0].value = uName;
