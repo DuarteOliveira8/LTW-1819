@@ -3,13 +3,8 @@
   include_once(__DIR__ . '/../../database/db-access/user.php');
   include_once(__DIR__ . '/../../database/db-access/story.php');
 
-  if (!isset($_SESSION['userID'])) {
-    echo json_encode(array('error' => 'user_not_logged_in'));
-    exit;
-  }
-
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($votes = getUserDownvotes($_SESSION['userID'])) == false) {
+    if (($votes = getUserDownvotes($matches['username'])) == false) {
       echo json_encode(array('error' => 'null'));
     }
     else {

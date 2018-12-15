@@ -236,16 +236,16 @@
   }
 
   // Get all upvotes from a user
-  function getUserDownvotes($UserID) {
+  function getUserDownvotes($username) {
     $db = Database::getInstance()->getDB();
 
     try {
       $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
-                            FROM STORY, DOWNVOTE
-                            WHERE (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID)
+                            FROM STORY, DOWNVOTE, USER
+                            WHERE USER.Username = ? AND DOWNVOTE.userID = USER.ID AND DOWNVOTE.StoryID = STORY.ID
                             ORDER BY STORY.StoryDate DESC
                           ');
-      $stmt->execute(array($UserID));
+      $stmt->execute(array($username));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return null;
