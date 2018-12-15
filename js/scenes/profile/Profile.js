@@ -64,7 +64,3 @@ for(let i = 0; i < 5; i++) {
 for(let i = 0; i < 5; i++) {
   subscriptions.append(getChannel("Cursed Images", 15, 420, "default-background.jpg"));
 }
-
-// for(let i = 0; i < 5; i++) {
-//   posts.append(getPost("Cursed Post", 15, "cursed_person", "1998-12-15", "Tis Cursed", 15, "3.jpg"));
-// }
