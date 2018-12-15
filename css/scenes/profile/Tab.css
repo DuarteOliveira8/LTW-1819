@@ -6,9 +6,14 @@
 
 .profile-container .tab-container#subscriptions {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
+
+.profile-container .tab-container#subscriptions .channel-comp-container {
+  margin-right: 30px;
+}
+
 
 .profile-container .tab-container[hidden]{
   display: none !important;
