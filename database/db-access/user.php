@@ -259,9 +259,13 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT CHANNEL.name, CHANNEL.description
-                            FROM SUBSCRIBER, CHANNEL
-                            WHERE (SUBSCRIBER.userId = ? AND SUBSCRIBER.channelId = CHANNEL.id)
+      $stmt = $db->prepare('SELECT CHANNEL.name, CHANNEL.banner, (SELECT count(*)
+                                                                  FROM SUBSCRIBER S2
+                                                                  WHERE S2.channelId = CHANNEL.id) AS subscriptions, (SELECT count(*)
+                                                                                                                      FROM STORY
+                                                                                                                      WHERE STORY.channel = CHANNEL.id) AS posts
+                            FROM SUBSCRIBER S1, CHANNEL
+                            WHERE (S1.userId = ? AND S1.channelId = CHANNEL.id)
                             ORDER BY CHANNEL.name
                           ');
       $stmt->execute(array($userId));

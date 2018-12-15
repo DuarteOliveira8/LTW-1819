@@ -3,18 +3,28 @@
   include_once(__DIR__ . '/../../database/db-access/user.php');
   include_once(__DIR__ . '/../../database/db-access/channel.php');
 
-  if (!isset($_SESSION['userID'])) {
-    echo json_encode(array('error' => 'user_not_logged_in'));
+  if (($user = getUser($matches['username'])) == false) {
+    echo json_encode([
+      'success' => false,
+      'error' => 'username'
+    ]);
     exit;
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($channels = getUserSubscribed($_SESSION['userID'])) == false) {
-      echo json_encode(array('error' => 'null'));
+    if (($channels = getUserSubscribed(getID($matches['username']))) == false) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'null'
+      ]);
+      exit;
     }
-    else {
-      echo json_encode($channels);
-    }
+
+    echo json_encode([
+      'success' => true,
+      'data' => $channels
+    ]);
+    exit;
   }
   elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $request = json_decode(file_get_contents('php://input'), true);
