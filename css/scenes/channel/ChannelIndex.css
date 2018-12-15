@@ -1,3 +1,7 @@
+@import "/css/scenes/channel/Banner.css";
+@import "/css/scenes/channel/RecentPosts.css";
+@import "/css/scenes/channel/Rules.css";
+
 .channel-container {
   margin-top: 90px;
   width: 100%;

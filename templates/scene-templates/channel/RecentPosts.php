@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/channel/RecentPosts.css">
-
 <?php
   include('templates/shared-components/Post.php')
 ?>
