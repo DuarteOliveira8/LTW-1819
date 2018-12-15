@@ -1,10 +1,11 @@
-export function getPost(title, numVotes, username, postDate, postDesc, numComments, userAvatar) {
+export function getPost(postId, title, numVotes, username, postDate, postDesc, numComments, userAvatar) {
 
   let post = document.createElement("div");
   post.className = "post-container";
+  post.id = postId;
   post.addEventListener("click", function(e){
     e.stopPropagation();
-    document.location.href='#';
+    document.location.href="/post/" + postId;
   });
   post.innerHTML = `
     <header class="post-header">
@@ -50,7 +51,10 @@ export function getPost(title, numVotes, username, postDate, postDesc, numCommen
   post.querySelector(".username").textContent = username;
   post.querySelector(".post-date").textContent = postDate;
   post.querySelector(".post-description").textContent = postDesc;
-  post.querySelector(".post-comments-num").textContent = numComments + " Comments";
+  if (numComments == 1)
+    post.querySelector(".post-comments-num").textContent = numComments + " Comment";
+  else
+    post.querySelector(".post-comments-num").textContent = numComments + " Comments";
   post.querySelector(".user-avatar").style.backgroundImage = "url('/assets/images/users/" + userAvatar + "')";
 
   return post;

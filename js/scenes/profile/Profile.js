@@ -18,8 +18,8 @@ showProfilePosts.onreadystatechange = function() {
     if (!response.success) {
       posts.innerHTML = `<h1>This user has no posts.</h1>`;
     }
-    for(let i = 0; i < response.length; i++) {
-      posts.append(getPost(response[i].Title, response[i].UpvoteRatio, response[i].Username, response[i].StoryDate, response[i].Description, response[i].Comments, response[i].Avatar));
+    for(let i = 0; i < response.data.length; i++) {
+      posts.append(getPost(response.data[i].id, response.data[i].title, response.data[i].upvoteRatio, response.data[i].username, response.data[i].storyDate, response.data[i].description, response.data[i].comments, response.data[i].avatar));
     }
   }
 };
@@ -65,6 +65,6 @@ for(let i = 0; i < 5; i++) {
   subscriptions.append(getChannel("Cursed Images", 15, 420, "default-background.jpg"));
 }
 
-for(let i = 0; i < 5; i++) {
-  posts.append(getPost("Cursed Post", 15, "cursed_person", "1998-12-15", "Tis Cursed", 15, "3.jpg"));
-}
+// for(let i = 0; i < 5; i++) {
+//   posts.append(getPost("Cursed Post", 15, "cursed_person", "1998-12-15", "Tis Cursed", 15, "3.jpg"));
+// }
