@@ -15,7 +15,6 @@
 ?>
 
 <link rel="stylesheet" href="/css/scenes/profile/ProfileIndex.css">
-<link rel="stylesheet" href="/css/scenes/profile/Tab.css">
 
 <div class="profile-container">
   <?php
