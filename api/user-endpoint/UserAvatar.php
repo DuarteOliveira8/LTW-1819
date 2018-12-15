@@ -45,7 +45,7 @@
       exit;
     }
 
-    if (!preg_match('/^([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.jpg|.jpeg)$/', $request["Avatar"])) {
+    if (!preg_match('/^([a-zA-Z0-9\s_\\.\-\(\):])+(.png|.jpg|.jpeg)$/', $request["avatar"])) {
       echo json_encode([
         'success' => false,
         'error' => 'file_name'
@@ -53,7 +53,7 @@
       exit;
     }
 
-    if (updateUserAvatar($_SESSION['userID'], $request["Avatar"])) {
+    if (updateUserAvatar($_SESSION['userID'], $request["avatar"])) {
       if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
         echo json_encode([
           'success' => false,

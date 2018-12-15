@@ -38,15 +38,15 @@
       exit;
     }
 
-    if (!isUsernameValidForUpdate($_SESSION['userID'], $request['Username'])) {
+    if (!isUsernameValidForUpdate($_SESSION['userID'], $request['username'])) {
       echo json_encode([
         'success' => false,
-        'error' => 'username'
+        'error' => 'username_not_valid'
       ]);
       exit;
     }
 
-    if (!isEmailValidForUpdate($_SESSION['userID'], $request['Email'])) {
+    if (!isEmailValidForUpdate($_SESSION['userID'], $request['email'])) {
       echo json_encode([
         'success' => false,
         'error' => 'email'
@@ -54,7 +54,7 @@
       exit;
     }
 
-    if (updateUser($_SESSION['userID'], $request['Username'], $request['FirstName'], $request['LastName'], $request['Email'], $request['Bio'], $request['BirthDate'])) {
+    if (updateUser($_SESSION['userID'], $request['username'], $request['firstName'], $request['lastName'], $request['email'], $request['bio'], $request['birthDate'])) {
       $username = getUsername($_SESSION['userID']);
       $user = getUser($username);
       echo json_encode([
