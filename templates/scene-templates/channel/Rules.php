@@ -1,5 +1,5 @@
 <?php function getRules() { ?>
-  <div class="rules-container">
+  <div class="rules-container" id="rules">
     <h1 class="rules-title">Channel rules</h1>
 
     <ol class="rule-list">
