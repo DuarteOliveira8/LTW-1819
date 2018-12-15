@@ -1,4 +1,7 @@
 @import "/css/scenes/profile/Tab.css";
+@import "/css/scenes/profile/Banner.css";
+@import "/css/scenes/profile/ProfileNav.css";
+@import "/css/shared-components/ChannelComponent.css";
 
 .profile-container {
   margin-top: 90px;
