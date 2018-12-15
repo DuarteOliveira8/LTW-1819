@@ -43,8 +43,12 @@ switch ($path) {
     require 'user-endpoint/UserAvatar.php';
     break;
 
-  case "/api/home":
+  case "/api/home/main-channels":
     require 'home-endpoint/MainChannels.php';
+    break;
+
+  case "/api/home/recent-posts":
+    require 'home-endpoint/RecentPosts.php';
     break;
 
   default:
