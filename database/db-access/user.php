@@ -202,16 +202,16 @@
   }
 
   //Get all votes from a user
-  function getUserVotes($userID) {
+  function getUserVotes($userId) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channelStory
-                            FROM STORY, UPVOTE, DOWNVOTE
-                            WHERE ((UPVOTE.userId = ? AND UPVOTE.storyId = STORY.id)
-                                  OR
-                                  (DOWNVOTE.userId = ? AND DOWNVOTE.storyId = STORY.id))
-                            ORDER BY STORY.StoryDate DESC
+      $stmt = $db->prepare('SELECT DISTINCT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channel
+                            FROM STORY, STORYUPVOTE, STORYDOWNVOTE
+                            WHERE ((STORYUPVOTE.userId = ? AND STORYUPVOTE.storyId = STORY.id)
+                                   OR
+                                   (STORYDOWNVOTE.userId = ? AND STORYDOWNVOTE.storyId = STORY.id))
+                            ORDER BY STORY.storyDate DESC
                           ');
       $stmt->execute(array($userId, $userId));
       return $stmt->fetchAll();
