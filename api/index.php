@@ -35,7 +35,7 @@ switch ($path) {
     require 'user-endpoint/UserDownvotes.php';
     break;
 
-  case '/api/user/password':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/password#', $path, $matches) ? true : false):
     require 'user-endpoint/UserPassword.php';
     break;
 
