@@ -206,11 +206,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channel
-                            FROM STORY, STORYUPVOTE, STORYDOWNVOTE
-                            WHERE ((STORYUPVOTE.userId = ? AND STORYUPVOTE.storyId = STORY.id)
+      $stmt = $db->prepare('SELECT DISTINCT STORY.id, STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channel, USER.username
+                            FROM STORY, STORYUPVOTE, STORYDOWNVOTE, USER
+                            WHERE ((USER.id = ? AND USER.id = STORYUPVOTE.userId AND STORYUPVOTE.storyId = STORY.id)
                                    OR
-                                   (STORYDOWNVOTE.userId = ? AND STORYDOWNVOTE.storyId = STORY.id))
+                                   (USER.id = ? AND USER.id = STORYDOWNVOTE.userId AND STORYDOWNVOTE.storyId = STORY.id))
                             ORDER BY STORY.storyDate DESC
                           ');
       $stmt->execute(array($userId, $userId));
@@ -259,9 +259,13 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT CHANNEL.name, CHANNEL.description
-                            FROM SUBSCRIBER, CHANNEL
-                            WHERE (SUBSCRIBER.userId = ? AND SUBSCRIBER.channelId = CHANNEL.id)
+      $stmt = $db->prepare('SELECT CHANNEL.name, CHANNEL.banner, (SELECT count(*)
+                                                                  FROM SUBSCRIBER S2
+                                                                  WHERE S2.channelId = CHANNEL.id) AS subscriptions, (SELECT count(*)
+                                                                                                                      FROM STORY
+                                                                                                                      WHERE STORY.channel = CHANNEL.id) AS posts
+                            FROM SUBSCRIBER S1, CHANNEL
+                            WHERE (S1.userId = ? AND S1.channelId = CHANNEL.id)
                             ORDER BY CHANNEL.name
                           ');
       $stmt->execute(array($userId));
