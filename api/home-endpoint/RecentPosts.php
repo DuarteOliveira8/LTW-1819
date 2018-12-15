@@ -2,7 +2,7 @@
   include_once(__DIR__ . '/../../includes/Session.php');
   include_once(__DIR__ . '/../../database/db-access/story.php');
 
-  if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $request = json_decode(file_get_contents('php://input'), true);
 
     if (($posts = getRecentStories($request['offset'])) === false) {
