@@ -1,11 +1,16 @@
 <?php
   include_once('includes/Session.php');
+  include_once('database/db-access/channel.php');
   include_once('templates/shared-components/Header.php');
   include_once('templates/shared-components/navbar/NavbarIndex.php');
   include_once('templates/scene-templates/channel/Banner.php');
   include_once('templates/scene-templates/channel/RecentPosts.php');
   include_once('templates/scene-templates/channel/Rules.php');
   include_once('templates/shared-components/Footer.php');
+
+  if (($channel = getChannel($matches['channel'])) === false) {
+    header('Location: /404');
+  }
 
   getHeader();
   getNavbar();
@@ -15,7 +20,7 @@
 
 <div class="channel-container">
   <?php
-    getChannelBanner();
+    getChannelBanner($channel['name'], $channel['slogan'], $channel['subscriptions'], $channel['posts'], $channel['banner']);
   ?>
 
   <div class="content">

@@ -67,18 +67,38 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT *
+      $stmt = $db->prepare('SELECT name,
+                                   slogan,
+                                   banner,
+                                   (SELECT count(*)
+                                    FROM SUBSCRIBER
+                                    WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
+                                   (SELECT count(*)
+                                    FROM STORY
+                                    WHERE STORY.channel = CHANNEL.id) AS posts
                             FROM CHANNEL
                             WHERE name = ?
                           ');
       $stmt->execute(array($channelName));
-      $channel = $stmt->fetch();
-
-      if ($channel !== false)
-        return $channel['id'];
-      else
-        return -1;
+      return $stmt->fetch();
     } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get channel id
+  function getChannelId($channelName) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT id
+                            FROM CHANNEL
+                            WHERE name = ?
+                          ');
+      $stmt->execute(array($channelName));
+      return $stmt->fetch()['id'];
+    } catch (PDOException $e) {
+      echo "helolo";
       return -1;
     }
   }
