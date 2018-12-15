@@ -10,6 +10,7 @@
   getHeader();
   getNavbar();
 ?>
+
 <link rel="stylesheet" href="/css/scenes/channel/ChannelIndex.css">
 
 <div class="channel-container">

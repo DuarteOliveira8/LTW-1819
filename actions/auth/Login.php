@@ -7,6 +7,7 @@
 
   if (($userID = authenticateUser($email, $password)) !== -1) {
     $_SESSION['userID'] = $userID;
+    $_SESSION['username'] = getUsername($userID);
     unset($_SESSION['ERROR']);
     header('Location: /');
   }

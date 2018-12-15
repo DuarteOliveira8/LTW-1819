@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/channel/Banner.css">
-
 <?php function getChannelBanner() { ?>
   <div class="banner-container">
     <div class="channel-banner-image" style="background-image: url('/assets/images/spaghetti.jpg')"></div>

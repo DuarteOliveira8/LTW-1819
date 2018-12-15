@@ -2,19 +2,36 @@
   include_once(__DIR__ . '/../../includes/Database.php');
 
   // Add new story
-  function createStory($StoryTitle, $StoryDescription, $StoryDate, $UserID, $Channel){
+  function createStory($storyTitle, $storyDescription, $storyDate, $userId, $channel){
     $db = Database::getInstance()->getDB();
 
     try {
-	    $stmt = $db->prepare('INSERT INTO STORY(Title, Description, StoryDate, idAuthor, UpvoteRatio, ChannelStory) VALUES (?, ?, ?, ?, ?, ?)');
+	    $stmt = $db->prepare('INSERT INTO STORY(title, description, storyDate, idAuthor, upvoteRatio, channel)
+                            VALUES (?, ?, ?, ?, ?, ?)
+                          ');
 
-      if($stmt->execute(array($StoryTitle, $StoryDescription, $StoryDate, $UserID, 0, $Channel)))
+      if($stmt->execute(array($storyTitle, $storyDescription, $storyDate, $userId, 0, $channel)))
         return $db->lastInsertId();
       else
         return -1;
     }catch(PDOException $e) {
-      echo $e->getMessage();
       return -1;
+    }
+  }
+
+  // gets story with ID
+  function getStory($idStory) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT title, description, storyDate, USER.username, USER.avatar, upvoteRatio, channel
+                            FROM STORY, USER
+                            WHERE STORY.id = ? AND STORY.idAuthor = USER.id
+                          ');
+      $stmt->execute(array($idStory));
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+      return false;
     }
   }
 
@@ -75,8 +92,8 @@
 
     try {
 	    $stmt = $db->prepare('SELECT *
-                            FROM UPVOTE
-                            WHERE StoryID = ? AND UserID = ?
+                            FROM STORYUPVOTE
+                            WHERE storyId = ? AND userId = ?
                           ');
       $stmt->execute(array($story, $user));
       $upvote = $stmt->fetch();
@@ -95,7 +112,9 @@
     $db = Database::getInstance()->getDB();
 
     try {
-	    $stmt = $db->prepare('INSERT INTO UPVOTE(StoryID, UserID) VALUES (?, ?)');
+	    $stmt = $db->prepare('INSERT INTO STORYUPVOTE(storyId, userId)
+                            VALUES (?, ?)
+                          ');
 
       if($stmt->execute(array($story, $user)))
         return $db->lastInsertId();
@@ -112,8 +131,8 @@
 
     try {
       $stmt = $db->prepare('DELETE
-                            FROM UPVOTE
-                            WHERE StoryID = ? AND UserID= ?
+                            FROM STORYUPVOTE
+                            WHERE storyId = ? AND userId= ?
                           ');
 
     	if($stmt->execute(array($story, $user)))
@@ -131,8 +150,8 @@
 
     try {
 	    $stmt = $db->prepare('SELECT *
-                            FROM DOWNVOTE
-                            WHERE StoryID = ? AND UserID = ?
+                            FROM STORYDOWNVOTE
+                            WHERE storyId = ? AND userId = ?
                           ');
       $stmt->execute(array($story, $user));
       $downvote = $stmt->fetch();
@@ -151,7 +170,9 @@
       $db = Database::getInstance()->getDB();
 
       try {
-  	    $stmt = $db->prepare('INSERT INTO DOWNVOTE(StoryID, UserID) VALUES (?, ?)');
+  	    $stmt = $db->prepare('INSERT INTO STORYDOWNVOTE(storyId, userId)
+                              VALUES (?, ?)
+                            ');
 
         if($stmt->execute(array($story, $user)))
           return $db->lastInsertId();
@@ -168,8 +189,8 @@
 
     try {
     	$stmt = $db->prepare('DELETE
-                            FROM DOWNVOTE
-                            WHERE StoryID = ? AND UserID= ?
+                            FROM STORYDOWNVOTE
+                            WHERE storyId = ? AND userId= ?
                           ');
 
     	if($stmt->execute(array($story, $user)))
@@ -186,11 +207,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-	    $stmt = $db->prepare('INSERT INTO COMMENT(Description, CommentDate, idStory, idAuthor)
+	    $stmt = $db->prepare('INSERT INTO STORYCOMMENT(description, commentDate, idStory, idAuthor, idComment)
                             VALUES (?, ?, ?, ?, ?)
                           ');
 
-      if($stmt->execute($description, $date, $story, $author, $comment))
+      if($stmt->execute(array($description, $date, $story, $author, $comment)))
         return $db->lastInsertId();
       else
         return -1;
@@ -200,16 +221,16 @@
   }
 
   // Delete comment
-  function deleteComment($commentID){
+  function deleteComment($commentId){
     $db = Database::getInstance()->getDB();
 
     try {
     	$stmt = $db->prepare('DELETE
-                            FROM COMMENT
-                            WHERE ID = ?
+                            FROM STORYCOMMENT
+                            WHERE id = ?
                           ');
 
-    	if($stmt->execute($commentID))
+    	if($stmt->execute($commentId))
     		return true;
     	else
     		return false;
@@ -224,9 +245,9 @@
 
     try {
       $stmt = $db->prepare('SELECT *
-                            FROM COMMENT
-                            WHERE idStory=?
-                            ORDER BY CommentDate DESC
+                            FROM STORYCOMMENT
+                            WHERE idStory = ?
+                            ORDER BY commentDate DESC
                           ');
       $stmt->execute(array($idStory));
       return $stmt->fetchAll();

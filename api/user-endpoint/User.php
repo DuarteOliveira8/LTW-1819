@@ -2,38 +2,72 @@
   include_once(__DIR__ . '/../../includes/Session.php');
   include_once(__DIR__ . '/../../database/db-access/user.php');
 
-  if (!isset($_SESSION['userID'])) {
-    echo json_encode(array('error' => 'user_not_logged_in'));
+  if (($user = getUser($matches['username'])) == false) {
+    echo json_encode([
+      'success' => false,
+      'error' => 'username'
+    ]);
     exit;
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($user = getUser($_SESSION['userID'])) == false) {
-      echo json_encode(array('error' => 'null'));
-    }
-    else {
-      echo json_encode($user);
-    }
+    echo json_encode([
+      'success' => true,
+      'data' => $user
+    ]);
+    exit;
   }
-  elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+
+  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!isset($_SESSION['userID'])) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'not_logged_in'
+      ]);
+      exit;
+    }
+
     $request = json_decode(file_get_contents('php://input'), true);
 
-    if (!isUsernameValidForUpdate($_SESSION['userID'], $request['Username'])) {
-      echo json_encode(array('error' => 'Username is not valid!'));
+    if ($_SESSION['userID'].$_SESSION['csrf'] !== getID($matches['username']).$_SERVER['HTTP_CSRF']) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'validation'
+      ]);
+      exit;
     }
-    elseif (!isEmailValidForUpdate($_SESSION['userID'], $request['Email'])) {
-      echo json_encode(array('error' => 'Email is not valid!'));
+
+    if (!isUsernameValidForUpdate($_SESSION['userID'], $request['username'])) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'username_not_valid'
+      ]);
+      exit;
     }
-    elseif (updateUser($_SESSION['userID'], $request['Username'], $request['FirstName'], $request['LastName'], $request['Email'], $request['Bio'], $request['BirthDate'])) {
-      if (($user = getUser($_SESSION['userID'])) == false) {
-        echo json_encode(array('error' => 'null'));
-      }
-      else {
-        echo json_encode($user);
-      }
+
+    if (!isEmailValidForUpdate($_SESSION['userID'], $request['email'])) {
+      echo json_encode([
+        'success' => false,
+        'error' => 'email'
+      ]);
+      exit;
     }
-    else {
-      echo json_encode(array('error' => 'null'));
+
+    if (updateUser($_SESSION['userID'], $request['username'], $request['firstName'], $request['lastName'], $request['email'], $request['bio'], $request['birthDate'])) {
+      $username = getUsername($_SESSION['userID']);
+      $user = getUser($username);
+      echo json_encode([
+        'success' => true,
+        'data' => $user
+      ]);
+      exit;
     }
+
+    echo json_encode([
+      'success' => false,
+      'error' => 'null'
+    ]);
+    exit;
   }
 ?>

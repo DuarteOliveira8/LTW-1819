@@ -1,10 +1,9 @@
-<link rel="stylesheet" href="/css/scenes/create-post/CreatePost.css">
-
 <?php
   include('templates/shared-components/input/TextArea.php');
 ?>
 
 <?php function getCreatePost() { ?>
+  <div class="container">
     <div class="create-box">
 
       <div class="webbitLogo">
@@ -30,4 +29,5 @@
         </div>
       </form>
     </div>
+  </div>
 <?php } ?>

@@ -17,9 +17,10 @@
   ?>
 </div>
 
-<script type="text/javascript" src="/js/scenes/manage-account/ManageAccount.js">
-
+<script type="text/javascript">
+  let username = "<?php echo $_SESSION['username']?>";
 </script>
+<script type="text/javascript" src="/js/scenes/manage-account/ManageAccount.js"></script>
 
 <?php
   getFooter();

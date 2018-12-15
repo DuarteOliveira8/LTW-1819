@@ -7,23 +7,23 @@ else
   $path = $request_uri[0];
 
 switch ($path) {
-  case '/api/user':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)$#', $path, $matches) ? true : false):
     require 'user-endpoint/User.php';
     break;
 
-  case '/api/user/posts':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/posts$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserPosts.php';
     break;
 
-  case '/api/user/comments':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/comments#', $path, $matches) ? true : false):
     require 'user-endpoint/UserComments.php';
     break;
 
-  case '/api/user/subscribe':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/subscribe#', $path, $matches) ? true : false):
     require 'user-endpoint/UserSubs.php';
     break;
 
-  case '/api/user/votes':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/votes#', $path, $matches) ? true : false):
     require 'user-endpoint/UserVotes.php';
     break;
 
@@ -31,15 +31,15 @@ switch ($path) {
     require 'user-endpoint/UserUpvotes.php';
     break;
 
-  case '/api/user/downvotes':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/downvotes#', $path, $matches) ? true : false):
     require 'user-endpoint/UserDownvotes.php';
     break;
 
-  case '/api/user/password':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/password#', $path, $matches) ? true : false):
     require 'user-endpoint/UserPassword.php';
     break;
 
-  case '/api/user/avatar':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/avatar#', $path, $matches) ? true : false):
     require 'user-endpoint/UserAvatar.php';
     break;
 

@@ -1,9 +1,7 @@
-<link rel="stylesheet" href="/css/scenes/profile/ProfileNav.css">
-
 <?php function getProfileNav() { ?>
   <div class="profile-nav-container">
     <div class="profile-tab">
-      <span class="tab-text">My comments</span>
+      <span class="tab-text">My subscriptions</span>
     </div>
 
     <div class="profile-tab selected">

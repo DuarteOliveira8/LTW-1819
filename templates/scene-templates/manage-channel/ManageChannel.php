@@ -1,10 +1,9 @@
-<link rel="stylesheet" href="/css/scenes/manage-channel/ManageChannel.css">
-
 <?php
   include('templates/shared-components/input/TextArea.php');
 ?>
 
 <?php function getManageChannel() { ?>
+  <div class="container">
     <div class="manage-container">
 
       <h2 class="manageTitle">Manage Channel</h2>
@@ -33,5 +32,5 @@
         </div>
 
     </div>
-
+  </div>
 <?php } ?>

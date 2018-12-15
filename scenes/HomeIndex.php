@@ -12,6 +12,7 @@
   getHeader();
   getNavbar();
 ?>
+
 <link rel="stylesheet" href="/css/scenes/home/HomeIndex.css">
 
 <div class="home-container">

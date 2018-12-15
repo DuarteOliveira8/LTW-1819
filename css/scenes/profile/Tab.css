@@ -3,3 +3,19 @@
   margin-left: 10%;
   margin-right: 10%;
 }
+
+.profile-container .tab-container#subscriptions {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.profile-container .tab-container#subscriptions .channel-comp-container {
+  flex-basis: 23%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+
+.profile-container .tab-container[hidden]{
+  display: none !important;
+}

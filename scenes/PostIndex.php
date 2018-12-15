@@ -10,6 +10,8 @@
   getNavbar();
 ?>
 
+<link rel="stylesheet" href="/css/scenes/post/PostIndex.css">
+
 <div class="container">
   <?php
     getPost();
@@ -17,6 +19,4 @@
   ?>
 </div>
 
-<?php
-  getFooter();
-?>
+<?php getFooter(); ?>

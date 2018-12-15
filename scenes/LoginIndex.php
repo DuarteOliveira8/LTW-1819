@@ -5,6 +5,11 @@
   include_once('templates/shared-components/Footer.php');
 
   getHeader();
+?>
+
+<link rel="stylesheet" href="/css/scenes/login/LoginIndex.css">
+
+<?php
   getLogin();
   getFooter();
 ?>

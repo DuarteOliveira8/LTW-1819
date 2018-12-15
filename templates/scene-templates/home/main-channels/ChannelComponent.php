@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/home/ChannelComponent.css">
-
 <?php function getChannelComponent() { ?>
     <div class="channel-comp-container">
       <a href="/channel">
@@ -9,7 +7,7 @@
           Channel
         </div>
 
-        <div class="Channel-posts-num">
+        <div class="channel-posts-num">
           Posts: 32k
         </div>
 

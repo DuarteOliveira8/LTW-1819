@@ -1,3 +1,6 @@
+@import "/css/scenes/home/Banner.css";
+@import "/css/shared-components/ChannelComponent.css";
+
 .home-container {
   margin-top: 90px;
   margin-bottom: 60px;
@@ -16,4 +19,11 @@
   margin-left: 5%;
   margin-right: 5%;
   margin-top: 60px;
+}
+
+.home-container .section-container .section-display {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }

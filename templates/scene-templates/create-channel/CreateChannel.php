@@ -1,6 +1,5 @@
-<link rel="stylesheet" href="/css/scenes/create-channel/CreateChannel.css">
-
 <?php function getCreateChannel() { ?>
+  <div class="container">
     <div class="create-box">
 
       <div class="webbitLogo">
@@ -26,4 +25,5 @@
         </div>
       </form>
     </div>
+  </div>
 <?php } ?>

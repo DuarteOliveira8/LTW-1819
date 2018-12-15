@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/channel/Rules.css">
-
 <?php function getRules() { ?>
   <div class="rules-container">
     <h1 class="rules-title">Channel rules</h1>
