@@ -19,8 +19,9 @@
 
 <script type="text/javascript">
   let username = "<?php echo $_SESSION['username']?>";
+  let csrf = "<?php echo $_SESSION['csrf']?>";
 </script>
-<script type="text/javascript" src="/js/scenes/manage-account/ManageAccount.js"></script>
+<script type="module" src="/js/scenes/manage-account/ManageAccount.js"></script>
 
 <?php
   getFooter();
