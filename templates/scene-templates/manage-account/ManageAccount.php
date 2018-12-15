@@ -50,7 +50,7 @@
 
             <h3 class="avatarPicTitle">Change your avatar</h3>
 
-            <div class="avatarPic" style="background-image: url('/assets/images/users/default-profile.png');"></div>
+            <div class="avatarPic" name="avatar" style="background-image: url('/assets/images/users/default-profile.png');"></div>
 
           </div>
 
