@@ -206,7 +206,7 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.id, STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channel, USER.username
+      $stmt = $db->prepare('SELECT DISTINCT STORY.id, STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, USER.username
                             FROM STORY, STORYUPVOTE, STORYDOWNVOTE, USER
                             WHERE ((USER.id = ? AND USER.id = STORYUPVOTE.userId AND STORYUPVOTE.storyId = STORY.id)
                                    OR
