@@ -46,6 +46,22 @@
     }
   }
 
+  // Get channel rules
+  function getChannelRules($channel) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT description
+                            FROM RULE
+                            WHERE RULE.idChannel = ?
+                          ');
+      $stmt->execute(array($channel));
+      return $stmt->fetchAll();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
   // Get channel
   function getChannel($channelName) {
     $db = Database::getInstance()->getDB();

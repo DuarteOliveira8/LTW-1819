@@ -55,6 +55,10 @@ switch ($path) {
     require 'channel-endpoint/ChannelPosts.php';
     break;
 
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/rules#', $path, $matches) ? true : false):
+    require 'channel-endpoint/ChannelRules.php';
+    break;
+
   default:
     echo json_encode(array('error' => '404_not_found'));
     break;

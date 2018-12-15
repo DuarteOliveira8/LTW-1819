@@ -10,10 +10,8 @@
     exit;
   }
 
-  if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $request = json_decode(file_get_contents('php://input'), true);
-
-    if (($posts = getChannelPosts($request['offset'], $channel)) === false) {
+  if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+    if (($rules = getChannelRules($channel)) === false) {
       echo json_encode([
         'success' => false,
         'error' => 'null'
@@ -23,7 +21,7 @@
 
     echo json_encode([
       'success' => true,
-      'data' => $posts
+      'data' => $rules
     ]);
     exit;
   }
