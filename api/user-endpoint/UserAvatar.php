@@ -54,7 +54,8 @@
     }
 
     if (updateUserAvatar($_SESSION['userID'], $request["avatar"])) {
-      if (($avatar = getUserAvatar($_SESSION['userID'])) == false) {
+      $username = getUsername($_SESSION['userID']);
+      if (($avatar = getUserAvatar($username)) == false) {
         echo json_encode([
           'success' => false,
           'error' => 'null'

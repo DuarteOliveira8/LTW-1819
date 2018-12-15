@@ -242,9 +242,9 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channelStory
-                            FROM STORY, DOWNVOTE, USER
-                            WHERE USER.username = ? AND DOWNVOTE.userId = USER.id AND DOWNVOTE.storyId = STORY.id
+      $stmt = $db->prepare('SELECT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channel
+                            FROM STORY, STORYDOWNVOTE, USER
+                            WHERE USER.username = ? AND STORYDOWNVOTE.userId = USER.id AND STORYDOWNVOTE.storyId = STORY.id
                             ORDER BY STORY.storyDate DESC
                           ');
       $stmt->execute(array($username));
