@@ -6,12 +6,13 @@
 
 .profile-container .tab-container#subscriptions {
   display: flex;
-  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .profile-container .tab-container#subscriptions .channel-comp-container {
-  margin-right: 30px;
+  flex-basis: 23%;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 

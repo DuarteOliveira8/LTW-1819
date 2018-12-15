@@ -19,7 +19,14 @@ showProfilePosts.onreadystatechange = function() {
       posts.innerHTML = `<h1>This user has no posts.</h1>`;
     }
     for(let i = 0; i < response.data.length; i++) {
-      posts.append(getPost(response.data[i].id, response.data[i].title, response.data[i].upvoteRatio, response.data[i].username, response.data[i].storyDate, response.data[i].description, response.data[i].comments, response.data[i].avatar));
+      posts.append(getPost(response.data[i].id,
+                           response.data[i].title,
+                           response.data[i].upvoteRatio,
+                           response.data[i].username,
+                           response.data[i].storyDate,
+                           response.data[i].description,
+                           response.data[i].comments,
+                           response.data[i].avatar));
     }
   }
 };
@@ -31,9 +38,19 @@ showSubscriptions.onreadystatechange = function() {
       subscriptions.innerHTML = `<h1>This user is not subscribed to any channels.</h1>`;
     }
     for(let i = 0; i < response.data.length; i++) {
-      subscriptions.append(getChannel(response.data[i].name, response.data[i].posts, response.data[i].subscriptions, response.data[i].banner));
+      subscriptions.append(getChannel(response.data[i].name,
+                                      response.data[i].posts,
+                                      response.data[i].subscriptions,
+                                      response.data[i].banner));
     }
   }
+}
+
+for (var i = 0; i < 8; i++) {
+  subscriptions.append(getChannel("ola",
+                                  172,
+                                  10,
+                                  "default-background.png"));
 }
 
 showVotes.onreadystatechange = function() {
@@ -43,7 +60,14 @@ showVotes.onreadystatechange = function() {
       postVoted.innerHTML = `<h1>This user hasn't voted on any posts.</h1>`;
     }
     for(let i = 0; i < response.data.length; i++) {
-      postVoted.append(getPost(response.data[i].id, response.data[i].title, response.data[i].upvoteRatio, response.data[i].username, response.data[i].storyDate, response.data[i].description, response.data[i].comments, response.data[i].avatar));
+      postVoted.append(getPost(response.data[i].id,
+                               response.data[i].title,
+                               response.data[i].upvoteRatio,
+                               response.data[i].username,
+                               response.data[i].storyDate,
+                               response.data[i].description,
+                               response.data[i].comments,
+                               response.data[i].avatar));
     }
   }
 }
