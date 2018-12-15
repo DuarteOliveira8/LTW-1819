@@ -43,6 +43,10 @@ switch ($path) {
     require 'user-endpoint/UserAvatar.php';
     break;
 
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/channels#', $path, $matches) ? true : false):
+    require 'user-endpoint/UserChannels.php';
+    break;
+
   case "/api/home/main-channels":
     require 'home-endpoint/MainChannels.php';
     break;

@@ -163,6 +163,29 @@
     }
   }
 
+  // Get all channels subscribed
+  function getUserChannels($userId) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT CHANNEL.name,
+                                   CHANNEL.banner,
+                                   (SELECT count(*)
+                                    FROM SUBSCRIBER S2
+                                    WHERE S2.channelId = CHANNEL.id) AS subscriptions,
+                                   (SELECT count(*)
+                                    FROM STORY
+                                    WHERE STORY.channel = CHANNEL.id) AS posts
+                            FROM CHANNEL
+                            WHERE idCreator = ?
+                            ORDER BY CHANNEL.name
+                          ');
+      $stmt->execute(array($userId));
+      return $stmt->fetchAll();
+    }catch(PDOException $e) {
+      return false;
+    }
+  }
 
   // Get all stories from a user
   function getUserPosts($author) {
@@ -262,11 +285,14 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT CHANNEL.name, CHANNEL.banner, (SELECT count(*)
-                                                                  FROM SUBSCRIBER S2
-                                                                  WHERE S2.channelId = CHANNEL.id) AS subscriptions, (SELECT count(*)
-                                                                                                                      FROM STORY
-                                                                                                                      WHERE STORY.channel = CHANNEL.id) AS posts
+      $stmt = $db->prepare('SELECT CHANNEL.name,
+                                   CHANNEL.banner,
+                                   (SELECT count(*)
+                                    FROM SUBSCRIBER S2
+                                    WHERE S2.channelId = CHANNEL.id) AS subscriptions,
+                                   (SELECT count(*)
+                                    FROM STORY
+                                    WHERE STORY.channel = CHANNEL.id) AS posts
                             FROM SUBSCRIBER S1, CHANNEL
                             WHERE (S1.userId = ? AND S1.channelId = CHANNEL.id)
                             ORDER BY CHANNEL.name
