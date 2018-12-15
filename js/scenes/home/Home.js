@@ -41,8 +41,8 @@ showRecentPosts.onreadystatechange = function() {
   }
 };
 
-showMainChannels.open("GET", "/api/home/", true);
+showMainChannels.open("GET", "/api/home/main-channels", true);
 showMainChannels.send();
 
-showRecentPosts.open("GET", "/api/home/", true);
+showRecentPosts.open("GET", "/api/home/recent-posts", true);
 showRecentPosts.send();
