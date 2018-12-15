@@ -63,12 +63,13 @@
 
     try {
       $stmt = $db->prepare('SELECT name,
-                                    (SELECT count(*)
-                                     FROM SUBSCRIBER
-                                     WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
-                                    (SELECT count(*)
-                                     FROM STORY
-                                     WHERE STORY.channel = CHANNEL.id) AS posts
+                                   banner,
+                                  (SELECT count(*)
+                                   FROM SUBSCRIBER
+                                   WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
+                                  (SELECT count(*)
+                                   FROM STORY
+                                   WHERE STORY.channel = CHANNEL.id) AS posts
                              FROM CHANNEL
                              ORDER BY subscriptions DESC
                              LIMIT 8
