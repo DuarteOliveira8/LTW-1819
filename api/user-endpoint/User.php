@@ -61,6 +61,7 @@
         'success' => true,
         'data' => $user
       ]);
+      $_SESSION['username'] = $username;
       exit;
     }
 

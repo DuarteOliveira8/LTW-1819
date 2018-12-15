@@ -11,32 +11,32 @@
       <h2 class="manageTitle">Manage Account</h2>
 
       <div class="general-info-form">
-        <div class="username">
+        <div class="username" id="username">
           <?php input('text', "Username:", "username", "Your Username", true); ?>
         </div>
 
-        <div class="first-name">
+        <div class="first-name" id="first-name">
           <?php input('text', "First name:", "first-name", "Your first name", true); ?>
         </div>
 
-        <div class="last-name">
+        <div class="last-name" id="last-name">
           <?php input('text', "Last name:", "last-name", "Your last name", true); ?>
         </div>
 
-        <div class="user-bio">
+        <div class="user-bio" id="user-bio">
           <?php textarea("Bio:", "user-bio", 20, 50, "Your bio...", true); ?>
         </div>
 
-        <div class="bday">
+        <div class="bday" id="bday">
           <?php dateInput("Birth date:", true); ?>
         </div>
 
-        <div class="email">
+        <div class="email" id="email" >
           <?php input('email', "Email address:", "email", "Insert your email address", true); ?>
         </div>
 
         <div class="submitChanges">
-          <button class="submitButton" type="submit">Save</button>
+          <button class="submitButton" type="submit" id="submitInfo">Save</button>
         </div>
       </div>
 
@@ -55,7 +55,7 @@
           </div>
 
           <div class="submitAvatar">
-            <button class="submitButton" type="submit">Save</button>
+            <button class="submitButton" type="submit" id="submitAvatar">Save</button>
           </div>
 
       </div>
@@ -65,7 +65,7 @@
         <h3 class="passwordTitle">Change your password</h3>
 
         <div class="current-password">
-          <?php input('password', "Current password:", "password", "Insert your current password", true); ?>
+          <?php input('password', "Current password:", "current-password", "Insert your current password", true); ?>
         </div>
 
         <div class="new-password">
@@ -77,7 +77,7 @@
         </div>
 
         <div class="submitPassword">
-          <button class="submitButton" type="submit">Save</button>
+          <button class="submitButton" type="submit" id="submitPassword">Save</button>
         </div>
 
       </div>
