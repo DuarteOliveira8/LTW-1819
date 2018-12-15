@@ -28,7 +28,6 @@
 </div>
 
 <script type="text/javascript" src="/js/scenes/profile/ProfileNav.js"></script>
-
 <script type="module" src="/js/scenes/profile/Profile.js"></script>
 
 <?php getFooter(); ?>
