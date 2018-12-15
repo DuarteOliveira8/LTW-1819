@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/post/PostIndex.css">
-
 <?php function getPost() { ?>
   <div class="container">
     <div class="post-container">

@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/profile/ProfileNav.css">
-
 <?php function getProfileNav() { ?>
   <div class="profile-nav-container">
     <div class="profile-tab">

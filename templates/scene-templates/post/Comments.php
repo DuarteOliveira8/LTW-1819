@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="/css/scenes/post/Comments.css">
-
 <?php
   include('templates/shared-components/Comment.php')
 ?>
