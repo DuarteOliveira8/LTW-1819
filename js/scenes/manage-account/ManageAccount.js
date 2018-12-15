@@ -1,5 +1,5 @@
 
-function fillGeneralInfoForm(uName, fName, lName, uBio, bDay, bMonth, bYear) {
+function fillGeneralInfoForm(uName, fName, lName, uBio, bDay, bMonth, bYear, email) {
 
   document.getElementsByName("username")[0].value = uName;
   document.getElementsByName("first-name")[0].value = fName;
@@ -8,6 +8,7 @@ function fillGeneralInfoForm(uName, fName, lName, uBio, bDay, bMonth, bYear) {
   document.getElementsByName("day")[0][bDay].selected = bDay;
   document.getElementsByName("month")[0][bMonth].selected = bMonth;
   document.getElementsByName("year")[0][bYear-1920+1].selected = bYear;
+  document.getElementsByName("email")[0].value = email;
 }
 
 
@@ -17,14 +18,17 @@ let fillGeneralRequest = new XMLHttpRequest();
 fillGeneralRequest.onreadystatechange = function() {
   if (this.readyState === 4 && this.status === 200) {
     let response = JSON.parse(this.responseText);
-    let parsedDate = response.BirthDate.split("-");
+    let date = response.data.birthDate;
+    let parsedDate = date.split("-");
+    
     let year = parsedDate[0];
     let month = parsedDate[1];
     let day = parsedDate[2];
 
-    fillGeneralInfoForm(response.Username, response.FirstName, response.LastName, response.Bio, day, month, year);
+    fillGeneralInfoForm(response.data.username, response.data.firstName, response.data.lastName, response.data.bio, day, month, year, response.data.email);
+    
   }
 }
 
-fillGeneralRequest.open("GET", "/api/user", true);
+fillGeneralRequest.open("GET", "/api/user/" + username, true);
 fillGeneralRequest.send();
