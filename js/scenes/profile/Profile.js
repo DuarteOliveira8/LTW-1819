@@ -58,7 +58,7 @@ showProfilePosts.send();
 // showVotes.send();
 
 for(let i = 0; i < 5; i++) {
-  likes.append(getPost("Mega Cursed Post", 24, "very_cursed_individual", "1990-01-01", "Tis very cursed oops", 24, "3.jpg"));
+  likes.append(getPost(1, "Mega Cursed Post", 24, "very_cursed_individual", "1990-01-01", "Tis very cursed oops", 24, "3.jpg"));
 }
 
 for(let i = 0; i < 5; i++) {
