@@ -63,11 +63,26 @@
   }
 
   //Most Recent Stories
-  function getRecentStories() {
-    global $dbh;
+  function getRecentStories($offset) {
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT ID, Title, Description, UpvoteRatio, StoryDate FROM STORY ORDER BY StoryDate DESC');
-      $stmt->execute();
+      $stmt = $db->prepare('SELECT STORY.id,
+                                   STORY.title,
+                                   STORY.description,
+                                   STORY.upvoteRatio,
+                                   STORY.storyDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   (SELECT count(*)
+                                    FROM STORYCOMMENT
+                                    WHERE STORY.id = STORYCOMMENT.storyId) AS comments
+                             FROM STORY, USER
+                             WHERE STORY.idAuthor = USER.id
+                             ORDER BY STORY.storyDate DESC
+                             LIMIT 8 OFFSET ?
+                           ');
+      $stmt->execute(array($offset));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return null;

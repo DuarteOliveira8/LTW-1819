@@ -5,6 +5,7 @@
   border: 3px solid #fb6542;
   border-radius: 10px;
   cursor: pointer;
+  width: 100%;
 }
 
 .post-container .post-header {

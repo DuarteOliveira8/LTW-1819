@@ -58,10 +58,22 @@
 
 
   // Get all channels
-  function getChannels() {
-    global $dbh;
+  function getMainChannels() {
+    $db = Database::getInstance()->getDB();
+
     try {
-      $stmt = $dbh->prepare('SELECT ID, Name, Description FROM CHANNEL');
+      $stmt = $db->prepare('SELECT name,
+                                   banner,
+                                  (SELECT count(*)
+                                   FROM SUBSCRIBER
+                                   WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
+                                  (SELECT count(*)
+                                   FROM STORY
+                                   WHERE STORY.channel = CHANNEL.id) AS posts
+                             FROM CHANNEL
+                             ORDER BY subscriptions DESC
+                             LIMIT 8
+                           ');
       $stmt->execute();
       return $stmt->fetchAll();
     }catch(PDOException $e) {
