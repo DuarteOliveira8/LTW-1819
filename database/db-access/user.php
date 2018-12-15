@@ -171,7 +171,7 @@
     try {
       $stmt = $db->prepare('SELECT DISTINCT S1.title, S1.description, S1.storyDate, USER.username, USER.avatar, S1.upvoteRatio, S1.channel, (SELECT count(*)
                                                                                                                                              FROM STORYCOMMENT
-                                                                                                                                             WHERE S1.id = STORYCOMMENT.storyId) AS Comments
+                                                                                                                                             WHERE S1.id = STORYCOMMENT.storyId) AS comments
                             FROM STORY S1, USER
                             WHERE USER.username = ? AND S1.idAuthor = USER.id
                             ORDER BY S1.storyDate DESC
