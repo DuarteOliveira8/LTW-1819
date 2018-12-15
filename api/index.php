@@ -23,7 +23,7 @@ switch ($path) {
     require 'user-endpoint/UserSubs.php';
     break;
 
-  case '/api/user/votes':
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/votes#', $path, $matches) ? true : false):
     require 'user-endpoint/UserVotes.php';
     break;
 
