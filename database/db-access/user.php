@@ -206,11 +206,11 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channel
-                            FROM STORY, STORYUPVOTE, STORYDOWNVOTE
-                            WHERE ((STORYUPVOTE.userId = ? AND STORYUPVOTE.storyId = STORY.id)
+      $stmt = $db->prepare('SELECT DISTINCT STORY.id, STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channel, USER.username
+                            FROM STORY, STORYUPVOTE, STORYDOWNVOTE, USER
+                            WHERE ((USER.id = ? AND USER.id = STORYUPVOTE.userId AND STORYUPVOTE.storyId = STORY.id)
                                    OR
-                                   (STORYDOWNVOTE.userId = ? AND STORYDOWNVOTE.storyId = STORY.id))
+                                   (USER.id = ? AND USER.id = STORYDOWNVOTE.userId AND STORYDOWNVOTE.storyId = STORY.id))
                             ORDER BY STORY.storyDate DESC
                           ');
       $stmt->execute(array($userId, $userId));
