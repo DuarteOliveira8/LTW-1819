@@ -206,7 +206,9 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.id, STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, USER.username, USER.avatar
+      $stmt = $db->prepare('SELECT DISTINCT STORY.id, STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, USER.username, USER.avatar, (SELECT count(*)
+                                                                                                                                                       FROM STORYCOMMENT
+                                                                                                                                                       WHERE STORYCOMMENT.storyId = STORY.id) AS comments
                             FROM STORY, STORYUPVOTE, STORYDOWNVOTE, USER
                             WHERE ((USER.id = ? AND USER.id = STORYUPVOTE.userId AND STORYUPVOTE.storyId = STORY.id)
                                    OR
