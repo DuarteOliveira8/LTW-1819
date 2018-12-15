@@ -3,7 +3,9 @@
   include_once(__DIR__ . '/../../database/db-access/story.php');
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($posts = getRecentStories(0)) === false) {
+    $request = json_decode(file_get_contents('php://input'), true);
+
+    if (($posts = getRecentStories($request['offset'])) === false) {
       echo json_encode([
         'success' => false,
         'error' => 'no_posts'
