@@ -8,35 +8,54 @@ let postVoted = document.getElementById('likes');
 let url = document.URL.split("/");
 let userName = url[4];
 
-// let showProfilePosts = new XMLHttpRequest();
-// let showSubscriptions = new XMLHttpRequest();
+let showProfilePosts = new XMLHttpRequest();
+let showSubscriptions = new XMLHttpRequest();
+let showVotes = new XMLHttpRequest();
 
-// showProfilePosts.onreadystatechange = function() {
-//   if (this.readyState === 4 && this.status === 200) {
-//     let response = JSON.parse(this.responseText);
-//     if (!response.success) {
-//
-//     }
-//     for(let i = 0; i < response.length; i++) {
-//       getPost(response[i].Title, response[i].UpvoteRatio, response[i].Username, response[i].StoryDate, response[i].Description, response[i].Comments, response[i].Avatar);
-//     }
-//   }
-// };
+showProfilePosts.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    let response = JSON.parse(this.responseText);
+    if (!response.success) {
+      posts.innerHTML = `<h1>This user has no posts.</h1>`;
+    }
+    for(let i = 0; i < response.length; i++) {
+      posts.append(getPost(response[i].Title, response[i].UpvoteRatio, response[i].Username, response[i].StoryDate, response[i].Description, response[i].Comments, response[i].Avatar));
+    }
+  }
+};
 
-// showSubscriptions.onreadystatechange = function() {
-//   if (this.readyState === 4 && this.status === 200) {
-//     let response = JSON.parse(this.responseText);
-//     if (!response.success) {
-//
-//     }
-//     for(let i = 0; i < response.length; i++) {
-//       subscriptions.append(getChannel(response[i].))
-//     }
-//   }
-// }
+showSubscriptions.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    let response = JSON.parse(this.responseText);
+    if (!response.success) {
+      subscriptions.innerHTML = `<h1>This user is not subscribed to any channels.</h1>`;
+    }
+    for(let i = 0; i < response.length; i++) {
+      subscriptions.append(getChannel()); //TODO
+    }
+  }
+}
 
-// showProfilePosts.open("GET", "/api/user/" + userName + "posts", true);
+showVotes.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    let response = JSON.parse(this.responseText);
+    if (!response.success) {
+      postVoted.innerHTML = `<h1>This user hasn't voted on any posts.</h1>`;
+    }
+    for(let i = 0; i < response.length); i++) {
+      postVoted.append(getPost()); //TODO
+    }
+  }
+}
+
+// showProfilePosts.open("GET", "/api/user/" + userName + "/posts", true);
 // showProfilePosts.send();
+
+// showSubscriptions.open("GET", "/api/user/" + userName + "/", true); TODO
+// showSubscriptions.send();
+
+// showVotes.open("GET", "/api/user/" + userName + "/", true); TODO
+// showVotes.send();
 
 for(let i = 0; i < 5; i++) {
   likes.append(getPost("Mega Cursed Post", 24, "very_cursed_individual", "1990-01-01", "Tis very cursed oops", 24, "3.jpg"));
