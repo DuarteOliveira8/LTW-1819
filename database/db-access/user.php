@@ -210,9 +210,10 @@
                                                                                                                                                        FROM STORYCOMMENT
                                                                                                                                                        WHERE STORYCOMMENT.storyId = STORY.id) AS comments
                             FROM STORY, STORYUPVOTE, STORYDOWNVOTE, USER
-                            WHERE ((USER.id = ? AND USER.id = STORYUPVOTE.userId AND STORYUPVOTE.storyId = STORY.id)
+                            WHERE ((STORYUPVOTE.userId = ? AND STORYUPVOTE.storyId = STORY.id)
                                    OR
-                                   (USER.id = ? AND USER.id = STORYDOWNVOTE.userId AND STORYDOWNVOTE.storyId = STORY.id))
+                                   (STORYDOWNVOTE.userId = ? AND STORYDOWNVOTE.storyId = STORY.id))
+                                   AND STORY.idAuthor = USER.id
                             ORDER BY STORY.storyDate DESC
                           ');
       $stmt->execute(array($userId, $userId));
