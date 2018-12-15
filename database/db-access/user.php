@@ -2,14 +2,14 @@
   include_once(__DIR__ . '/../../includes/Database.php');
 
   // Add new User
-  function createUser($username, $firstname, $lastname, $email, $password, $birthdate){
+  function createUser($username, $firstName, $lastName, $email, $password, $birthDate){
     $db = Database::getInstance()->getDB();
     $hashedPW = hash('sha256', $password);
 
     try {
-	    $stmt = $db->prepare('INSERT INTO USER(Username, FirstName, LastName, Email, Password, BirthDate) VALUES (?, ?, ?, ?, ?, ?)');
+	    $stmt = $db->prepare('INSERT INTO USER(username, firstName, lastName, email, password, birthDate) VALUES (?, ?, ?, ?, ?, ?)');
 
-      if($stmt->execute(array($username, $firstname, $lastname, $email, $hashedPW, $birthdate)))
+      if($stmt->execute(array($userName, $firstName, $lastName, $email, $hashedPW, $birthDate)))
         return $db->lastInsertId();
       else
         return -1;
@@ -28,7 +28,7 @@
     try {
       $stmt = $db->prepare('SELECT *
                             FROM USER
-                            WHERE Username = ?
+                            WHERE username = ?
                           ');
       $stmt->execute(array($username));
       $user = $stmt->fetch();
@@ -48,7 +48,7 @@
     try {
       $stmt = $db->prepare('SELECT *
                             FROM USER
-                            WHERE Email = ?
+                            WHERE email = ?
                           ');
       $stmt->execute(array($email));
       $user = $stmt->fetch();
@@ -70,13 +70,13 @@
     try {
       $stmt = $db->prepare('SELECT *
                             FROM USER
-                            WHERE Email = ? AND Password = ?
+                            WHERE email = ? AND password = ?
                           ');
       $stmt->execute(array($email, $hashedPW));
       $user = $stmt->fetch();
 
       if ($user !== false)
-        return $user['ID'];
+        return $user['id'];
       else
         return -1;
     } catch (PDOException $e) {
@@ -89,28 +89,28 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT ID
+      $stmt = $db->prepare('SELECT id
                             FROM USER
-                            WHERE Username = ?
+                            WHERE username = ?
                           ');
       $stmt->execute(array($username));
-      return $stmt->fetch()['ID'];
+      return $stmt->fetch()['id'];
     } catch (PDOException $e) {
       return false;
     }
   }
 
   // Get user id with username
-  function getUsername($userID) {
+  function getUsername($userId) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Username
+      $stmt = $db->prepare('SELECT username
                             FROM USER
-                            WHERE ID = ?
+                            WHERE id = ?
                           ');
-      $stmt->execute(array($userID));
-      return $stmt->fetch()['Username'];
+      $stmt->execute(array($userId));
+      return $stmt->fetch()['username'];
     } catch (PDOException $e) {
       return false;
     }
@@ -121,9 +121,9 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Username, Firstname, Lastname, Email, Bio, Avatar, BirthDate
+      $stmt = $db->prepare('SELECT username, firstName, lastName, email, bio, avatar, birthDate
                             FROM USER
-                            WHERE Username = ?
+                            WHERE username = ?
                           ');
       $stmt->execute(array($username));
       return $stmt->fetch();
@@ -137,9 +137,9 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Avatar
+      $stmt = $db->prepare('SELECT avatar
                             FROM USER
-                            WHERE Username = ?
+                            WHERE username = ?
                           ');
       $stmt->execute(array($username));
       return $stmt->fetch();
@@ -153,7 +153,9 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Username FROM USER');
+      $stmt = $db->prepare('SELECT username
+                            FROM USER
+                          ');
       $stmt->execute();
       return $stmt->fetchAll();
     }catch(PDOException $e) {
@@ -167,12 +169,12 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT S1.Title, S1.Description, S1.StoryDate, USER.Username, USER.Avatar, S1.UpvoteRatio, S1.ChannelStory, (SELECT count(*)
-                                                                                                                                                  FROM STORY S2, COMMENT
-                                                                                                                                                  WHERE S2.ID = S1.ID AND S1.ID = COMMENT.idStory) AS Comments
+      $stmt = $db->prepare('SELECT DISTINCT S1.title, S1.description, S1.storyDate, USER.username, USER.avatar, S1.upvoteRatio, S1.channel, (SELECT count(*)
+                                                                                                                                             FROM STORY S2, STORYCOMMENT
+                                                                                                                                             WHERE (S2.id = S1.id AND S1.id = STORYCOMMENT.idStory)) AS Comments
                             FROM STORY S1, USER
-                            WHERE USER.Username = ? AND S1.idAuthor = USER.ID
-                            ORDER BY S1.StoryDate DESC
+                            WHERE USER.username = ? AND S1.idAuthor = USER.id
+                            ORDER BY S1.storyDate DESC
                           ');
       $stmt->execute(array($author));
       return $stmt->fetchAll();
@@ -187,10 +189,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT Description, CommentDate, idStory, idComment, USER.Username, USER.Avatar
+      $stmt = $db->prepare('SELECT description, commentDate, idStory, idComment, USER.username, USER.avatar
                             FROM COMMENT, USER
-                            WHERE USER.Username = ? AND USER.ID = COMMENT.idAuthor
-                            ORDER BY CommentDate DESC
+                            WHERE USER.username = ? AND USER.id = COMMENT.idAuthor
+                            ORDER BY commentDate DESC
                           ');
       $stmt->execute(array($username));
       return $stmt->fetchAll();
@@ -200,18 +202,18 @@
   }
 
   //Get all votes from a user
-  function getUserVotes($UserID) {
+  function getUserVotes($userID) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+      $stmt = $db->prepare('SELECT DISTINCT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channelStory
                             FROM STORY, UPVOTE, DOWNVOTE
-                            WHERE ((UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)
+                            WHERE ((UPVOTE.userId = ? AND UPVOTE.storyId = STORY.id)
                                   OR
-                                  (DOWNVOTE.userID = ? AND DOWNVOTE.StoryID = STORY.ID))
+                                  (DOWNVOTE.userId = ? AND DOWNVOTE.storyId = STORY.id))
                             ORDER BY STORY.StoryDate DESC
                           ');
-      $stmt->execute(array($UserID, $UserID));
+      $stmt->execute(array($userId, $userId));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return false;
@@ -219,16 +221,16 @@
   }
 
   // Get all upvotes from a user
-  function getUserUpvotes($UserID) {
+  function getUserUpvotes($userId) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+      $stmt = $db->prepare('SELECT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channelStory
                             FROM STORY, UPVOTE
-                            WHERE (UPVOTE.userID = ? AND UPVOTE.StoryID = STORY.ID)
-                            ORDER BY STORY.StoryDate DESC
+                            WHERE (UPVOTE.userId = ? AND UPVOTE.storyId = STORY.id)
+                            ORDER BY STORY.storyDate DESC
                           ');
-      $stmt->execute(array($UserID));
+      $stmt->execute(array($userID));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return null;
@@ -240,10 +242,10 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT STORY.Title, STORY.Description, STORY.StoryDate, STORY.UpvoteRatio, STORY.ChannelStory
+      $stmt = $db->prepare('SELECT STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, STORY.channelStory
                             FROM STORY, DOWNVOTE, USER
-                            WHERE USER.Username = ? AND DOWNVOTE.userID = USER.ID AND DOWNVOTE.StoryID = STORY.ID
-                            ORDER BY STORY.StoryDate DESC
+                            WHERE USER.username = ? AND DOWNVOTE.userId = USER.id AND DOWNVOTE.storyId = STORY.id
+                            ORDER BY STORY.storyDate DESC
                           ');
       $stmt->execute(array($username));
       return $stmt->fetchAll();
@@ -253,23 +255,23 @@
   }
 
   // Get all channels subscribed
-  function getUserSubscribed($UserID) {
+  function getUserSubscribed($userId) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT CHANNEL.Name, CHANNEL.Description
+      $stmt = $db->prepare('SELECT CHANNEL.name, CHANNEL.description
                             FROM SUBSCRIBER, CHANNEL
-                            WHERE (SUBSCRIBER.UserID = ? AND SUBSCRIBER.ChannelID = CHANNEL.ID)
-                            ORDER BY CHANNEL.Name
+                            WHERE (SUBSCRIBER.userId = ? AND SUBSCRIBER.channelId = CHANNEL.id)
+                            ORDER BY CHANNEL.name
                           ');
-      $stmt->execute(array($UserID));
+      $stmt->execute(array($userId));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return false;
     }
   }
 
-  function isUsernameValidForUpdate($UserID, $username) {
+  function isUsernameValidForUpdate($userId, $username) {
     $db = Database::getInstance()->getDB();
 
     if (!preg_match('/[0-9a-zA-Z]+$/', $username)) {
@@ -279,12 +281,12 @@
     try {
       $stmt = $db->prepare('SELECT *
                             FROM USER
-                            WHERE Username = ?
+                            WHERE username = ?
                           ');
       $stmt->execute(array($username));
       $user = $stmt->fetch();
 
-      if ($user !== false && $user['ID'] !== $UserID)
+      if ($user !== false && $user['id'] !== $userId)
         return false;
       else
         return true;
@@ -294,18 +296,18 @@
   }
 
   //Change user email
-  function isEmailValidForUpdate($UserID, $Email) {
+  function isEmailValidForUpdate($userId, $email) {
     $db = Database::getInstance()->getDB();
 
     try {
       $stmt = $db->prepare('SELECT *
                             FROM USER
-                            WHERE Email = ?
+                            WHERE email = ?
                           ');
       $stmt->execute(array($email));
       $user = $stmt->fetch();
 
-      if ($user !== false && $user['ID'] !== $UserID)
+      if ($user !== false && $user['id'] !== $userId)
         return false;
       else
         return true;
@@ -315,15 +317,15 @@
   }
 
   //Change Info
-  function updateUser($UserID, $Username, $FirstName, $LastName, $Email, $Bio, $BirthDate) {
+  function updateUser($userId, $username, $firstName, $lastName, $email, $bio, $birthDate) {
     $db = Database::getInstance()->getDB();
 
     try {
       $stmt = $db->prepare('UPDATE USER
-                            SET Username = ?, FirstName = ?, LastName = ?, Email = ?, Bio = ?, BirthDate = ?
-                            WHERE ID = ?
+                            SET username = ?, firstName = ?, lastName = ?, email = ?, bio = ?, birthDate = ?
+                            WHERE id = ?
                           ');
-      if($stmt->execute(array($Username, $FirstName, $LastName, $Email, $Bio, $BirthDate, $UserID)))
+      if($stmt->execute(array($username, $firstName, $lastName, $email, $bio, $birthDate, $userId)))
         return true;
       else
         return false;
@@ -333,15 +335,15 @@
   }
 
   //Change Info
-  function updateUserAvatar($UserID, $Avatar) {
+  function updateUserAvatar($userId, $avatar) {
     $db = Database::getInstance()->getDB();
 
     try {
       $stmt = $db->prepare('UPDATE USER
-                            SET Avatar = ?
-                            WHERE ID = ?
+                            SET avatar = ?
+                            WHERE id = ?
                           ');
-      if($stmt->execute(array($Avatar, $UserID)))
+      if($stmt->execute(array($avatar, $userId)))
         return true;
       else
         return false;
@@ -351,16 +353,16 @@
   }
 
   //Change password
-  function updateUserPassword($UserID, $Password) {
+  function updateUserPassword($userId, $password) {
     $db = Database::getInstance()->getDB();
-    $hashedPW = hash('sha256', $Password);
+    $hashedPW = hash('sha256', $password);
 
     try {
       $stmt = $db->prepare('UPDATE USER
-                            SET Password = ?
-                            WHERE ID = ?
+                            SET password = ?
+                            WHERE id = ?
                           ');
-      if($stmt->execute(array($hashedPW, $UserID)))
+      if($stmt->execute(array($hashedPW, $userId)))
         return true;
       else
         return false;
