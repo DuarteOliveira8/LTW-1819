@@ -71,21 +71,24 @@ document.getElementById("submitInfo").onclick= function(){
   var bday= year +"-" + month + "-" +day;
   var email = document.querySelector("input[name='email']").value;
 
-  var info={username: user, firstName: fName, lastName: lName, bio: userbio, birthDate: bday, email:email}
+  var info={"username": user, "firstName": fName, "lastName": lName, "bio": userbio, "birthDate": bday, "email":email}
   let response = JSON.stringify(info);
   updateAccount.open("POST", "/api/user/" + username, true);
   updateAccount.setRequestHeader("csrf",csrf);
   updateAccount.send(response);
 }
 
+let updatePassword = new XMLHttpRequest();
+
 document.getElementById("submitPassword").onclick= function()
 {
   var currpassword = document.querySelector("input[name='current-password']").value;
   var password = document.querySelector("input[name='password']").value;
   var confirmpassword = document.querySelector("input[name='confirm-password']").value;
-  var infopass={"current-password": currpassword, password: password, "confirm-password": confirmpassword}
+  var infopass={"current-password": currpassword, "password": password, "confirm-password": confirmpassword}
+  console.log(infopass);
   let response = JSON.stringify(infopass);
-  updateAccount.open("POST", "/api/user/" + username, true);
-  updateAccount.setRequestHeader("csrf",csrf);
-  updateAccount.send(response);
+  updatePassword.open("POST", "/api/user/" + username + "/password", true);
+  updatePassword.setRequestHeader("csrf",csrf);
+  updatePassword.send(response);
 } 
