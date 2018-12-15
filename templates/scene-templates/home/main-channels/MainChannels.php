@@ -4,10 +4,6 @@
       Main channels
     </div>
 
-    <div class="section-display">
-      <?php for ($i=0; $i < 8; $i++) {
-        getChannelComponent();
-      } ?>
-    </div>
+    <div class="section-display" id="main-channels"></div>
   </div>
 <?php } ?>
