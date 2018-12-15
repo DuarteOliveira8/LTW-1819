@@ -42,14 +42,14 @@ showVotes.onreadystatechange = function() {
     if (!response.success) {
       postVoted.innerHTML = `<h1>This user hasn't voted on any posts.</h1>`;
     }
-    for(let i = 0; i < response.length); i++) {
+    for(let i = 0; i < response.length; i++) {
       postVoted.append(getPost()); //TODO
     }
   }
 }
 
-// showProfilePosts.open("GET", "/api/user/" + userName + "/posts", true);
-// showProfilePosts.send();
+showProfilePosts.open("GET", "/api/user/" + userName + "/posts", true);
+showProfilePosts.send();
 
 // showSubscriptions.open("GET", "/api/user/" + userName + "/", true); TODO
 // showSubscriptions.send();
