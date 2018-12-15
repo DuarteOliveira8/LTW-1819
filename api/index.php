@@ -43,6 +43,10 @@ switch ($path) {
     require 'user-endpoint/UserAvatar.php';
     break;
 
+  case "/api/home":
+    require 'home-endpoint/MainChannels.php';
+    break;
+
   default:
     echo json_encode(array('error' => '404_not_found'));
     break;

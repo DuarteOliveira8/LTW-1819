@@ -5,16 +5,20 @@
 
 PRAGMA FOREIGN_KEYS=ON;
 
-DROP TABLE IF EXISTS RULES;
-DROP TABLE IF EXISTS CHANNEL;
-DROP TABLE IF EXISTS USER;
-DROP TABLE IF EXISTS STORY;
-DROP TABLE IF EXISTS COMMENT;
+
+DROP TABLE IF EXISTS SUBSCRIBER;
+DROP TABLE IF EXISTS STORYUPVOTE;
+DROP TABLE IF EXISTS STORYDOWNVOTE;
+DROP TABLE IF EXISTS COMMENTUPVOTE;
+DROP TABLE IF EXISTS COMMENTDOWNVOTE;
 DROP TABLE IF EXISTS STORYCOMMENT;
 DROP TABLE IF EXISTS CHAINCOMMENT;
-DROP TABLE IF EXISTS SUBSCRIBER;
-DROP TABLE IF EXISTS UPVOTE;
-DROP TABLE IF EXISTS DOWNVOTE;
+DROP TABLE IF EXISTS COMMENT;
+DROP TABLE IF EXISTS RULES;
+DROP TABLE IF EXISTS STORY;
+DROP TABLE IF EXISTS CHANNEL;
+DROP TABLE IF EXISTS USER;
+
 
 
 CREATE TABLE RULES (
@@ -238,6 +242,11 @@ INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Music','Insert your favou
 INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Funny','Welcome to Funny: Webbits largest humour depository',1);
 INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('School','Insert your doubts about school subjects.',10);
 INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Quotes','For your favorite quotes. Current quotes, historic quotes, movie quotes, song lyric quotes,...',2);
+INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Sports','Watch out for news about your favourite sports',1);
+INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('E-Sports','News about the best e-sport scenes',2);
+INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Cursed images','Cursed slogan',2);
+INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Dank memes','very dankerino',2);
+INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('TIFU',"Today I F'd up",2);
 
 INSERT INTO RULES (title, description, idChannel) VALUES ('1-Be Nice.','We do not tolerate trolling, harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil actions.',1);
 INSERT INTO RULES (title, description, idChannel) VALUES ('2-Posts must ask for advice.','No posts offering general unsolicited advice.',1);
