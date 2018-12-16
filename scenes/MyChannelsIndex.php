@@ -14,7 +14,9 @@
   getNavbar();
   getMyChannels();
 ?>
-
+<script type="text/javascript">
+  let username = "<?php echo $_SESSION['username']?>";
+</script>
 <script type="module" src="/js/scenes/my-channels/MyChannels.js"></script>
 
 <?php getFooter(); ?>
