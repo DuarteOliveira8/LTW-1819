@@ -13,7 +13,7 @@
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $request = json_decode(file_get_contents('php://input'), true);
 
-    if (($votes = getUserVotes($request['offset'], getID($matches['username']))) == false) {
+    if (($votes = getUserVotes($request['offset'], getID($matches['username']))) === false) {
       echo json_encode([
         'success' => false,
         'error' => 'null'

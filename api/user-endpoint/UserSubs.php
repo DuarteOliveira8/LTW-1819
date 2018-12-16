@@ -3,7 +3,7 @@
   include_once(__DIR__ . '/../../database/db-access/user.php');
   include_once(__DIR__ . '/../../database/db-access/channel.php');
 
-  if (($user = getUser($matches['username'])) == false) {
+  if (($user = getUser($matches['username'])) === false) {
     echo json_encode([
       'success' => false,
       'error' => 'username'
@@ -12,7 +12,7 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($channels = getUserSubscribed(getID($matches['username']))) == false) {
+    if (($channels = getUserSubscribed(getID($matches['username']))) === false) {
       echo json_encode([
         'success' => false,
         'error' => 'null'
@@ -35,7 +35,7 @@
     }
 
     if (isSubscribed($_SESSION['userID'], $ChannelID)) {
-      if (($ChannelID = getChannel($request['Channel'])) == -1) {
+      if (($ChannelID = getChannel($request['Channel'])) === -1) {
         echo json_encode(array('error' => 'Channel does not exist'));
       }
       elseif (deleteSubscriber($_SESSION['userID'], $ChannelID) !== -1) {
@@ -46,7 +46,7 @@
       }
     }
     else {
-      if (($ChannelID = getChannel($request['Channel'])) == -1) {
+      if (($ChannelID = getChannel($request['Channel'])) === -1) {
         echo json_encode(array('error' => 'Channel does not exist'));
       }
       elseif (insertSubscriber($_SESSION['userID'], $ChannelID) !== -1) {
