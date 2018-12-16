@@ -11,7 +11,7 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($avatar = getUserAvatar($matches['username'])) == false) {
+    if (($avatar = getUserAvatar($matches['username'])) === false) {
       echo json_encode([
         'success' => false,
         'error' => 'null'

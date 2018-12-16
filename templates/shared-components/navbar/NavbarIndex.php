@@ -6,7 +6,7 @@ include('templates/shared-components/input/Input.php');
 
 <link rel="stylesheet" href="/css/shared-components/navbar/NavbarIndex.css">
 
-<?php function getNavbar() { ?>
+<?php function getNavbar($username, $avatar) { ?>
   <div class="navbar-container">
     <a href="/">
       <div class="logo-container">
@@ -22,7 +22,7 @@ include('templates/shared-components/input/Input.php');
     <div class="navbar-right">
       <?php
         if (isset($_SESSION['userID']))
-          loggedIn();
+          loggedIn($username, $avatar);
         else
           loggedOut();
       ?>

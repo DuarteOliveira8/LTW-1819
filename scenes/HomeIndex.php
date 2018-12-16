@@ -10,7 +10,7 @@
   include_once('templates/shared-components/Footer.php');
 
   getHeader();
-  getNavbar();
+  getNavbar($user['username'], $user['avatar']);
 ?>
 
 <link rel="stylesheet" href="/css/scenes/home/HomeIndex.css">

@@ -267,6 +267,12 @@ INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Yes.','no.','2018-08-21',12,0,4);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I think you ar cool','NOT.','2018-06-07',7,0,7);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('How about dat','Cash me oustide.','2018-05-26',2,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Grandpa: What has 4 legs, but isnt alive?','Boy: A chair, haha, nice try gran- Grandpa - its your dog. Hes dead Jimmy.','2018-05-11',2,20,2);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('The recipe said, “Set the oven to 180 degrees.”','Now I cant open it, as the door faces the wall.','2018-05-05',2,200,2);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What is better than a terabyte?','An Antero-byte.','2018-05-01',2,15,2);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Tik tok','It hurts my kidney.','2018-04-26',2,5000,2);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I love youtube rewind','Dont judge me.','2018-05-26',2,-100,2);
+
 
 INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Tell him you stole $4,999. Thats a different class of felony.','2018-11-30',1);
 INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Someone hire this man','2018-12-01',5);
@@ -297,6 +303,12 @@ INSERT INTO STORYUPVOTE (storyId, userId) VALUES (1,1);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (1,6);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (1,2);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (5,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (12,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (13,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (14,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (15,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (16,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (17,2);
 
 INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (1,14);
 INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (5,4);

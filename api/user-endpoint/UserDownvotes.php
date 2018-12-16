@@ -3,7 +3,7 @@
   include_once(__DIR__ . '/../../database/db-access/user.php');
   include_once(__DIR__ . '/../../database/db-access/story.php');
 
-  if (($user = getUser($matches['username'])) == false) {
+  if (($user = getUser($matches['username'])) === false) {
     echo json_encode([
       'success' => false,
       'error' => 'username'
@@ -12,7 +12,7 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($votes = getUserDownvotes($matches['username'])) == false) {
+    if (($votes = getUserDownvotes($matches['username'])) === false) {
       echo json_encode([
         'success' => false,
         'error' => 'null'

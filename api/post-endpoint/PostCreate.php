@@ -1,14 +1,8 @@
 <?php
   include_once(__DIR__ . '/../../includes/Session.php');
   include_once(__DIR__ . '/../../database/db-access/user.php');
-
-  if (($user = getUser($matches['username'])) === false) {
-    echo json_encode([
-      'success' => false,
-      'error' => 'username'
-    ]);
-    exit;
-  }
+  include_once(__DIR__ . '/../../database/db-access/story.php');
+  include_once(__DIR__ . '/../../database/db-access/channel.php');
 
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_SESSION['userID'])) {
@@ -29,26 +23,18 @@
       exit;
     }
 
-    if (authenticateUser(getUser($matches['username'])['email'], $request["current-password"]) === -1) {
+    if (($channelId = getChannel($request['channel'])) === -1) {
       echo json_encode([
         'success' => false,
-        'error' => 'current_password'
+        'error' => 'channel'
       ]);
       exit;
     }
 
-    if ($request["password"] !== $request["confirm-password"]) {
-      echo json_encode([
-        'success' => false,
-        'error' => 'different_password'
-      ]);
-      exit;
-    }
-
-    if (updateUserPassword($_SESSION['userID'], $request["password"])) {
+    if (createStory($request['title'], $request['description'], $request['date'], $_SESSION['userID'], $ChannelID) !== -1) {
       echo json_encode([
         'success' => true,
-        'data' => 'password_updated'
+        'data' => 'story_created'
       ]);
       exit;
     }
