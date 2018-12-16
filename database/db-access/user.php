@@ -188,18 +188,26 @@
   }
 
   // Get all stories from a user
-  function getUserPosts($author) {
+  function getUserPosts($offset, $author) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT S1.id, S1.title, S1.description, S1.storyDate, USER.username, USER.avatar, S1.upvoteRatio, (SELECT count(*)
-                                                                                                                                        FROM STORYCOMMENT
-                                                                                                                                        WHERE S1.id = STORYCOMMENT.storyId) AS comments
+      $stmt = $db->prepare('SELECT DISTINCT S1.id,
+                                            S1.title,
+                                            S1.description,
+                                            S1.storyDate,
+                                            USER.username,
+                                            USER.avatar,
+                                            S1.upvoteRatio,
+                                            (SELECT count(*)
+                                             FROM STORYCOMMENT
+                                             WHERE S1.id = STORYCOMMENT.storyId) AS comments
                             FROM STORY S1, USER
                             WHERE USER.username = ? AND S1.idAuthor = USER.id
                             ORDER BY S1.storyDate DESC
+                            LIMIT 8 OFFSET ?
                           ');
-      $stmt->execute(array($author));
+      $stmt->execute(array($author, $offset));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return false;
@@ -225,21 +233,30 @@
   }
 
   //Get all votes from a user
-  function getUserVotes($userId) {
+  function getUserVotes($offset, $userId) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT DISTINCT STORY.id, STORY.title, STORY.description, STORY.storyDate, STORY.upvoteRatio, USER.username, USER.avatar, (SELECT count(*)
-                                                                                                                                                       FROM STORYCOMMENT
-                                                                                                                                                       WHERE STORYCOMMENT.storyId = STORY.id) AS comments
+      $stmt = $db->prepare('SELECT DISTINCT STORY.id,
+                                            STORY.title,
+                                            STORY.description,
+                                            STORY.storyDate,
+                                            STORY.upvoteRatio,
+                                            USER.username,
+                                            USER.avatar,
+                                            (SELECT count(*)
+                                             FROM STORYCOMMENT
+                                             WHERE STORYCOMMENT.storyId = STORY.id) AS comments
                             FROM STORY, STORYUPVOTE, STORYDOWNVOTE, USER
-                            WHERE ((STORYUPVOTE.userId = ? AND STORYUPVOTE.storyId = STORY.id)
+                            WHERE (STORYUPVOTE.userId = ? AND
+                                  (STORYUPVOTE.storyId = STORY.id
                                    OR
-                                   (STORYDOWNVOTE.userId = ? AND STORYDOWNVOTE.storyId = STORY.id))
-                                   AND STORY.idAuthor = USER.id
+                                   STORYDOWNVOTE.storyId = STORY.id)) AND
+                                  STORY.idAuthor = USER.id
                             ORDER BY STORY.storyDate DESC
+                            LIMIT 8 OFFSET ?
                           ');
-      $stmt->execute(array($userId, $userId));
+      $stmt->execute(array($userId, $offset));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
       return false;
