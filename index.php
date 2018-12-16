@@ -51,6 +51,10 @@ switch ($path) {
     require 'scenes/MyChannelsIndex.php';
     break;
 
+  case '/search':
+    require 'scenes/SearchIndex.php';
+    break;
+
   case '/404':
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;
