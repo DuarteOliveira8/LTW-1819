@@ -14,16 +14,15 @@ DROP TABLE IF EXISTS COMMENTDOWNVOTE;
 DROP TABLE IF EXISTS STORYCOMMENT;
 DROP TABLE IF EXISTS CHAINCOMMENT;
 DROP TABLE IF EXISTS COMMENT;
-DROP TABLE IF EXISTS RULES;
+DROP TABLE IF EXISTS RULE;
 DROP TABLE IF EXISTS STORY;
 DROP TABLE IF EXISTS CHANNEL;
 DROP TABLE IF EXISTS USER;
 
 
 
-CREATE TABLE RULES (
+CREATE TABLE RULE (
 	id		 	 			INTEGER PRIMARY KEY AUTOINCREMENT,
-	title					STRING NOT NULL,
 	description	 	STRING NOT NULL,
 	idChannel	 		INTEGER REFERENCES CHANNEL(id) ON DELETE CASCADE NOT NULL
 );
@@ -248,22 +247,22 @@ INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Cursed images','Cursed sl
 INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('Dank memes','very dankerino',2);
 INSERT INTO CHANNEL (name, slogan, idCreator) VALUES ('TIFU',"Today I F'd up",2);
 
-INSERT INTO RULES (title, description, idChannel) VALUES ('1-Be Nice.','We do not tolerate trolling, harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil actions.',1);
-INSERT INTO RULES (title, description, idChannel) VALUES ('2-Posts must ask for advice.','No posts offering general unsolicited advice.',1);
-INSERT INTO RULES (title, description, idChannel) VALUES ('3-No spam.','No posts that dont belong in this channel.',1);
-INSERT INTO RULES (title, description, idChannel) VALUES ('1-No leaks or piracy.','No links to unauthorized music leaks or promotion of piracy.',2);
-INSERT INTO RULES (title, description, idChannel) VALUES ('1-No Dark Jokes.','We do not tolerate harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil jokes.',2);
-INSERT INTO RULES (title, description, idChannel) VALUES ('1-Be Nice.','We do not tolerate trolling, harassment, threats, hate-speech, discrimination, triggering, rudeness, or other uncivil actions.',4);
-INSERT INTO RULES (title, description, idChannel) VALUES ('1-No repost.','Dont repost any post that was previously on this channel',5);
+INSERT INTO RULE (description, idChannel) VALUES ('Be Nice.', 1);
+INSERT INTO RULE (description, idChannel) VALUES ('Posts must ask for advice.', 1);
+INSERT INTO RULE (description, idChannel) VALUES ('No spam.', 1);
+INSERT INTO RULE (description, idChannel) VALUES ('No leaks or piracy.', 2);
+INSERT INTO RULE (description, idChannel) VALUES ('No Dark Jokes.', 2);
+INSERT INTO RULE (description, idChannel) VALUES ('Be Nice.', 4);
+INSERT INTO RULE (description, idChannel) VALUES ('No repost.', 5);
 
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Ola pedro','Diz ola de volta.','2018-09-20',2,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Ola pedro','Diz ola de volta.','2018-09-20',2,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Im about to tell my boss I stole almost $5000','No one even has a clue the money is missing but I just cant hide it anymore.... I just posted this to vent and maybe help with my anxiety','2018-11-30',2,0,1);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Our idea of God tells us more about ourselves','yes.','2018-12-01',2,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Our idea of God tells us more about ourselves','yes.','2018-12-01',2,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What are schools called that i can attend in holidays.','I live in Melbourne and am seriously falling behind in work. I was wondering what are the schools called that I can attend in the holidays so I can catch up on work.','2018-11-20',6,0,4);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('You Are Living Proof That God Has A Sense Of Humor','hello.','2018-11-05',14,0,3);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Beatiful','You are beautiful.','2018-07-10',13,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Think not',"It's going to be fine.",'2018-10-03',14,0,6);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Ola duarte','Ja disse.','2018-09-19',1,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Ola duarte','Ja disse.','2018-09-19',1,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I fear one day I will meet God, he Will sneeze and I wont know what to say. - Ronnie Shakes','no.','2018-12-01',12,0,5);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Yes.','no.','2018-08-21',12,0,4);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I think you ar cool','NOT.','2018-06-07',7,0,7);

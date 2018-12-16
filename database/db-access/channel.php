@@ -19,29 +19,91 @@
     }
   }
 
+  // Get channel stories
+  function getChannelPosts($offset, $channel) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT STORY.id,
+                                   STORY.title,
+                                   STORY.description,
+                                   STORY.upvoteRatio,
+                                   STORY.storyDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   (SELECT count(*)
+                                    FROM STORYCOMMENT
+                                    WHERE STORY.id = STORYCOMMENT.storyId) AS comments
+                            FROM STORY, USER
+                            WHERE STORY.channel = ? AND STORY.idAuthor = USER.id
+                            ORDER BY STORY.storyDate DESC
+                            LIMIT 8 OFFSET ?
+                          ');
+      $stmt->execute(array($channel, $offset));
+      return $stmt->fetchAll();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get channel rules
+  function getChannelRules($channel) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT description
+                            FROM RULE
+                            WHERE RULE.idChannel = ?
+                          ');
+      $stmt->execute(array($channel));
+      return $stmt->fetchAll();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
   // Get channel
   function getChannel($channelName) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT *
+      $stmt = $db->prepare('SELECT id,
+                                   name,
+                                   slogan,
+                                   banner,
+                                   (SELECT count(*)
+                                    FROM SUBSCRIBER
+                                    WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
+                                   (SELECT count(*)
+                                    FROM STORY
+                                    WHERE STORY.channel = CHANNEL.id) AS posts
                             FROM CHANNEL
                             WHERE name = ?
                           ');
       $stmt->execute(array($channelName));
-      $channel = $stmt->fetch();
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
 
-      if ($channel !== false)
-        return $channel['id'];
-      else
-        return -1;
+  // Get channel id
+  function getChannelId($channelName) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT id
+                            FROM CHANNEL
+                            WHERE name = ?
+                          ');
+      $stmt->execute(array($channelName));
+      return $stmt->fetch()['id'];
     } catch (PDOException $e) {
       return -1;
     }
   }
 
-
-// Delete channel
+  // Delete channel
   function deleteChannel($ChannelID){
     global $dbh;
     try {

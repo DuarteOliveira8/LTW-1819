@@ -15,7 +15,7 @@ switch ($path) {
     require 'scenes/LoginIndex.php';
     break;
 
-  case (preg_match('#^/profile/([0-9a-zA-Z_-]+)$#', $path) ? true : false):
+  case (preg_match('#^/profile/(?P<username>[0-9a-zA-Z_-]+)$#', $path, $matches) ? true : false):
     require 'scenes/ProfileIndex.php';
     break;
 
@@ -27,7 +27,7 @@ switch ($path) {
     require 'scenes/PostIndex.php';
     break;
 
-  case '/channel':
+  case (preg_match('#^/channel/(?P<channel>[0-9a-zA-Z_-]+)$#', $path, $matches) ? true : false):
     require 'scenes/ChannelIndex.php';
     break;
 
@@ -51,13 +51,12 @@ switch ($path) {
     require 'scenes/MyChannelsIndex.php';
     break;
 
-  default:
+  case '/404':
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;
-}
 
-// idea
-// case (preg_match('#^/api/user/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
-//   echo $matches['id'];
-//   break;
+  default:
+    header('Location: /404');
+    break;
+}
 ?>

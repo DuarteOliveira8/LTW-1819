@@ -29,7 +29,7 @@
   elseif ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $request = json_decode(file_get_contents('php://input'), true);
 
-    if (($ChannelID = getChannel($request['Channel'])) == -1) {
+    if (($ChannelID = getChannelId($request['Channel'])) === -1) {
       echo json_encode(array('error' => 'Channel does not exist'));
       exit;
     }

@@ -15,15 +15,15 @@ switch ($path) {
     require 'user-endpoint/UserPosts.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/comments#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/comments$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserComments.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/subscribe#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/subscribe$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserSubs.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/votes#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/votes$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserVotes.php';
     break;
 
@@ -31,15 +31,15 @@ switch ($path) {
     require 'user-endpoint/UserUpvotes.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/downvotes#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/downvotes$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserDownvotes.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/password#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/password$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserPassword.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/avatar#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/avatar$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserAvatar.php';
     break;
 
@@ -53,6 +53,14 @@ switch ($path) {
 
   case "/api/home/recent-posts":
     require 'home-endpoint/RecentPosts.php';
+    break;
+
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/posts#', $path, $matches) ? true : false):
+    require 'channel-endpoint/ChannelPosts.php';
+    break;
+
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/rules#', $path, $matches) ? true : false):
+    require 'channel-endpoint/ChannelRules.php';
     break;
 
   default:
