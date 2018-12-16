@@ -9,7 +9,7 @@
   }
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($votes = getUserUpvotes($_SESSION['userID'])) == false) {
+    if (($votes = getUserUpvotes($_SESSION['userID'])) === false) {
       echo json_encode(array('error' => 'null'));
     }
     else {

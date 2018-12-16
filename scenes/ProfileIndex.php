@@ -1,5 +1,6 @@
 <?php
   include_once('includes/Session.php');
+  include_once('database/db-access/user.php');
   include_once('templates/shared-components/Header.php');
   include_once('templates/shared-components/navbar/NavbarIndex.php');
   include_once('templates/scene-templates/profile/Banner.php');
@@ -10,15 +11,19 @@
   include_once('templates/scene-templates/profile/profile-tabs/LikesTab.php');
   include_once('templates/shared-components/Footer.php');
 
+  if (($user = getUser($matches['username'])) === false) {
+    header('Location: /404');
+  }
+
   getHeader();
-  getNavbar();
+  getNavbar($user['username'], $user['avatar']);
 ?>
 
 <link rel="stylesheet" href="/css/scenes/profile/ProfileIndex.css">
 
 <div class="profile-container">
   <?php
-    getBanner();
+    getBanner($user['firstName'], $user['lastName'], $user['avatar'], $user['banner']);
     getProfileNav();
 
     getProfileSubscriptions();

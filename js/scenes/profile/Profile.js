@@ -8,6 +8,10 @@ let postVoted = document.getElementById('likes');
 let url = document.URL.split("/");
 let userName = url[4];
 
+let postOffsetPosts = 0;
+let postOffsetVotes = 0;
+let requesting = 0;
+
 let showProfilePosts = new XMLHttpRequest();
 let showSubscriptions = new XMLHttpRequest();
 let showVotes = new XMLHttpRequest();
@@ -28,6 +32,7 @@ showProfilePosts.onreadystatechange = function() {
                            response.data[i].comments,
                            response.data[i].avatar));
     }
+    requesting = false;
   }
 };
 
@@ -44,14 +49,7 @@ showSubscriptions.onreadystatechange = function() {
                                       response.data[i].banner));
     }
   }
-}
-
-for (var i = 0; i < 8; i++) {
-  subscriptions.append(getChannel("ola",
-                                  172,
-                                  10,
-                                  "default-background.png"));
-}
+};
 
 showVotes.onreadystatechange = function() {
   if (this.readyState === 4 && this.status === 200) {
@@ -69,14 +67,43 @@ showVotes.onreadystatechange = function() {
                                response.data[i].comments,
                                response.data[i].avatar));
     }
+    requesting = false;
   }
-}
-
-showProfilePosts.open("GET", "/api/user/" + userName + "/posts", true);
-showProfilePosts.send();
+};
 
 showSubscriptions.open("GET", "/api/user/" + userName + "/subscribe", true);
 showSubscriptions.send();
 
-showVotes.open("GET", "/api/user/" + userName + "/votes", true);
-showVotes.send();
+showProfilePosts.open("POST", "/api/user/" + userName + "/posts", true);
+let reqObjPosts = {"offset":postOffsetPosts};
+let requestPosts = JSON.stringify(reqObjPosts);
+showProfilePosts.send(requestPosts);
+
+showVotes.open("POST", "/api/user/" + userName + "/votes", true);
+let reqObjVotes = {"offset":postOffsetVotes};
+let requestVotes = JSON.stringify(reqObjVotes);
+showVotes.send(requestVotes);
+
+document.addEventListener('scroll', function (event) {
+    if ((document.body.scrollHeight == Math.ceil(document.body.scrollTop + window.innerHeight)) && !requesting) {
+      if (!postVoted.hidden) {
+        requesting = true;
+        postOffsetVotes += 8;
+        reqObjVotes = {"offset": postOffsetVotes};
+        requestVotes = JSON.stringify(reqObjVotes);
+        console.log(requestVotes);
+        showVotes.open("POST", "/api/user/" + userName + "/votes", true);
+        showVotes.setRequestHeader("Content-Type", "application/json");
+        showVotes.send(requestVotes);
+      }
+      else if (!posts.hidden) {
+        requesting = true;
+        postOffsetPosts += 8;
+        reqObjPosts = {"offset": postOffsetPosts};
+        requestPosts = JSON.stringify(reqObjPosts);
+        showProfilePosts.open("POST", "/api/user/" + userName + "/posts", true);
+        showProfilePosts.setRequestHeader("Content-Type", "application/json");
+        showProfilePosts.send(requestPosts);
+      }
+    }
+});

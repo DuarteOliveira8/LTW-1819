@@ -1,12 +1,12 @@
-<link rel="stylesheet" href="/css/shared-components/navbar/NavbarIndex.css">
-
 <?php
 include('templates/shared-components/navbar/navbar-right/LoggedOut.php');
 include('templates/shared-components/navbar/navbar-right/LoggedIn.php');
 include('templates/shared-components/input/Input.php');
 ?>
 
-<?php function getNavbar() { ?>
+<link rel="stylesheet" href="/css/shared-components/navbar/NavbarIndex.css">
+
+<?php function getNavbar($username, $avatar) { ?>
   <div class="navbar-container">
     <a href="/">
       <div class="logo-container">
@@ -22,7 +22,7 @@ include('templates/shared-components/input/Input.php');
     <div class="navbar-right">
       <?php
         if (isset($_SESSION['userID']))
-          loggedIn();
+          loggedIn($username, $avatar);
         else
           loggedOut();
       ?>

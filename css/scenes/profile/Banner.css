@@ -20,6 +20,7 @@
 
 .profile-container .banner-container .basic-info .profile-picture {
   border-radius: 100%;
+  object-fit: cover;
   height: 200px;
   width: 200px;
 }

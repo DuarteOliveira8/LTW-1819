@@ -10,20 +10,18 @@
 
       <div class="windowLabel">Create a channel</div>
 
-      <form method="POST">
+      <div class="channel-name">
+        <?php input('text', "Channel Name:", "channel-name", "Channel Name", true); ?>
+      </div>
 
-        <div class="channel-name">
-          <?php input('text', "Channel Name:", "channel-name", "Channel Name", true); ?>
-        </div>
+      <div class="channel-description">
+        <?php input('text', "Channel Slogan:", "channel-slogan", "Channel Slogan", true); ?>
+      </div>
 
-        <div class="channel-description">
-          <?php input('text', "Channel Description:", "channel-description", "Channel Description", true); ?>
-        </div>
+      <div class="submitChannel" id="submitButton">
+        <button class="submitButton" type="submit">Start</button>
+      </div>
 
-        <div class="submitChannel">
-          <button class="submitButton" type="submit">Start</button>
-        </div>
-      </form>
     </div>
   </div>
 <?php } ?>

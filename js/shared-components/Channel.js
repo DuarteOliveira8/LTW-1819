@@ -4,7 +4,7 @@ export function getChannel(name, numPosts, numSubs, banner) {
     channel.className = "channel-comp-container";
     channel.innerHTML = `
       <a href="/channel">
-        <div class="channel-background" style="background-image: url('/assets/images/default-background.jpg')"></div>
+        <div class="channel-background" style="background-image: url('/assets/images/channels/default-background.jpg')"></div>
 
         <div class="channel-name">
         </div>
@@ -20,7 +20,7 @@ export function getChannel(name, numPosts, numSubs, banner) {
     channel.querySelector(".channel-name").textContent = name;
     channel.querySelector(".channel-posts-num").textContent = "Posts: " + numPosts;
     channel.querySelector(".channel-subs").textContent = "Subscriptions: " + numSubs;
-    channel.querySelector(".channel-background").style.backgroundImage = "url('/assets/images/" + banner + "')";
+    channel.querySelector(".channel-background").style.backgroundImage = "url('/assets/images/channels/" + banner + "')";
 
     return channel;
 }

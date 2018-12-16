@@ -7,10 +7,10 @@
 
     try {
 	    $stmt = $db->prepare('INSERT INTO CHANNEL(name, slogan, idCreator)
-                             VALUES (?, ?, ?)
-                           ');
+                            VALUES (?, ?, ?)
+                          ');
 
-      if($stmt->execute($channelName, $slogan, $idCreator))
+      if($stmt->execute(array($channelName, $slogan, $idCreator)))
         return $db->lastInsertId();
       else
         return -1;
@@ -19,12 +19,105 @@
     }
   }
 
+  // Checks if channel name is validation
+  function isChannelNameValid($channelName) {
+    $db = Database::getInstance()->getDB();
+
+    if (!preg_match('/[0-9a-zA-Z_-]+$/', $channelName)) {
+      return false;
+    }
+
+    try {
+      $stmt = $db->prepare('SELECT *
+                            FROM CHANNEL
+                            WHERE name = ?
+                          ');
+      $stmt->execute(array($channelName));
+      $channel = $stmt->fetch();
+
+      if ($channel !== false)
+        return false;
+      else
+        return true;
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get channel stories
+  function getChannelPosts($offset, $channel) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT STORY.id,
+                                   STORY.title,
+                                   STORY.description,
+                                   STORY.upvoteRatio,
+                                   STORY.storyDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   (SELECT count(*)
+                                    FROM STORYCOMMENT
+                                    WHERE STORY.id = STORYCOMMENT.storyId) AS comments
+                            FROM STORY, USER
+                            WHERE STORY.channel = ? AND STORY.idAuthor = USER.id
+                            ORDER BY STORY.storyDate DESC
+                            LIMIT 8 OFFSET ?
+                          ');
+      $stmt->execute(array($channel, $offset));
+      return $stmt->fetchAll();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get channel rules
+  function getChannelRules($channel) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT description
+                            FROM RULE
+                            WHERE RULE.idChannel = ?
+                          ');
+      $stmt->execute(array($channel));
+      return $stmt->fetchAll();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
   // Get channel
   function getChannel($channelName) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT *
+      $stmt = $db->prepare('SELECT id,
+                                   name,
+                                   slogan,
+                                   banner,
+                                   (SELECT count(*)
+                                    FROM SUBSCRIBER
+                                    WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
+                                   (SELECT count(*)
+                                    FROM STORY
+                                    WHERE STORY.channel = CHANNEL.id) AS posts
+                            FROM CHANNEL
+                            WHERE name = ?
+                          ');
+      $stmt->execute(array($channelName));
+      return $stmt->fetch();
+    } catch (PDOException $e) {
+      return false;
+    }
+  }
+
+  // Get channel id
+  function getChannelId($channelName) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+      $stmt = $db->prepare('SELECT id
                             FROM CHANNEL
                             WHERE name = ?
                           ');
@@ -40,8 +133,7 @@
     }
   }
 
-
-// Delete channel
+  // Delete channel
   function deleteChannel($ChannelID){
     global $dbh;
     try {
