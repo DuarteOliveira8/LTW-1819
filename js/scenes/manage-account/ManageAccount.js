@@ -13,6 +13,8 @@ function fillGeneralInfoForm(uName, fName, lName, uBio, bDay, bMonth, bYear, ema
 
 
 
+
+
 let fillGeneralRequest = new XMLHttpRequest();
 
 fillGeneralRequest.onreadystatechange = function() {
@@ -40,16 +42,17 @@ updateAccount.onreadystatechange = function() {
 
     if (this.readyState === 4 && this.status === 200) {
       let response = JSON.parse(this.responseText);
-      if(!response.sucess){
+      if(!response.success){
+        console.log(response);
         return;
       }
       let date = response.data.birthDate;
       let parsedDate = date.split("-");
-
+  
       let year = parsedDate[0];
       let month = parsedDate[1];
       let day = parsedDate[2];
-
+      
       fillGeneralInfoForm(response.data.username, response.data.firstName, response.data.lastName, response.data.bio, day, month, year, response.data.email, response.data.avatar);
 
   }
@@ -88,4 +91,33 @@ document.getElementById("submitPassword").onclick= function() {
   updatePassword.open("POST", "/api/user/" + username + "/password", true);
   updatePassword.setRequestHeader("csrf",csrf);
   updatePassword.send(response);
+}
+
+
+let updateAvatar = new XMLHttpRequest();
+
+document.getElementById("submitAvatar").onclick= function() {
+  var property = document.getElementById("file").value;
+  let parsedFolder = property.split("\\");
+  var avatar = parsedFolder[parsedFolder.length-1];
+
+  var infoavatar={"avatar": avatar}
+  let response = JSON.stringify(infoavatar);
+  updateAvatar.open("POST", "/api/user/" + username + "/avatar", true);
+  updateAvatar.setRequestHeader("csrf",csrf);
+  updateAvatar.send(response);
+}
+
+updateAvatar.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    let response = JSON.parse(this.responseText);
+    console.log(response);
+    if(!response.success){
+      console.log(response);
+      return;
+    }
+
+    document.getElementsByName("avatar")[0].style.backgroundImage = "url('/assets/images/users/"+response.data.avatar+"')";
+
+  }
 }
