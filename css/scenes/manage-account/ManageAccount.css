@@ -152,9 +152,8 @@ input[type="file"]{
   overflow: hidden;
   color:transparent;
   padding: 90px 20px;
-
+  
 	z-index: -1;
-  /* border-radius: 50%; */
   top:10em;
   left:46em;
   width:85%;
@@ -167,7 +166,6 @@ input[type="file"]:hover{
   color:transparent;
   z-index: -1;
   padding: 90px 20px;
-  /* border-radius: 50%; */
   top:10em;
   left:46em;
   width:85%;
