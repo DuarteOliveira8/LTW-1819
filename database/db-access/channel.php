@@ -7,15 +7,40 @@
 
     try {
 	    $stmt = $db->prepare('INSERT INTO CHANNEL(name, slogan, idCreator)
-                             VALUES (?, ?, ?)
-                           ');
+                            VALUES (?, ?, ?)
+                          ');
 
-      if($stmt->execute($channelName, $slogan, $idCreator))
+      if($stmt->execute(array($channelName, $slogan, $idCreator)))
         return $db->lastInsertId();
       else
         return -1;
     }catch(PDOException $e) {
         return -1;
+    }
+  }
+
+  // Checks if channel name is validation
+  function isChannelNameValid($channelName) {
+    $db = Database::getInstance()->getDB();
+
+    if (!preg_match('/[0-9a-zA-Z_-]+$/', $channelName)) {
+      return false;
+    }
+
+    try {
+      $stmt = $db->prepare('SELECT *
+                            FROM CHANNEL
+                            WHERE name = ?
+                          ');
+      $stmt->execute(array($channelName));
+      $channel = $stmt->fetch();
+
+      if ($channel !== false)
+        return false;
+      else
+        return true;
+    } catch (PDOException $e) {
+      return false;
     }
   }
 
