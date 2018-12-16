@@ -121,7 +121,7 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT username, firstName, lastName, email, bio, avatar, birthDate
+      $stmt = $db->prepare('SELECT username, firstName, lastName, email, bio, avatar, banner, birthDate
                             FROM USER
                             WHERE username = ?
                           ');
