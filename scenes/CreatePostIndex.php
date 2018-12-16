@@ -15,6 +15,12 @@
   getCreatePost();
 ?>
 
+<script type="text/javascript">
+  let username = "<?php echo $_SESSION['username']?>";
+  let csrf = "<?php echo $_SESSION['csrf']?>";
+</script>
+<script type="text/javascript" src="/js/scenes/create-post/CreatePost.js"></script>
+
 <?php
   getFooter();
 ?>
