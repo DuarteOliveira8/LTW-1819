@@ -59,12 +59,20 @@ switch ($path) {
     require 'home-endpoint/RecentPosts.php';
     break;
 
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)$#', $path, $matches) ? true : false):
+    require 'channel-endpoint/Channel.php';
+    break;
+
   case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/posts$#', $path, $matches) ? true : false):
     require 'channel-endpoint/ChannelPosts.php';
     break;
 
   case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/rules$#', $path, $matches) ? true : false):
     require 'channel-endpoint/ChannelRules.php';
+    break;
+
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/(?P<creator>[a-zA-Z0-9-_]+)/update$#', $path, $matches) ? true : false):
+    require 'channel-endpoint/ChannelUpdate.php';
     break;
 
   case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/(?P<author>[a-zA-Z0-9-_]+)/create-post#', $path, $matches) ? true : false):

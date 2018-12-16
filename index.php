@@ -31,6 +31,10 @@ switch ($path) {
     require 'scenes/ChannelIndex.php';
     break;
 
+  case (preg_match('#^/channel/(?P<channel>[0-9a-zA-Z_-]+)/manage$#', $path, $matches) ? true : false):
+    require 'scenes/ManageChannelIndex.php';
+    break;
+
   case '/create-channel':
     require 'scenes/CreateChannelIndex.php';
     break;
@@ -41,10 +45,6 @@ switch ($path) {
 
   case '/manage-account':
     require 'scenes/ManageAccountIndex.php';
-    break;
-
-  case '/manage-channel':
-    require 'scenes/ManageChannelIndex.php';
     break;
 
   case '/my-channels':

@@ -9,7 +9,7 @@
   include_once('templates/shared-components/Footer.php');
 
   if (($channel = getChannel($matches['channel'])) === false) {
-    header('Location: /404');
+    die(header('Location: /404'));
   }
 
   $rules = getChannelRules($channel['id']);

@@ -19,28 +19,63 @@
     }
   }
 
-  // Checks if channel name is validation
-  function isChannelNameValid($channelName) {
+  // Update channel
+  function updateChannel($channelId, $channelName, $slogan){
     $db = Database::getInstance()->getDB();
 
-    if (!preg_match('/[0-9a-zA-Z_-]+$/', $channelName)) {
-      return false;
+    try {
+	    $stmt = $db->prepare('UPDATE CHANNEL
+                            SET name = ?, slogan = ?
+                            WHERE id = ?
+                          ');
+
+      if($stmt->execute(array($channelName, $slogan, $channelId)))
+        return true;
+      else
+        return false;
+    }catch(PDOException $e) {
+        return false;
     }
+  }
+
+  // Verifies if user is channel creator
+  function isUserAuthor($channelName, $userId) {
+    $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT *
+	    $stmt = $db->prepare('SELECT *
+                            FROM CHANNEL
+                            WHERE name = ? AND idCreator = ?
+                          ');
+      $stmt->execute(array($channelName, $userId));
+      $channel = $stmt->fetch();
+
+      if($channel !== false)
+        return true;
+      else
+        return false;
+    }catch(PDOException $e) {
+        return false;
+    }
+  }
+
+  function isNameValidForUpdate($channelName) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+	    $stmt = $db->prepare('SELECT *
                             FROM CHANNEL
                             WHERE name = ?
                           ');
       $stmt->execute(array($channelName));
       $channel = $stmt->fetch();
 
-      if ($channel !== false)
-        return false;
-      else
+      if($channel === false)
         return true;
-    } catch (PDOException $e) {
-      return false;
+      else
+        return false;
+    }catch(PDOException $e) {
+        return false;
     }
   }
 
@@ -96,6 +131,7 @@
                                    name,
                                    slogan,
                                    banner,
+                                   idCreator,
                                    (SELECT count(*)
                                     FROM SUBSCRIBER
                                     WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
