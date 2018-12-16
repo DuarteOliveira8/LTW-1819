@@ -67,7 +67,8 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT name,
+      $stmt = $db->prepare('SELECT id,
+                                   name,
                                    slogan,
                                    banner,
                                    (SELECT count(*)
@@ -98,7 +99,6 @@
       $stmt->execute(array($channelName));
       return $stmt->fetch()['id'];
     } catch (PDOException $e) {
-      echo "helolo";
       return -1;
     }
   }

@@ -12,6 +12,8 @@
     header('Location: /404');
   }
 
+  $rules = getChannelRules($channel['id']);
+
   getHeader();
   getNavbar();
 ?>
@@ -26,7 +28,7 @@
   <div class="content">
     <?php
       getRecentPosts();
-      getRules();
+      getRules($rules);
     ?>
   </div>
 </div>
