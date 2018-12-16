@@ -13,11 +13,11 @@
         </div>
 
         <div class="channel-desc">
-          <?php textarea("Channel Description:", "channel-desc", 20, 50, "Your channel description", true); ?>
+          <?php input('text',"Channel Description:", "channel-desc","Your channel description", true); ?>
         </div>
 
         <div class="submitChanges">
-          <button class="submitButton" type="submit">Save</button>
+          <button class="submitButton" type="submit" id="submitChanges">Save</button>
         </div>
     </div>
 
@@ -25,7 +25,7 @@
 
         <h3 class="bannerPicTitle">Change your channel banner</h3>
 
-        <div class="bannerPic" style="background-image: url('/assets/images/channels/default-background.jpg');"></div>
+        <div class="bannerPic" name="banner" style="background-image: url('/assets/images/channels/default-background.jpg');"></div>
 
         <div class="submitBanner">
           <button class="submitButton" type="submit">Save</button>

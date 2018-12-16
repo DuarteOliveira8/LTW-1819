@@ -79,6 +79,17 @@ document.getElementById("submitInfo").onclick= function(){
 
 let updatePassword = new XMLHttpRequest();
 
+updatePassword.onreadystatechange = function() {
+
+  if (this.readyState === 4 && this.status === 200) {
+    let response = JSON.parse(this.responseText);
+    if(!response.sucess){
+      return;
+    }
+    
+  }
+}
+
 document.getElementById("submitPassword").onclick= function() {
   var currpassword = document.querySelector("input[name='current-password']").value;
   var password = document.querySelector("input[name='password']").value;
