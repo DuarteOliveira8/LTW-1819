@@ -2,9 +2,22 @@ import {getChannel} from '/js/shared-components/Channel.js';
 
 let channels = document.getElementById('channels');
 
-let url = document.URL.split("/");
-let userName = url[4];
+let showUserChannels = new XMLHttpRequest();
 
-for(let i = 0; i < 5; i++) {
-  channels.append(getChannel("Cursed FEUP", 15, 420, "default-background.jpg"));
-}
+showUserChannels.onreadystatechange = function() {
+  if (this.readyState === 4 && this.status === 200) {
+    let response = JSON.parse(this.responseText);
+    if (!response.success) {
+      channels.innerHTML = `<h1>This user has no channels.</h1>`;
+    }
+    for(let i = 0; i < response.data.length; i++) {
+      channels.append(getChannel(response.data[i].name,
+                           response.data[i].posts,
+                           response.data[i].subscriptions,
+                           response.data[i].banner));
+    }
+  }
+};
+
+showUserChannels.open("GET", "/api/user/" + username + "/channels", true);
+showUserChannels.send();
