@@ -1,20 +1,17 @@
 .my-channels-container {
-  margin-top: 120px;
-  margin-bottom: 60px;
-  margin-left: 150px;
-  width: 75%;
-}
-
-.my-channels-container .my-channels-title {
-  border-bottom: 1px solid #FB6542;
-  font-size: 24px;
-  margin-bottom: 15px;
-  width: 100%;
-  font-size: 3em;
+  margin-top: 60px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .my-channels-container .channel-list {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
+
+.my-channels-container .channel-list .channel-comp-container {
+  flex-basis: 23%;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
