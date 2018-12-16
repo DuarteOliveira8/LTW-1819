@@ -35,7 +35,7 @@ switch ($path) {
     require 'scenes/CreateChannelIndex.php';
     break;
 
-  case '/create-post':
+  case (preg_match('#^/channel/(?P<channel>[0-9a-zA-Z_-]+)/create-post$#', $path, $matches) ? true : false):
     require 'scenes/CreatePostIndex.php';
     break;
 

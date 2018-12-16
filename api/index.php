@@ -47,10 +47,6 @@ switch ($path) {
     require 'user-endpoint/UserChannels.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/create-post#', $path, $matches) ? true : false):
-    require 'user-endpoint/UserPostCreate.php';
-    break;
-
   case "/api/home/main-channels":
     require 'home-endpoint/MainChannels.php';
     break;
@@ -65,6 +61,10 @@ switch ($path) {
 
   case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/rules#', $path, $matches) ? true : false):
     require 'channel-endpoint/ChannelRules.php';
+    break;
+
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/(?P<author>[a-zA-Z0-9-_]+)/create-post#', $path, $matches) ? true : false):
+    require 'channel-endpoint/ChannelPostCreate.php';
     break;
 
   default:

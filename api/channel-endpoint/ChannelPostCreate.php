@@ -4,6 +4,22 @@
   include_once(__DIR__ . '/../../database/db-access/story.php');
   include_once(__DIR__ . '/../../database/db-access/channel.php');
 
+  if (($user = getUser($matches['author'])) === false) {
+    echo json_encode([
+      'success' => false,
+      'error' => 'author'
+    ]);
+    exit;
+  }
+
+  if (($channel = getChannelId($matches['channel'])) === -1) {
+    echo json_encode([
+      'success' => false,
+      'error' => 'channel'
+    ]);
+    exit;
+  }
+
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_SESSION['userID'])) {
       echo json_encode([
@@ -15,7 +31,7 @@
 
     $request = json_decode(file_get_contents('php://input'), true);
 
-    if ($_SESSION['userID'].$_SESSION['csrf'] !== getID($matches['username']).$_SERVER['HTTP_CSRF']) {
+    if ($_SESSION['userID'].$_SESSION['csrf'] !== getID($matches['author']).$_SERVER['HTTP_CSRF']) {
       echo json_encode([
         'success' => false,
         'error' => 'validation'
