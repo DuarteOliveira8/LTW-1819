@@ -1,8 +1,8 @@
 <?php
-  include('templates/shared-components/Header.php');
-  include('templates/shared-components/navbar/NavbarIndex.php');
-  include('templates/scene-templates/manage-channel/ManageChannel.php');
-  include('templates/shared-components/Footer.php');
+  include_once('templates/shared-components/Header.php');
+  include_once('templates/shared-components/navbar/NavbarIndex.php');
+  include_once('templates/scene-templates/manage-channel/ManageChannel.php');
+  include_once('templates/shared-components/Footer.php');
 
   getHeader();
 ?>
