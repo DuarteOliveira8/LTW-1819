@@ -97,7 +97,12 @@
                             WHERE name = ?
                           ');
       $stmt->execute(array($channelName));
-      return $stmt->fetch()['id'];
+      $channel = $stmt->fetch();
+
+      if ($channel !== false)
+        return $channel['id'];
+      else
+        return -1;
     } catch (PDOException $e) {
       return -1;
     }

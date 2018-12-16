@@ -47,6 +47,10 @@ switch ($path) {
     require 'user-endpoint/UserChannels.php';
     break;
 
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/create-post#', $path, $matches) ? true : false):
+    require 'user-endpoint/UserPostCreate.php';
+    break;
+
   case "/api/home/main-channels":
     require 'home-endpoint/MainChannels.php';
     break;

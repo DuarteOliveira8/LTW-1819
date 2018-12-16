@@ -23,7 +23,7 @@
       exit;
     }
 
-    if (($channelId = getChannel($request['channel'])) === -1) {
+    if (($channelId = getChannelId($request['channel'])) === -1) {
       echo json_encode([
         'success' => false,
         'error' => 'channel'
@@ -31,7 +31,7 @@
       exit;
     }
 
-    if (createStory($request['title'], $request['description'], $request['date'], $_SESSION['userID'], $ChannelID) !== -1) {
+    if (createStory($request['title'], $request['description'], $request['date'], $_SESSION['userID'], $channelId) !== -1) {
       echo json_encode([
         'success' => true,
         'data' => 'story_created'
