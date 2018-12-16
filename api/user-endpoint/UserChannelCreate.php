@@ -14,7 +14,7 @@
 
     $request = json_decode(file_get_contents('php://input'), true);
 
-    if ($_SESSION['csrf'] !== $_SERVER['HTTP_CSRF']) {
+    if ($_SESSION['userID'].$_SESSION['csrf'] !== getID($matches['username']).$_SERVER['HTTP_CSRF']) {
       echo json_encode([
         'success' => false,
         'error' => 'validation'
