@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="/css/scenes/manage-channel/ManageChannelIndex.css">
 
 <?php
-  getNavbar();
+  getNavbar($user['username'], $user['avatar']);
   getManageChannel();
   getFooter();
 ?>

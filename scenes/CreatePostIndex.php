@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/css/scenes/create-post/CreatePostIndex.css">
 
 <?php
-  getNavbar();
+  getNavbar($user['username'], $user['avatar']);
   getCreatePost();
 ?>
 

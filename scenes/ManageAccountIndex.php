@@ -6,7 +6,7 @@
   include('templates/shared-components/Footer.php');
 
   getHeader();
-  getNavbar();
+  getNavbar($user['username'], $user['avatar']);
 ?>
 
 <link rel="stylesheet" href="/css/scenes/manage-account/ManageAccountIndex.css">

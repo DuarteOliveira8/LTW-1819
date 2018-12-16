@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/css/scenes/my-channels/MyChannelsIndex.css">
 
 <?php
-  getNavbar();
+  getNavbar($user['username'], $user['avatar']);
   getMyChannels();
 ?>
 <script type="text/javascript">
