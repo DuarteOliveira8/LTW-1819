@@ -37,7 +37,7 @@ let request = JSON.stringify(reqObj);
 showPosts.send(request);
 
 document.addEventListener('scroll', function (event) {
-    if ((document.body.scrollHeight == document.body.scrollTop + window.innerHeight) && !requesting) {
+    if ((document.body.scrollHeight == Math.ceil(document.body.scrollTop + window.innerHeight)) && !requesting) {
       requesting = true;
       postOffset += 8;
       reqObj = {"offset": postOffset};
