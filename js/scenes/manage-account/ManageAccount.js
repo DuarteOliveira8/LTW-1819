@@ -116,7 +116,6 @@ updateAvatar.onreadystatechange = function() {
       console.log(response);
       return;
     }
-    console.log("hey3");
 
     document.getElementsByName("avatar")[0].style.backgroundImage = "url('/assets/images/users/"+response.data.avatar+"')";
 
