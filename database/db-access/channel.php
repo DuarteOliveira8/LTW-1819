@@ -7,10 +7,10 @@
 
     try {
 	    $stmt = $db->prepare('INSERT INTO CHANNEL(name, slogan, idCreator)
-                             VALUES (?, ?, ?)
-                           ');
+                            VALUES (?, ?, ?)
+                          ');
 
-      if($stmt->execute($channelName, $slogan, $idCreator))
+      if($stmt->execute(array($channelName, $slogan, $idCreator)))
         return $db->lastInsertId();
       else
         return -1;

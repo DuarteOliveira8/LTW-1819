@@ -39,18 +39,18 @@ switch ($path) {
     require 'user-endpoint/UserPassword.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/avatar$#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/avatar$$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserAvatar.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/channels#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/channels$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserChannels.php';
     break;
 
-  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/create-post#', $path, $matches) ? true : false):
-    require 'user-endpoint/UserPostCreate.php';
+  case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/create-channel$#', $path, $matches) ? true : false):
+    require 'user-endpoint/UserChannelCreate.php';
     break;
-
+    
   case "/api/home/main-channels":
     require 'home-endpoint/MainChannels.php';
     break;
@@ -63,11 +63,11 @@ switch ($path) {
     require 'channel-endpoint/Channel.php';
     break;
 
-  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/posts#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/posts$#', $path, $matches) ? true : false):
     require 'channel-endpoint/ChannelPosts.php';
     break;
 
-  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/rules#', $path, $matches) ? true : false):
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/rules$#', $path, $matches) ? true : false):
     require 'channel-endpoint/ChannelRules.php';
     break;
 
@@ -75,8 +75,15 @@ switch ($path) {
     require 'channel-endpoint/ChannelUpdate.php';
     break;
 
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/(?P<author>[a-zA-Z0-9-_]+)/create-post#', $path, $matches) ? true : false):
+    require 'channel-endpoint/ChannelPostCreate.php';
+    break;
+
   default:
-    echo json_encode(array('error' => '404_not_found'));
+    echo json_encode([
+      'success' => false,
+      'error' => '404_not_found'
+    ]);
     break;
 }
 ?>

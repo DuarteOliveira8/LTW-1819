@@ -14,20 +14,18 @@
 
       <div class="windowLabel">Create a Post</div>
 
-      <form method="POST">
+      <div class="post-title">
+        <?php input('text', "Post Title:", "post-title", "Post Title", true); ?>
+      </div>
 
-        <div class="post-title">
-          <?php input('text', "Post Title:", "post-title", "Post Title", true); ?>
-        </div>
+      <div class="post-description">
+        <?php textarea("Post Description:", "post-description", 20, 50, "Post Description", true); ?>
+      </div>
 
-        <div class="post-description">
-          <?php textarea("Post Description:", "post-description", 20, 50, "Post Description", true); ?>
-        </div>
+      <div class="submitPost">
+        <button class="submitButton" id="submitButton" type="submit">Start</button>
+      </div>
 
-        <div class="submitPost">
-          <button class="submitButton" type="submit">Start</button>
-        </div>
-      </form>
     </div>
   </div>
 <?php } ?>
