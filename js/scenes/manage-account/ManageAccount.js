@@ -41,7 +41,6 @@ updateAccount.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
       let response = JSON.parse(this.responseText);
       if(!response.sucess){
-        console.log(response);
         return;
       }
       let date = response.data.birthDate;
