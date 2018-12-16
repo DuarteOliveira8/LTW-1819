@@ -59,6 +59,10 @@ switch ($path) {
     require 'home-endpoint/RecentPosts.php';
     break;
 
+  case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)$#', $path, $matches) ? true : false):
+    require 'channel-endpoint/Channel.php';
+    break;
+
   case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/posts#', $path, $matches) ? true : false):
     require 'channel-endpoint/ChannelPosts.php';
     break;
