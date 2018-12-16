@@ -25,7 +25,7 @@
 
         <h3 class="bannerPicTitle">Change your channel banner</h3>
 
-        <div class="bannerPic" style="background-image: url('/assets/images/spaghetti.jpg');"></div>
+        <div class="bannerPic" style="background-image: url('/assets/images/channels/default-background.jpg');"></div>
 
         <div class="submitBanner">
           <button class="submitButton" type="submit">Save</button>

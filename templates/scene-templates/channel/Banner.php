@@ -1,6 +1,6 @@
 <?php function getChannelBanner($name, $slogan, $subscriptions, $posts, $banner) { ?>
   <div class="banner-container">
-    <div class="channel-banner-image" style="background-image: url('/assets/images/<?php echo strip_tags($banner) ?>')"></div>
+    <div class="channel-banner-image" style="background-image: url('/assets/images/channels/<?php echo strip_tags($banner) ?>')"></div>
 
     <div class="overlay"></div>
 
