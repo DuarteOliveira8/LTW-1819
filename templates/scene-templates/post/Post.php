@@ -16,36 +16,36 @@
         </a>
 
         <span class="votes-num">
-          <?php echo strip_tags($upvoteRatio) ?>
+          <?php echo htmlentities($upvoteRatio) ?>
         </span>
       </div>
 
       <div class="post-title">
-        <?php echo strip_tags($title) ?>
+        <?php echo htmlentities($title) ?>
       </div>
 
       <a href="/profile" class="user">
-        <div class="user-avatar" style="background-image: url('/assets/images/users/<?php echo strip_tags($avatar) ?>')"></div>
+        <div class="user-avatar" style="background-image: url('/assets/images/users/<?php echo htmlentities($avatar) ?>')"></div>
 
         <div class="username">
-          <?php echo strip_tags($username) ?>
+          <?php echo htmlentities($username) ?>
         </div>
       </a>
 
       <div class="post-date">
-        <?php echo strip_tags($date) ?>
+        <?php echo htmlentities($date) ?>
       </div>
 
     </div>
 
     <div class="post-description">
       <p>
-        <?php echo strip_tags($description) ?>
+        <?php echo htmlentities($description) ?>
       </p>
     </div>
 
     <div class="post-comments-num">
-      <?php echo strip_tags($numComments) ?> comments
+      <?php echo htmlentities($numComments) ?> comments
     </div>
   </div>
 <?php } ?>
