@@ -184,6 +184,31 @@
 	  }
   }
 
+  function getMatchNameChannel($channelName){
+    $db = Database::getInstance()->getDB();
+    try {
+      $stmt = $db->prepare('SELECT id,
+                                   name,
+                                   slogan,
+                                   banner,
+                                   idCreator,
+                                   (SELECT count(*)
+                                    FROM SUBSCRIBER
+                                    WHERE SUBSCRIBER.channelId = CHANNEL.id) AS subscriptions,
+                                   (SELECT count(*)
+                                    FROM STORY
+                                    WHERE STORY.channel = CHANNEL.id) AS posts
+                            FROM CHANNEL
+                            WHERE name LIKE ? 
+                          ');
+      $stmt->execute(array($channelName));
+      return $stmt->fetchAll();
+    } catch (PDOException $e) {
+      return false;
+    }
+
+  }
+
 
   // Get all channels
   function getMainChannels() {

@@ -20,7 +20,7 @@ include('templates/shared-components/input/Input.php');
     </div>
    
     <div class="submit">
-      <a href="/search" class="navbar-link">Search</a> 
+      <span class="navbar-link" id="submitButton">Search</span> 
     </div>
 
     <div class="navbar-right">

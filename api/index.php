@@ -79,6 +79,10 @@ switch ($path) {
     require 'channel-endpoint/ChannelPostCreate.php';
     break;
 
+  case (preg_match('#^/api/search/(?P<search>[a-zA-Z0-9-_]+)$#', $path, $matches) ? true : false):
+    require 'search-endpoint/search.php';
+    break;
+
   default:
     echo json_encode([
       'success' => false,

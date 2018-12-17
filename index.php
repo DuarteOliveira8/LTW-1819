@@ -51,7 +51,7 @@ switch ($path) {
     require 'scenes/MyChannelsIndex.php';
     break;
 
-  case '/search':
+  case (preg_match('#^/search/(?P<search>[0-9a-zA-Z_-]+)$#', $path, $matches) ? true : false):
     require 'scenes/SearchIndex.php';
     break;
 
