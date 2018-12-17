@@ -87,6 +87,10 @@ switch ($path) {
     require 'post-endpoint/PostComments.php';
     break;
 
+  case (preg_match('#^/api/comment/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
+    require 'comment-endpoint/Comment.php';
+    break;
+
   default:
     echo json_encode([
       'success' => false,
