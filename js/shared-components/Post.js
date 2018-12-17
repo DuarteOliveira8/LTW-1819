@@ -35,7 +35,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
       </div>
 
       <a href="/profile" class="user">
-        <div class="user-avatar" style="background-image: url('assets/images/users/default-profile.png')"></div>
+        <div class="user-avatar" style="background-image: url('/assets/images/users/default-profile.png')"></div>
 
         <div class="username">
         </div>
