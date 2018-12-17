@@ -18,6 +18,10 @@ include('templates/shared-components/input/Input.php');
     <div class="search">
       <?php input('text', "", "search", "Search...", false); ?>
     </div>
+   
+    <div class="submit">
+      <a href="/search" class="navbar-link">Search</a> 
+    </div>
 
     <div class="navbar-right">
       <?php

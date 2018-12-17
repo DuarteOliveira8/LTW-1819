@@ -3,16 +3,19 @@
 }
 
 .navbar-container .navbar-right .register {
+  margin-top: -85px;
   grid-column-start: register;
   grid-column-end: login;
 }
 
 .navbar-container .navbar-right .login {
+  margin-top: -85px; 
   grid-column-start: login;
   grid-column-end: end;
 }
 
 .navbar-container .navbar-right .navbar-link {
+  
   text-decoration: none;
   border: 2px solid #fb6542;
   border-radius: 4px;

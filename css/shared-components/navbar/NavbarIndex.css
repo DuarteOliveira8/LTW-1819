@@ -53,3 +53,28 @@
   grid-template-columns: [begin]8fr [register]2fr [login]2fr [end];
   align-items: center;
 }
+
+ .navbar-container .submit {
+  margin-top: 35px; 
+  margin-left: 15px;
+
+} 
+
+.navbar-container .submit .navbar-link{
+
+  text-decoration: none;
+  border: 2px solid #fb6542;
+  border-radius: 4px;
+  text-align: center;
+  padding: 5px 5px 5px 5px;
+  font-size: 15px;
+  color: #fb6542;
+  font-weight: 600;
+  -webbit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+}
+
+.navbar-container .submit .navbar-link:hover {
+  background-color: #fb6542;
+  color: #fff;
+}
