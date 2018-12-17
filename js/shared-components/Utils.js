@@ -21,7 +21,7 @@ export function showButton() {
   showBtn.className = "show-comments-btn";
   showBtn.innerHTML = `
     <div class="comments-btn-text">Load more</div>
-    <img class="comments-btn-arrow" alt="" src="assets/images/arrow-down.svg">
+    <img class="comments-btn-arrow" alt="" src="/assets/images/arrow-down.svg">
   `;
 
   return showBtn;

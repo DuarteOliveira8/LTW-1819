@@ -32,6 +32,10 @@
   ?>
 </div>
 
+<script type="text/javascript">
+  let user = "<?php echo $user['username'] ?>";
+  let csrf = "<?php echo $user['csrf'] ?>";
+</script>
 <script type="text/javascript" src="/js/scenes/profile/ProfileNav.js"></script>
 <script type="module" src="/js/scenes/profile/Profile.js"></script>
 

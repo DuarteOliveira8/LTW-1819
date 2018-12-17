@@ -33,6 +33,10 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  let user = "<?php echo $user['username'] ?>";
+  let csrf = "<?php echo $user['csrf'] ?>";
+</script>
 <script type="module" src="/js/scenes/channel/Channel.js"></script>
 
 <?php getFooter(); ?>
