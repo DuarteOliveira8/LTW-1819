@@ -91,6 +91,10 @@ switch ($path) {
     require 'comment-endpoint/Comment.php';
     break;
 
+  case (preg_match('#^/api/comment/(?P<id>[0-9]+)/replies$#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentReplies.php';
+    break;
+
   default:
     echo json_encode([
       'success' => false,
