@@ -2,7 +2,9 @@
   padding: 10px;
   text-align: justify;
   margin-left: 5px;
-  width: 100%;
+  width: 93%;
+  border-top: 1px solid #cecece;
+  padding-left: 5%;
 }
 
 .comment-container .comment-header {
@@ -75,9 +77,26 @@
   margin-left: 5%;
 }
 
-.comment-container .comment-text {
+.comment-container .comment-description {
   text-align: justify;
-  margin-left: 5%;
-  margin-right: 20%;
   font-size: 18px;
+}
+
+.comment-container .comment-replies-num {
+  margin-top: 1%;
+  font-size: 14px;
+}
+
+.comment-container .show-replies-btn {
+  text-align: center;
+}
+
+.comment-container .show-replies-btn .replies-btn-text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.comment-container .show-replies-btn .replies-btn-arrow {
+  width: 20px;
+  height: 20px;
 }

@@ -247,7 +247,15 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT COMMENT.description, COMMENT.upvoteRatio, COMMENT.commentDate, USER.username, USER.avatar
+      $stmt = $db->prepare('SELECT COMMENT.id,
+                                   COMMENT.description,
+                                   COMMENT.upvoteRatio,
+                                   COMMENT.commentDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   (SELECT count(*)
+                                    FROM CHAINCOMMENT
+                                    WHERE CHAINCOMMENT.parentComment = STORYCOMMENT.commentId) AS replies
                             FROM STORYCOMMENT, COMMENT, USER
                             WHERE STORYCOMMENT.storyId = ? AND STORYCOMMENT.commentId = COMMENT.id AND USER.id = COMMENT.idAuthor
                             ORDER BY commentDate DESC
