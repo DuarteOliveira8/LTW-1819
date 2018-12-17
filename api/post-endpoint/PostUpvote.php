@@ -24,9 +24,13 @@
 
     if (hasUpvoted($request['postId'], $_SESSION['userID'])) {
       if (deleteUpvote($request['postId'], $_SESSION['userID'])) {
+        $upvoteRatio = getUpvoteRatio($request['postId']);
         echo json_encode([
           'success' => true,
-          'data' => 'deleted_upvote'
+          'data' => [
+            'upvoteRatio' => $upvoteRatio,
+            'upvoted' => false
+          ]
         ]);
         exit;
       }
@@ -39,9 +43,13 @@
     }
 
     if (insertUpvote($request['postId'], $_SESSION['userID']) !== -1) {
+      $upvoteRatio = getUpvoteRatio($request['postId']);
       echo json_encode([
         'success' => true,
-        'data' => 'upvoted'
+        'data' => [
+          'upvoteRatio' => $upvoteRatio,
+          'upvoted' => true
+        ]
       ]);
       exit;
     }

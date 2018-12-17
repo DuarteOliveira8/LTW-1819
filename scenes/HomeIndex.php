@@ -22,6 +22,10 @@
   ?>
 </div>
 
+<script type="text/javascript">
+  let csrf = "<?php echo $_SESSION['csrf'] ?>";
+  let user = "<?php echo $user['username'] ?>";
+</script>
 <script type="module" src="/js/scenes/home/Home.js"></script>
 
 <?php getFooter(); ?>

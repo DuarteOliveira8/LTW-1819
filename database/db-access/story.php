@@ -89,6 +89,27 @@
     }
   }
 
+  //Get upvote ration from storyId
+  function getUpvoteRatio($storyId) {
+    $db = Database::getInstance()->getDB();
+
+    try {
+	    $stmt = $db->prepare('SELECT upvoteRatio
+                            FROM STORY
+                            WHERE id = ?
+                          ');
+      $stmt->execute(array($storyId));
+      $story = $stmt->fetch();
+
+      if($story !== false)
+        return $story['upvoteRatio'];
+      else
+        return false;
+    }catch(PDOException $e) {
+      return false;
+    }
+  }
+
   // Checks if user has upvoted story
   function hasUpvoted($story, $user) {
     $db = Database::getInstance()->getDB();
