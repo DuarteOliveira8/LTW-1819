@@ -2,7 +2,6 @@
 
 .container {
   margin-top: 90px;
-  margin-bottom: 60px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,8 +13,9 @@
 .post-container {
   padding-top: 5px;
   text-align: justify;
-  margin: 0 auto;
-  width: 50%;
+  margin-left: 5%;
+  margin-top: 30px;
+  width: 100%;
 }
 
 .post-container .post-header {

@@ -6,8 +6,6 @@
   <div class="comments-section-container">
     <div class="comments-container">
 
-      <hr>
-
       <h2 class="comments-title">
         Comments
       </div>
