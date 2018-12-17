@@ -107,6 +107,18 @@ switch ($path) {
     require 'comment-endpoint/CommentReplies.php';
     break;
 
+  case (preg_match('#^/api/comment/(?P<username>[a-zA-Z0-9-_]+)/upvote#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentUpvote.php';
+    break;
+
+  case (preg_match('#^/api/comment/(?P<username>[a-zA-Z0-9-_]+)/downvote#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentDownvote.php';
+    break;
+
+  case (preg_match('#^/api/comment/(?P<username>[a-zA-Z0-9-_]+)/vote#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentVote.php';
+    break;
+
   default:
     echo json_encode([
       'success' => false,
