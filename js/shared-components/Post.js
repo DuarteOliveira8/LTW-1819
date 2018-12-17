@@ -7,6 +7,8 @@ function showButton() {
     <div class="comments-btn-text">Load more</div>
     <img class="comments-btn-arrow" alt="" src="assets/images/arrow-down.svg">
   `;
+
+  return showBtn;
 }
 
 export function getPost(postId, title, numVotes, username, postDate, postDesc, numComments, userAvatar) {
@@ -78,7 +80,51 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
   post.querySelector(".user-avatar").style.backgroundImage = "url('/assets/images/users/" + userAvatar + "')";
 
 
-  function loadCommentsEvent(e) {
+  let commentsReq = new XMLHttpRequest();
+
+  commentsReq.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(this.responseText);
+
+      if (!response.success) {
+        return;
+      }
+
+      for(let i = 0; i < response.data.length; i++) {
+        post.append(getComment(false,
+                               response.data[i].id,
+                               response.data[i].upvoteRatio,
+                               response.data[i].username,
+                               response.data[i].commentDate,
+                               response.data[i].description,
+                               response.data[i].replies,
+                               response.data[i].avatar));
+      }
+
+      if (post.querySelectorAll(".show-comments-btn")[1] != null) {
+        post.querySelectorAll(".show-comments-btn")[1].remove();
+      }
+
+      if (response.data.length == 4) {
+        let loadMore = showButton()
+        post.appendChild(loadMore);
+        loadMore.addEventListener("click", function(e) {
+          e.stopPropagation();
+
+          let reqObjComments = {"offset": post.offset};
+          let reqStrComments = JSON.stringify(reqObjComments);
+
+          commentsReq.open("POST", "/api/post/"+postId+"/comments", true);
+          commentsReq.setRequestHeader("Content-Type", "application/json");
+          commentsReq.send(reqStrComments);
+        });
+      }
+
+      post.offset += 4;
+    }
+  }
+
+  post.querySelector(".show-comments-btn").addEventListener("click", function(e) {
     e.stopPropagation();
 
     if (post.querySelector(".comments-btn-text").textContent == "Show comments") {
@@ -103,44 +149,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
 
       post.offset = 0;
     }
-  }
-
-  let commentsReq = new XMLHttpRequest();
-
-  commentsReq.onreadystatechange = function() {
-    if (this.readyState === 4 && this.status === 200) {
-      let response = JSON.parse(this.responseText);
-
-      if (!response.success) {
-        return;
-      }
-
-      for(let i = 0; i < response.data.length; i++) {
-        post.append(getComment(false,
-                               response.data[i].id,
-                               response.data[i].upvoteRatio,
-                               response.data[i].username,
-                               response.data[i].commentDate,
-                               response.data[i].description,
-                               response.data[i].replies,
-                               response.data[i].avatar));
-      }
-
-      if (response.data.length == 4) {
-        if (document.querySelectorAll(".comments-btn-text")[1] != null) {
-          document.querySelectorAll(".comments-btn-text")[1].remove();
-        }
-
-        let loadMore = showButton();
-        loadMore.addEventListener("click", loadCommentsEvent);
-        post.appendChild();
-      }
-
-      post.offset += 4;
-    }
-  }
-
-  post.querySelector(".show-comments-btn").addEventListener("click", loadCommentsEvent);
+  });
 
   return post;
 }
