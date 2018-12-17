@@ -53,7 +53,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
 
     <div class="show-comments-btn">
       <div class="comments-btn-text">Show comments</div>
-      <img class="comments-btn-arrow" alt="" src="assets/images/arrow-down.svg">
+      <img class="comments-btn-arrow" alt="" src="/assets/images/arrow-down.svg">
     </div>
   `;
 
@@ -126,7 +126,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
       commentsReq.send(reqStrComments);
 
       post.querySelector(".comments-btn-text").textContent = "Hide comments";
-      post.querySelector(".comments-btn-arrow").src = "assets/images/arrow-up.svg";
+      post.querySelector(".comments-btn-arrow").src = "/assets/images/arrow-up.svg";
     }
     else {
       let comments = post.querySelectorAll('.comment-container');
@@ -135,7 +135,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
       }
 
       post.querySelector(".comments-btn-text").textContent = "Show comments";
-      post.querySelector(".comments-btn-arrow").src = "assets/images/arrow-down.svg";
+      post.querySelector(".comments-btn-arrow").src = "/assets/images/arrow-down.svg";
 
       if (post.querySelectorAll(".show-comments-btn")[1] != null) {
         post.querySelectorAll(".show-comments-btn")[1].remove();

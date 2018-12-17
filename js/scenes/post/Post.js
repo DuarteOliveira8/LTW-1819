@@ -13,7 +13,6 @@ let postId = url[4];
 showComments.onreadystatechange = function() {
   if (this.readyState === 4 && this.status === 200) {
     let response = JSON.parse(this.responseText);
-    console.log(this.responseText);
     if (!response.success) {
       comments.innerHTML = `<h1>There are no comments.</h1>`;
     }
@@ -38,9 +37,6 @@ let request = JSON.stringify(reqObj);
 showComments.send(request);
 
 document.addEventListener('scroll', function (event) {
-    console.log(document.body.scrollHeight);
-    console.log(document.body.scrollTop);
-    console.log(window.innerHeight);
     if ((document.body.scrollHeight <= Math.ceil(document.body.scrollTop + window.innerHeight)) && !requesting) {
       requesting = true;
       commentOffset += 4;
