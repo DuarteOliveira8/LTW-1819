@@ -1,6 +1,9 @@
+import {showButton} from '/js/shared-components/Utils.js';
+
 export function getComment(reply, commentId, numVotes, username, commentDate, commentDesc, numReplies, userAvatar) {
 
   let comment = document.createElement("div");
+  comment.offset = 0;
   comment.className = "comment-container";
   comment.id = commentId;
   comment.innerHTML = `
@@ -52,14 +55,85 @@ export function getComment(reply, commentId, numVotes, username, commentDate, co
     comment.querySelector(".comment-replies-num").textContent = numReplies + " Replies";
   comment.querySelector(".user-avatar").style.backgroundImage = "url('/assets/images/users/" + userAvatar + "')";
 
+
+  let repliesReq = new XMLHttpRequest();
+
+  repliesReq.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(this.responseText);
+
+      if (!response.success) {
+        return;
+      }
+
+      for(let i = 0; i < response.data.length; i++) {
+        comment.append(getComment(true,
+                                  response.data[i].id,
+                                  response.data[i].upvoteRatio,
+                                  response.data[i].username,
+                                  response.data[i].commentDate,
+                                  response.data[i].description,
+                                  0,
+                                  response.data[i].avatar));
+      }
+
+      if (comment.querySelectorAll(".show-comments-btn")[1] != null) {
+        comment.querySelectorAll(".show-comments-btn")[1].remove();
+      }
+
+      if (response.data.length == 4) {
+        let loadMore = showButton();
+        comment.appendChild(loadMore);
+        loadMore.addEventListener("click", function(e) {
+          e.stopPropagation();
+
+          let reqObjReplies = {"offset": post.offset};
+          let reqStrReplies = JSON.stringify(reqObjReplies);
+
+          repliesReq.open("POST", "/api/comment/"+commentId+"/replies", true);
+          repliesReq.setRequestHeader("Content-Type", "application/json");
+          repliesReq.send(reqStrReplies);
+        });
+      }
+
+      comment.offset += 4;
+    }
+  }
+
   if (reply) {
     comment.querySelector(".show-replies-btn").style.display = "none";
-    comment.querySelector(".replies-num").style.display = "none";
+    comment.querySelector(".comment-replies-num").style.display = "none";
   }
   else {
     comment.querySelector(".show-replies-btn").addEventListener("click", function(e) {
       e.stopPropagation();
 
+      if (comment.querySelector(".replies-btn-text").textContent == "Show replies") {
+        let reqObjReplies = {"offset": comment.offset};
+        let reqStrReplies = JSON.stringify(reqObjReplies);
+
+        repliesReq.open("POST", "/api/comment/"+commentId+"/replies", true);
+        repliesReq.setRequestHeader("Content-Type", "application/json");
+        repliesReq.send(reqStrReplies);
+
+        comment.querySelector(".replies-btn-text").textContent = "Hide replies";
+        comment.querySelector(".replies-btn-arrow").src = "assets/images/arrow-up.svg";
+      }
+      else {
+        let replies = comment.querySelectorAll('.comment-container');
+        for (var i = 0; i < replies.length; i++) {
+          replies[i].remove();
+        }
+
+        comment.querySelector(".replies-btn-text").textContent = "Show replies";
+        comment.querySelector(".replies-btn-arrow").src = "assets/images/arrow-down.svg";
+
+        if (comment.querySelectorAll(".show-replies-btn")[1] != null) {
+          comment.querySelectorAll(".show-replies-btn")[1].remove();
+        }
+
+        comment.offset = 0;
+      }
     });
   }
 

@@ -1,15 +1,5 @@
 import {getComment} from '/js/shared-components/Comment.js';
-
-function showButton() {
-  let showBtn = document.createElement("div");
-  showBtn.className = "show-comments-btn";
-  showBtn.innerHTML = `
-    <div class="comments-btn-text">Load more</div>
-    <img class="comments-btn-arrow" alt="" src="assets/images/arrow-down.svg">
-  `;
-
-  return showBtn;
-}
+import {showButton} from '/js/shared-components/Utils.js';
 
 export function getPost(postId, title, numVotes, username, postDate, postDesc, numComments, userAvatar) {
 
