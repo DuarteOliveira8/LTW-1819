@@ -2,7 +2,7 @@
   include('templates/shared-components/Comment.php')
 ?>
 
-<?php function getComments() { ?>
+<?php function getPostComments() { ?>
   <div class="comments-section-container">
     <div class="comments-container" id="comments">
 
