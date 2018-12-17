@@ -4,15 +4,12 @@
 
 <?php function getComments() { ?>
   <div class="comments-section-container">
-    <div class="comments-container">
+    <div class="comments-container" id="comments">
 
       <h2 class="comments-title">
         Comments
       </div>
 
-      <?php for ($i=0; $i < 5; $i++) {
-        getComment();
-      } ?>
     </div>
   </div>
 
