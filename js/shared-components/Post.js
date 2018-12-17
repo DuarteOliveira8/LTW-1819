@@ -73,6 +73,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
   let commentsReq = new XMLHttpRequest();
   let upvoteReq = new XMLHttpRequest();
   let downvoteReq = new XMLHttpRequest();
+  let voteReq = new XMLHttpRequest();
 
 
   commentsReq.onreadystatechange = function() {
@@ -161,6 +162,31 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
     }
   }
 
+  voteReq.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(this.responseText);
+
+      if (!response.success) {
+        return;
+      }
+
+      let upvoteArrow = post.querySelectorAll('.vote-arrow-link')[0];
+      let downvoteArrow = post.querySelectorAll('.vote-arrow-link')[1];
+      if (response.data == "upvoted") {
+        downvoteArrow.style.fill = "black";
+        upvoteArrow.style.fill = "green";
+      }
+      else if (response.data == "downvoted") {
+        downvoteArrow.style.fill = "red";
+        upvoteArrow.style.fill = "black";
+      }
+      else {
+        downvoteArrow.style.fill = "black";
+        upvoteArrow.style.fill = "black";
+      }
+    }
+  }
+
   post.querySelector(".show-comments-btn").addEventListener("click", function(e) {
     e.stopPropagation();
 
@@ -215,6 +241,14 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
     downvoteReq.setRequestHeader("csrf", csrf);
     downvoteReq.send(reqStrUpvote);
   });
+
+  let reqObjVote = {"postId": postId};
+  let reqStrVote = JSON.stringify(reqObjVote);
+
+  voteReq.open("POST", "/api/post/"+user+"/vote", true);
+  voteReq.setRequestHeader("Content-Type", "application/json");
+  voteReq.setRequestHeader("csrf", csrf);
+  voteReq.send(reqStrVote);
 
   return post;
 }
