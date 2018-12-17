@@ -79,6 +79,10 @@ switch ($path) {
     require 'channel-endpoint/ChannelPostCreate.php';
     break;
 
+  case (preg_match('#^/api/search/(?P<search>[a-zA-Z0-9-_]+)$#', $path, $matches) ? true : false):
+    require 'search-endpoint/search.php';
+    break;
+    
   case (preg_match('#^/api/post/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
     require 'post-endpoint/Post.php';
     break;

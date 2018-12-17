@@ -51,6 +51,10 @@ switch ($path) {
     require 'scenes/MyChannelsIndex.php';
     break;
 
+  case (preg_match('#^/search/(?P<search>[0-9a-zA-Z_-]+)$#', $path, $matches) ? true : false):
+    require 'scenes/SearchIndex.php';
+    break;
+
   case '/404':
     echo "<h1 style='text-align: center; padding-top: 100px;'>404 NOT FOUND</h1>";
     break;

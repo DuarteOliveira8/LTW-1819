@@ -10,6 +10,10 @@ avatar.addEventListener("click", function() {
     options.hidden = true;
   }
 });
+document.getElementById("submitButton").onclick= function(){
+  var link = document.querySelector("input[name='search']").value;
+  window.location.href = "/search/"+link;
+}
 
 options.addEventListener("blur", function() {
   options.hidden = true;
