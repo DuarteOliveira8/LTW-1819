@@ -19,4 +19,6 @@
   ?>
 </div>
 
+<script type="module" src="/js/scenes/post/Post.js"></script>
+
 <?php getFooter(); ?>
