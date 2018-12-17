@@ -24,7 +24,7 @@ export function getComment(reply, commentId, numVotes, username, commentDate, co
         </span>
       </div>
 
-      <a href="/profile" class="user">
+      <a href="" class="user">
         <div class="user-avatar"></div>
 
         <div class="username"></div>
@@ -45,6 +45,7 @@ export function getComment(reply, commentId, numVotes, username, commentDate, co
     </div>
   `;
 
+  comment.querySelector(".user").href = "/profile/" + username;
   comment.querySelector(".comment-votes-num").textContent = numVotes;
   comment.querySelector(".username").textContent = username;
   comment.querySelector(".comment-date").textContent = commentDate;

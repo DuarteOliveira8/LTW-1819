@@ -24,7 +24,7 @@
         <?php echo htmlentities($title) ?>
       </div>
 
-      <a href="/profile" class="user">
+      <a href="/profile/<?php echo htmlentities($username)?>" class="user">
         <div class="user-avatar" style="background-image: url('/assets/images/users/<?php echo htmlentities($avatar) ?>')"></div>
 
         <div class="username">

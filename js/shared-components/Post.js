@@ -34,7 +34,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
       <div class="post-title">
       </div>
 
-      <a href="/profile" class="user">
+      <a href="" class="user">
         <div class="user-avatar" style="background-image: url('/assets/images/users/default-profile.png')"></div>
 
         <div class="username">
@@ -57,7 +57,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
     </div>
   `;
 
-
+  post.querySelector(".user").href = "/profile/" + username;
   post.querySelector(".votes-num").textContent = numVotes;
   post.querySelector(".post-title").textContent = title;
   post.querySelector(".username").textContent = username;
