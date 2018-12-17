@@ -147,6 +147,10 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
       post.querySelector(".comments-btn-text").textContent = "Show comments";
       post.querySelector(".comments-btn-arrow").src = "assets/images/arrow-down.svg";
 
+      if (post.querySelectorAll(".show-comments-btn")[1] != null) {
+        post.querySelectorAll(".show-comments-btn")[1].remove();
+      }
+
       post.offset = 0;
     }
   });
