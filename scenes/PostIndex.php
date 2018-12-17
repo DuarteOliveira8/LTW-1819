@@ -19,7 +19,7 @@
 
 <div class="container">
   <?php
-    getPost($post['title'], $post['description'], $post['date'], $post['username'], $post['avatar'], $post['upvoteRatio'], $post['comments']);
+    getPost($post['title'], $post['description'], $post['storyDate'], $post['username'], $post['avatar'], $post['upvoteRatio'], $post['comments']);
     getPostComments();
   ?>
 </div>
