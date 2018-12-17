@@ -10,22 +10,22 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
 
   post.addEventListener("click", function(e){
     e.stopPropagation();
-    document.location.href="/post/" + postId;
+    // document.location.href="/post/" + postId;
   });
 
   post.innerHTML = `
     <header class="post-header">
       <div class="post-votes">
-        <a href="#" class="vote-arrow-link">
+        <div class="vote-arrow-link">
           <svg class="vote-arrow-icon" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <path d="M413.1,327.3l-1.8-2.1l-136-156.5c-4.6-5.3-11.5-8.6-19.2-8.6c-7.7,0-14.6,3.4-19.2,8.6L101,324.9l-2.3,2.6  C97,330,96,333,96,336.2c0,8.7,7.4,15.8,16.6,15.8v0h286.8v0c9.2,0,16.6-7.1,16.6-15.8C416,332.9,414.9,329.8,413.1,327.3z"/>
           </svg>
-        </a>
-        <a href="#" class="vote-arrow-link">
+        </div>
+        <div class="vote-arrow-link">
           <svg class="vote-arrow-icon" viewBox="0 0 512 512" width="512px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <path d="M98.9,184.7l1.8,2.1l136,156.5c4.6,5.3,11.5,8.6,19.2,8.6c7.7,0,14.6-3.4,19.2-8.6L411,187.1l2.3-2.6  c1.7-2.5,2.7-5.5,2.7-8.7c0-8.7-7.4-15.8-16.6-15.8v0H112.6v0c-9.2,0-16.6,7.1-16.6,15.8C96,179.1,97.1,182.2,98.9,184.7z"/>
           </svg>
-        </a>
+        </div>
 
         <span class="votes-num">
         </span>
@@ -71,6 +71,10 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
 
 
   let commentsReq = new XMLHttpRequest();
+  let upvoteReq = new XMLHttpRequest();
+  let downvoteReq = new XMLHttpRequest();
+  let voteReq = new XMLHttpRequest();
+
 
   commentsReq.onreadystatechange = function() {
     if (this.readyState === 4 && this.status === 200) {
@@ -114,6 +118,75 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
     }
   }
 
+  upvoteReq.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(this.responseText);
+
+      if (!response.success) {
+        return;
+      }
+
+      let upvoteArrow = post.querySelectorAll('.vote-arrow-link')[0];
+      let downvoteArrow = post.querySelectorAll('.vote-arrow-link')[1];
+      if (response.data.upvoted) {
+        upvoteArrow.style.fill = "green";
+        downvoteArrow.style.fill = "black";
+      }
+      else {
+        upvoteArrow.style.fill = "black";
+      }
+
+      post.querySelector('.votes-num').textContent = response.data.upvoteRatio;
+    }
+  }
+
+  downvoteReq.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(this.responseText);
+
+      if (!response.success) {
+        return;
+      }
+
+      let upvoteArrow = post.querySelectorAll('.vote-arrow-link')[0];
+      let downvoteArrow = post.querySelectorAll('.vote-arrow-link')[1];
+      if (response.data.downvoted) {
+        downvoteArrow.style.fill = "red";
+        upvoteArrow.style.fill = "black";
+      }
+      else {
+        downvoteArrow.style.fill = "black";
+      }
+
+      post.querySelector('.votes-num').textContent = response.data.upvoteRatio;
+    }
+  }
+
+  voteReq.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(this.responseText);
+
+      if (!response.success) {
+        return;
+      }
+
+      let upvoteArrow = post.querySelectorAll('.vote-arrow-link')[0];
+      let downvoteArrow = post.querySelectorAll('.vote-arrow-link')[1];
+      if (response.data == "upvoted") {
+        downvoteArrow.style.fill = "black";
+        upvoteArrow.style.fill = "green";
+      }
+      else if (response.data == "downvoted") {
+        downvoteArrow.style.fill = "red";
+        upvoteArrow.style.fill = "black";
+      }
+      else {
+        downvoteArrow.style.fill = "black";
+        upvoteArrow.style.fill = "black";
+      }
+    }
+  }
+
   post.querySelector(".show-comments-btn").addEventListener("click", function(e) {
     e.stopPropagation();
 
@@ -144,6 +217,38 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
       post.offset = 0;
     }
   });
+
+  post.querySelectorAll('.vote-arrow-link')[0].addEventListener("click", function(e) {
+    e.stopPropagation();
+
+    let reqObjUpvote = {"postId": postId};
+    let reqStrUpvote = JSON.stringify(reqObjUpvote);
+
+    upvoteReq.open("POST", "/api/post/"+user+"/upvote", true);
+    upvoteReq.setRequestHeader("Content-Type", "application/json");
+    upvoteReq.setRequestHeader("csrf", csrf);
+    upvoteReq.send(reqStrUpvote);
+  });
+
+  post.querySelectorAll('.vote-arrow-link')[1].addEventListener("click", function(e) {
+    e.stopPropagation();
+
+    let reqObjUpvote = {"postId": postId};
+    let reqStrUpvote = JSON.stringify(reqObjUpvote);
+
+    downvoteReq.open("POST", "/api/post/"+user+"/downvote", true);
+    downvoteReq.setRequestHeader("Content-Type", "application/json");
+    downvoteReq.setRequestHeader("csrf", csrf);
+    downvoteReq.send(reqStrUpvote);
+  });
+
+  let reqObjVote = {"postId": postId};
+  let reqStrVote = JSON.stringify(reqObjVote);
+
+  voteReq.open("POST", "/api/post/"+user+"/vote", true);
+  voteReq.setRequestHeader("Content-Type", "application/json");
+  voteReq.setRequestHeader("csrf", csrf);
+  voteReq.send(reqStrVote);
 
   return post;
 }

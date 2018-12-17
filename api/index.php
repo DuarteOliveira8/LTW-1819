@@ -91,12 +91,36 @@ switch ($path) {
     require 'post-endpoint/PostComments.php';
     break;
 
+  case (preg_match('#^/api/post/(?P<username>[a-zA-Z0-9-_]+)/vote$#', $path, $matches) ? true : false):
+    require 'post-endpoint/PostVote.php';
+    break;
+
+  case (preg_match('#^/api/post/(?P<username>[a-zA-Z0-9-_]+)/upvote$#', $path, $matches) ? true : false):
+    require 'post-endpoint/PostUpvote.php';
+    break;
+
+  case (preg_match('#^/api/post/(?P<username>[a-zA-Z0-9-_]+)/downvote$#', $path, $matches) ? true : false):
+    require 'post-endpoint/PostDownvote.php';
+    break;
+
   case (preg_match('#^/api/comment/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
     require 'comment-endpoint/Comment.php';
     break;
 
   case (preg_match('#^/api/comment/(?P<id>[0-9]+)/replies$#', $path, $matches) ? true : false):
     require 'comment-endpoint/CommentReplies.php';
+    break;
+
+  case (preg_match('#^/api/comment/(?P<username>[a-zA-Z0-9-_]+)/upvote#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentUpvote.php';
+    break;
+
+  case (preg_match('#^/api/comment/(?P<username>[a-zA-Z0-9-_]+)/downvote#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentDownvote.php';
+    break;
+
+  case (preg_match('#^/api/comment/(?P<username>[a-zA-Z0-9-_]+)/vote#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentVote.php';
     break;
 
   default:
