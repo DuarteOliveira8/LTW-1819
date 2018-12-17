@@ -11,7 +11,7 @@
   include_once('templates/scene-templates/profile/profile-tabs/LikesTab.php');
   include_once('templates/shared-components/Footer.php');
 
-  if (($user = getUser($matches['username'])) === false) {
+  if (($profile = getUser($matches['username'])) === false) {
     header('Location: /404');
   }
 
@@ -23,7 +23,7 @@
 
 <div class="profile-container">
   <?php
-    getBanner($user['firstName'], $user['lastName'], $user['avatar'], $user['banner']);
+    getBanner($profile['firstName'], $profile['lastName'], $profile['avatar'], $profile['banner']);
     getProfileNav();
 
     getProfileSubscriptions();
