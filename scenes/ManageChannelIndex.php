@@ -17,6 +17,8 @@
 <script type="module" src="/js/scenes/manage-channel/ManageChannel.js"></script>
 
 <?php
+  if (!isset($_SESSION['userID']))
+    header("location: /404");
   getNavbar($user['username'], $user['avatar']);
   getManageChannel();
   getFooter();

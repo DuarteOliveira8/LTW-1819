@@ -12,7 +12,10 @@
 
 <?php
   getNavbar($user['username'], $user['avatar']);
-  getCreatePost();
+  if (!isset($_SESSION['userID']))
+    header("location: /404");
+
+    getCreatePost();
 ?>
 
 <script type="text/javascript">

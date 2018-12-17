@@ -11,6 +11,8 @@
 <link rel="stylesheet" href="/css/scenes/my-channels/MyChannelsIndex.css">
 
 <?php
+  if (!isset($_SESSION['userID']))
+    header("location: /404");
   getNavbar($user['username'], $user['avatar']);
   getMyChannels();
 ?>

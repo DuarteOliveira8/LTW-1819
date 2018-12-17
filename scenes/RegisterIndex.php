@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="/css/scenes/register/RegisterIndex.css">
 
 <?php
+  if (isset($_SESSION['userID']))
+    header("location: /");
   getRegister();
   getFooter();
 ?>

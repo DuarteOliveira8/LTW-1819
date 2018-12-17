@@ -13,7 +13,10 @@
 
 <div class="container">
   <?php
+    if (!isset($_SESSION['userID']))
+      header("location: /404");
     getManageOptions();
+
   ?>
 </div>
 

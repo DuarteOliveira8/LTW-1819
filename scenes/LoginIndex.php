@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="/css/scenes/login/LoginIndex.css">
 
 <?php
-  getLogin();
-  getFooter();
+if (isset($_SESSION['userID']))
+  header("Location: /");
+getLogin();
+getFooter();
 ?>
