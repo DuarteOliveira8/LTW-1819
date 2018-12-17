@@ -24,7 +24,15 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT title, description, storyDate, USER.username, USER.avatar, upvoteRatio, channel
+      $stmt = $db->prepare('SELECT title,
+                                   description,
+                                   storyDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   upvoteRatio,
+                                   (SELECT count(*)
+                                    FROM STORYCOMMENT
+                                    WHERE STORYCOMMENT.storyId = STORY.id) AS comments
                             FROM STORY, USER
                             WHERE STORY.id = ? AND STORY.idAuthor = USER.id
                           ');
@@ -243,19 +251,28 @@
   }
 
   // Get all comments of a story
-  function getComments($idStory) {
+  function getComments($idStory, $offset) {
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT *
-                            FROM STORYCOMMENT
-                            WHERE idStory = ?
+      $stmt = $db->prepare('SELECT COMMENT.id,
+                                   COMMENT.description,
+                                   COMMENT.upvoteRatio,
+                                   COMMENT.commentDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   (SELECT count(*)
+                                    FROM CHAINCOMMENT
+                                    WHERE CHAINCOMMENT.parentComment = STORYCOMMENT.commentId) AS replies
+                            FROM STORYCOMMENT, COMMENT, USER
+                            WHERE STORYCOMMENT.storyId = ? AND STORYCOMMENT.commentId = COMMENT.id AND USER.id = COMMENT.idAuthor
                             ORDER BY commentDate DESC
+                            LIMIT 4 OFFSET ?
                           ');
-      $stmt->execute(array($idStory));
+      $stmt->execute(array($idStory, $offset));
       return $stmt->fetchAll();
     }catch(PDOException $e) {
-      return null;
+      return false;
     }
   }
 

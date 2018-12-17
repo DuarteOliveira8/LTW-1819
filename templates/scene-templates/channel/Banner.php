@@ -6,19 +6,19 @@
 
     <div class="basic-info">
       <div class="channel-name">
-        <?php echo strip_tags($name) ?>
+        <?php echo htmlentities($name) ?>
       </div>
 
       <div class="channel-slogan">
-        <?php echo strip_tags($slogan) ?>
+        <?php echo htmlentities($slogan) ?>
       </div>
 
       <div class="channel-subs">
-        <?php echo strip_tags($subscriptions) ?> subscribers
+        <?php echo htmlentities($subscriptions) ?> subscribers
       </div>
 
       <div class="channel-posts">
-        <?php echo strip_tags($posts) ?> posts
+        <?php echo htmlentities($posts) ?> posts
       </div>
     </div>
 

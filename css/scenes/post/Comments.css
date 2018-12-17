@@ -1,8 +1,8 @@
 .comments-section-container {
   padding: 10px;
   text-align: justify;
-  margin: 0 auto;
-  width: 50%;
+  margin-left: 5%;
+  width: 100%;
 }
 
 .comments-container {
@@ -11,5 +11,6 @@
 
 .comments-title {
   font-size: 20px;
+  color: #fb6542;
   text-decoration: underline;
 }

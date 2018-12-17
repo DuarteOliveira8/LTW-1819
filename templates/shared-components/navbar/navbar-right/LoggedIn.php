@@ -6,13 +6,13 @@
     <div class="triangle"></div>
 
     <div class="username">
-      <?php echo strip_tags($username) ?>
+      <?php echo htmlentities($username) ?>
     </div>
 
     <hr class='options-line'>
 
     <div class="options">
-      <div class="options-link" onclick="location.href='/profile/<?php echo strip_tags($username) ?>'">
+      <div class="options-link" onclick="location.href='/profile/<?php echo htmlentities($username) ?>'">
         My profile
       </div>
 

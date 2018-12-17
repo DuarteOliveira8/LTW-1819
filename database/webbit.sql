@@ -284,6 +284,19 @@ INSERT INTO RULE (description, idChannel) VALUES ('All content must be your own.
 INSERT INTO RULE (description, idChannel) VALUES ('No personal info.', 10);
 INSERT INTO RULE (description, idChannel) VALUES ('No bots/advertising.', 10);
 
+--1 to 10
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Im about to tell my boss that I stole almost $5000','No one even has a clue the money is missing but I just cant hide it anymore.... I just posted this to vent and maybe help with my anxiety','2018-11-30',3,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What are schools called that i can attend in holidays.','I live in Melbourne and am seriously falling behind in work. I was wondering what are the schools called that I can attend in the holidays so I can catch up on work.','2018-11-20',5,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy XBOX or PS4?','What are the pros and cons of each one?','2018-12-01',4,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy a laptop or a desktop computer?','What are the pros and cons of each one?','2018-12-02',5,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy OnePlus or Google Pixel?','What are the pros and cons of each one?','2018-12-03',6,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy Luso or Fastio?','What are the pros and cons of each one?','2018-12-04',7,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy Pepsi or Coke?','What are the pros and cons of each one?','2018-12-05',8,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy Asus or Acer?','What are the pros and cons of each one?','2018-12-06',9,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy Alienware or Dell?','What are the pros and cons of each one?','2018-12-07',10,0,1);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Should I buy FEUP or ISEP?','What are the pros and cons of each one?','2018-12-08',11,0,1);
+
+--11 to 20
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What do you think about Logics new album?','Its my favourite album of the year tbh.','2018-09-20',2,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TWICE - YES or YES [K-POP]','What do you think about it?','2018-09-22',1,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fox Stevenson - Sandblast [Glitch Hop]','What do you think about it?','2018-10-03',2,0,2);
@@ -293,48 +306,21 @@ INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Nirvana - Come As You Are [Grunge]','What do you think about it?','2018-11-15',1,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Mumford and Sons - Believe [Indie]','What do you think about it?','2018-12-10',15,0,2);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Nujabes - Feather [Jazzhop]','What do you think about it?','2018-09-20',1,0,2);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Im about to tell my boss that I stole almost $5000','No one even has a clue the money is missing but I just cant hide it anymore.... I just posted this to vent and maybe help with my anxiety','2018-11-30',3,0,1);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Our idea of God tells us more about ourselves','-Charles King.','2018-12-01',4,0,5);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What are schools called that i can attend in holidays.','I live in Melbourne and am seriously falling behind in work. I was wondering what are the schools called that I can attend in the holidays so I can catch up on work.','2018-11-20',5,0,1);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('You Are Living Proof That God Has A Sense Of Humor','True Story.','2018-11-05',6,0,3);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Beatiful','You are beautiful, no matter what they say.','2018-07-10',7,0,5);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Think not, its going to be fine',"-Tracer",'2018-10-03',8,0,5);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('FC Porto is the best club in Europe right now','Maregod.','2018-09-19',1,0,6);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I fear one day I will meet God, he Will sneeze and I wont know what to say.','-Ronnie Shakes','2018-12-01',9,0,5);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Yes.','no.','2018-08-21',10,0,9);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I think you are cool','NOT.','2018-06-07',11,0,3);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('How about dat','Cash me outside.','2018-05-26',12,0,2);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Grandpa: What has 4 legs, but isnt alive?','Boy: A chair, haha, nice try gran- Grandpa - its your dog. Hes dead Jimmy.','2018-05-11',1,0,9);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('The recipe said, “Set the oven to 180 degrees.”','Now I cant open it, as the door faces the wall.','2018-05-05',1,0,9);
+
+--21 to 30
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('You Are Living Proof That God Has A Sense Of Humor','True Story.','2018-11-05',6,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I think you are cool','NOT.','2018-06-07',11,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Hey Dad, who invented the haircut?','I don’t know, but I’m sure it was some barberian.','2018-06-27',5,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What’s the least spoken language in the world?','Sign language.','2018-07-17',11,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Growing up, my teachers told me I was worthless and would never amount to anything in life.','Being homeschooled sucks.','2018-08-07',5,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('The sun doesnt have to go to college because','It already has 28 million degrees.','2018-08-27',11,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Ive been trying to get my girlfriend into classical music but she just isnt interested.','Im Baching up the wrong tree..','2018-08-29',12,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What’s Whitney Houston’s favorite type of coordination?','HAAAAANNNNNNDDDDD EEEEEYYYYYEEEE.','2018-11-07',3,0,3);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What does a clock do when it’s hungry???','It goes back four seconds.','2018-12-04',2,0,3);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('What is better than a terabyte?','An Antero-byte.','2018-05-01',1,0,3);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Tik tok','It hurts my kidney.','2018-04-26',13,0,9);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I love youtube rewind','Dont judge me.','2018-05-26',14,0,9);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins LoL World Cup','Congratulations EU!','2018-02-16',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Overwatch World Cup','Congratulations EU!','2018-03-26',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Counter Strike World Cup','Congratulations EU!','2018-04-20',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Dota2 World Cup','Congratulations EU!','2018-05-26',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Rocket League World Cup','Congratulations EU!','2018-06-26',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Call of Duty World Cup','Congratulations EU!','2018-07-26',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins WoW World Cup','Congratulations EU!','2018-08-26',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins PUBG World Cup','Congratulations EU!','2018-09-26',15,0,7);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by watering my christmas tree','By watering it too much, it fell over the vase and damaged my wooden floor. RIP.','2018-05-26',16,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by playing 32 hours of Tetris','I got too tired and collapsed. Im now in the hospital.','2017-05-26',11,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by erasing my school projects from the hard drive','Now my semester is ruined, RIP.','2018-01-21',16,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by bringing coffee near the computer','Spilled it over the computer and now I cant work.','2018-01-29',13,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by celebrating christmas','Drank too much champagne and ruined a family dinner','2018-05-26',8,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by getting drunk in my nephews birthday party','Collapsed in the middle of the party and now my nephew hates me.','2018-05-06',9,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by not studying PLOG','Now I need to go do the test again.','2018-06-02',12,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by drinking too much water before a test','Suffered through the entire test and couldnt concentrate.','2018-06-18',4,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by watering my cactus','By watering it too much, it died. RIP.','2018-08-22',16,0,10);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_riding','Image.','2018-04-23',17,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_cat','Image.','2018-04-24',16,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_dog','Image.','2018-04-25',15,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_hospital','Image.','2018-04-26',14,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_spirit','Image.','2018-04-27',17,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_guest','Image.','2018-04-28',12,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_think','Image.','2018-04-29',17,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_criminal','Image.','2018-04-30',9,0,8);
-INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_xmas','Image.','2018-05-29',10,0,8);
+
+--31 to 40
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Can anyone help me with Math?','I cant seem to understand factorials.','2018-03-26',12,0,4);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Can anyone help me with Physics?','I cant seem to understand electricity.','2018-05-21',13,0,4);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Can anyone help me with Science?','I cant seem to understand cells.','2018-11-16',11,0,4);
@@ -346,27 +332,112 @@ INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Can anyone help me with Python?','I cant seem to understand everything.','2018-11-21',9,0,4);
 INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Can anyone help me with C?','I cant seem to understand null terminators.','2018-03-11',8,0,4);
 
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Tell him you stole $4,999. Thats a different class of felony.','2018-11-30',1);
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Someone hire this man','2018-12-01',5);
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Comment 101010','2018-12-01',10);
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Haha. Thank you','2018-12-01',2);
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Very Inspirational','2018-12-01',2);
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('I thought so','2018-11-02',2);
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Very good!','2018-12-13',2);
-INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Feels Bad.','2018-12-06',4);
+--41 to 50
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Our idea of God tells us more about ourselves','-Charles King.','2018-12-01',4,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I can accept failure, everyone fails at something. But I cant accept not trying.','-Michael Jordan.','2018-12-07',5,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Don’t talk, act. Don’t say, show. Don’t promise, prove.','-Unknown.','2018-12-08',6,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Hit or Miss. I guess they never miss, huh.','-Antero.','2018-12-09',17,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Impossible is for the unwilling.','-John Keates.','2018-12-10',6,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('A goal without a plan is just a wish','-Antoine de Saint Exupéry.','2018-12-11',8,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('LTW is love, LTW is life','-MIEIC.','2018-12-12',10,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Beatiful','You are beautiful, no matter what they say.','2018-07-10',7,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Think not, its going to be fine',"-Tracer",'2018-10-03',8,0,5);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I fear one day I will meet God, he Will sneeze and I wont know what to say.','-Ronnie Shakes','2018-12-01',9,0,5);
 
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (2,1);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (1,2);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (1,3);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (3,4);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (4,5);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (5,8);
+--51 to 60
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('FC Porto is the best club in Europe right now','Bi incoming.','2018-09-19',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Marega is the best player in the world','Maregod.','2018-09-29',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Brahimi is an absolute magician','BRAHIMI. BRAHIMI.','2018-10-09',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Corona is very good. And Im not talking about the beer.','JESUS. CORONA.','2018-10-19',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Soares is FC Porto next matador','TIQUINHO. SOARES.','2018-10-29',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Eder Militao is really something else.','Best defender in Europe right now.','2018-11-09',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Danilo is a better wall than Trumps wall','Maregod.','2018-11-19',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('FC Porto >>> Benfica','Ez.','2018-11-29',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('FC Porto >>> All','True that.','2018-12-09',1,0,6);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('KOBE!','Dunked.','2018-12-16',2,0,6);
 
-INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (1,6);
-INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (3,7);
+--61 to 70
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins LoL World Cup','Congratulations EU!','2018-02-16',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Overwatch World Cup','Congratulations EU!','2018-03-26',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Counter Strike World Cup','Congratulations EU!','2018-04-20',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Dota2 World Cup','Congratulations EU!','2018-05-26',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Rocket League World Cup','Congratulations EU!','2018-06-26',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Call of Duty World Cup','Congratulations EU!','2018-07-26',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins WoW World Cup','Congratulations EU!','2018-08-26',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins PUBG World Cup','Congratulations EU!','2018-09-26',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Tetris World Cup','Congratulations EU!','2018-11-26',15,0,7);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Fnatic wins Fortnite World Cup','Congratulations EU!','2018-12-08',15,0,7);
 
-INSERT INTO SUBSCRIBER (userId, channelId) VALUES (2,1);
+--71 to 80
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_riding','Image.','2018-04-23',17,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_cat','Image.','2018-04-24',16,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_dog','Image.','2018-04-25',15,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_hospital','Image.','2018-04-26',14,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_spirit','Image.','2018-04-27',17,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_guest','Image.','2018-04-28',12,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_think','Image.','2018-04-29',17,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_criminal','Image.','2018-04-30',9,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_xmas','Image.','2018-05-29',10,0,8);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('cursed_everything','Image.','2018-09-29',5,0,8);
+
+--81 to 85
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Grandpa: What has 4 legs, but isnt alive?','Boy: A chair, haha, nice try gran- Grandpa - its your dog. Hes dead Jimmy.','2018-05-11',1,0,9);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('The recipe said, “Set the oven to 180 degrees.”','Now I cant open it, as the door faces the wall.','2018-05-05',1,0,9);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Tik tok','It hurts my kidney.','2018-04-26',13,0,9);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('I love youtube rewind','Dont judge me.','2018-05-26',14,0,9);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('Yes.','no.','2018-08-21',10,0,9);
+
+--86 to 94
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by watering my christmas tree','By watering it too much, it fell over the vase and damaged my wooden floor. RIP.','2018-05-26',16,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by playing 32 hours of Tetris','I got too tired and collapsed. Im now in the hospital.','2017-05-26',11,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by erasing my school projects from the hard drive','Now my semester is ruined, RIP.','2018-01-21',16,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by bringing coffee near the computer','Spilled it over the computer and now I cant work.','2018-01-29',13,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by celebrating christmas','Drank too much champagne and ruined a family dinner','2018-05-26',8,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by getting drunk in my nephews birthday party','Collapsed in the middle of the party and now my nephew hates me.','2018-05-06',9,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by not studying PLOG','Now I need to go do the test again.','2018-06-02',12,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by drinking too much water before a test','Suffered through the entire test and couldnt concentrate.','2018-06-18',4,0,10);
+INSERT INTO STORY (title, description, storyDate, idAuthor, upvoteRatio, channel) VALUES ('TIFU by watering my cactus','By watering it too much, it died. RIP.','2018-08-22',16,0,10);
+
+
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Tell him you stole $4,999. Thats a different class of felony.','2018-12-16',1);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Wow. Good luck cleaning that up.','2018-12-16',1);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Wow. That sucks.','2018-12-16',2);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Haha. Thank you','2018-12-16',2);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Very Inspirational','2018-12-16',2);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('I thought so','2018-12-16',2);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Very good!','2018-12-16',2);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Poor tree.','2018-12-16',3);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Feels Bad.','2018-12-16',4);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Someone hire this man','2018-12-16',5);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Comment 101010','2018-12-16',10);
+INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Maybe she just cant Handel it.','2018-12-16',1);
+
+
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,5);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,6);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,7);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,1);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,2);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (11,3);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (21,8);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (21,9);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (21,10);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (27,12);
+
+
+INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (1,2);
+INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (2,3);
+INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (4,5);
+INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (5,6);
+INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (7,8);
+INSERT INTO CHAINCOMMENT (parentComment, childComment) VALUES (8,9);
+
 INSERT INTO SUBSCRIBER (userId, channelId) VALUES (1,1);
+INSERT INTO SUBSCRIBER (userId, channelId) VALUES (2,1);
+INSERT INTO SUBSCRIBER (userId, channelId) VALUES (1,2);
+INSERT INTO SUBSCRIBER (userId, channelId) VALUES (2,2);
+INSERT INTO SUBSCRIBER (userId, channelId) VALUES (1,3);
+INSERT INTO SUBSCRIBER (userId, channelId) VALUES (2,3);
 INSERT INTO SUBSCRIBER (userId, channelId) VALUES (16,4);
 INSERT INTO SUBSCRIBER (userId, channelId) VALUES (2,5);
 INSERT INTO SUBSCRIBER (userId, channelId) VALUES (9,1);
@@ -375,22 +446,34 @@ INSERT INTO STORYUPVOTE (storyId, userId) VALUES (1,1);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (1,6);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (1,2);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (5,2);
-INSERT INTO STORYUPVOTE (storyId, userId) VALUES (12,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (12,1);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (13,2);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (14,2);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (15,2);
 INSERT INTO STORYUPVOTE (storyId, userId) VALUES (16,2);
-INSERT INTO STORYUPVOTE (storyId, userId) VALUES (17,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (17,1);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (52,6);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (61,5);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (33,3);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (8,2);
+INSERT INTO STORYUPVOTE (storyId, userId) VALUES (19,1);
 
 INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (1,14);
 INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (5,4);
 INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (3,2);
 INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (4,2);
+INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (7,14);
+INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (66,4);
+INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (23,2);
+INSERT INTO STORYDOWNVOTE (storyId, userId) VALUES (72,2);
 
 INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (2,11);
 INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (4,8);
 INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (3,2);
-INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (1,2);
+INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (5,11);
+INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (3,8);
+INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (9,2);
+INSERT INTO COMMENTUPVOTE (commentId, userId) VALUES (6,2);
 
 INSERT INTO COMMENTDOWNVOTE (commentId, userId) VALUES (2,2);
 INSERT INTO COMMENTDOWNVOTE (commentId, userId) VALUES (4,2);

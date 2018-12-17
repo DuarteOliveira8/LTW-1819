@@ -7,7 +7,7 @@
     <?php else: ?>
       <ol class="rule-list">
         <?php foreach ($rules as $rule): ?>
-          <li class="rule"><?php echo strip_tags($rule['description']) ?></li>
+          <li class="rule"><?php echo htmlentities($rule['description']) ?></li>
         <?php endforeach; ?>
       </ol>
     <?php endif; ?>

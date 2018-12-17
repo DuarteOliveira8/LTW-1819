@@ -23,7 +23,7 @@ switch ($path) {
     require 'scenes/RegisterIndex.php';
     break;
 
-  case '/post':
+  case (preg_match('#^/post/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
     require 'scenes/PostIndex.php';
     break;
 

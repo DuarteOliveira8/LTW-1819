@@ -1,12 +1,18 @@
+import {getComment} from '/js/shared-components/Comment.js';
+import {showButton} from '/js/shared-components/Utils.js';
+
 export function getPost(postId, title, numVotes, username, postDate, postDesc, numComments, userAvatar) {
 
   let post = document.createElement("div");
+  post.offset = 0;
   post.className = "post-container";
   post.id = postId;
+
   post.addEventListener("click", function(e){
     e.stopPropagation();
     document.location.href="/post/" + postId;
   });
+
   post.innerHTML = `
     <header class="post-header">
       <div class="post-votes">
@@ -29,7 +35,7 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
       </div>
 
       <a href="/profile" class="user">
-        <div class="user-avatar" style="background-image: url('/assets/images/users/default-profile.png')"></div>
+        <div class="user-avatar" style="background-image: url('assets/images/users/default-profile.png')"></div>
 
         <div class="username">
         </div>
@@ -44,7 +50,13 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
 
     <div class="post-comments-num">
     </div>
+
+    <div class="show-comments-btn">
+      <div class="comments-btn-text">Show comments</div>
+      <img class="comments-btn-arrow" alt="" src="assets/images/arrow-down.svg">
+    </div>
   `;
+
 
   post.querySelector(".votes-num").textContent = numVotes;
   post.querySelector(".post-title").textContent = title;
@@ -56,6 +68,82 @@ export function getPost(postId, title, numVotes, username, postDate, postDesc, n
   else
     post.querySelector(".post-comments-num").textContent = numComments + " Comments";
   post.querySelector(".user-avatar").style.backgroundImage = "url('/assets/images/users/" + userAvatar + "')";
+
+
+  let commentsReq = new XMLHttpRequest();
+
+  commentsReq.onreadystatechange = function() {
+    if (this.readyState === 4 && this.status === 200) {
+      let response = JSON.parse(this.responseText);
+
+      if (!response.success) {
+        return;
+      }
+
+      for(let i = 0; i < response.data.length; i++) {
+        post.append(getComment(false,
+                               response.data[i].id,
+                               response.data[i].upvoteRatio,
+                               response.data[i].username,
+                               response.data[i].commentDate,
+                               response.data[i].description,
+                               response.data[i].replies,
+                               response.data[i].avatar));
+      }
+
+      if (post.querySelectorAll(".show-comments-btn")[1] != null) {
+        post.querySelectorAll(".show-comments-btn")[1].remove();
+      }
+
+      if (response.data.length == 4) {
+        let loadMore = showButton()
+        post.appendChild(loadMore);
+        loadMore.addEventListener("click", function(e) {
+          e.stopPropagation();
+
+          let reqObjComments = {"offset": post.offset};
+          let reqStrComments = JSON.stringify(reqObjComments);
+
+          commentsReq.open("POST", "/api/post/"+postId+"/comments", true);
+          commentsReq.setRequestHeader("Content-Type", "application/json");
+          commentsReq.send(reqStrComments);
+        });
+      }
+
+      post.offset += 4;
+    }
+  }
+
+  post.querySelector(".show-comments-btn").addEventListener("click", function(e) {
+    e.stopPropagation();
+
+    if (post.querySelector(".comments-btn-text").textContent == "Show comments") {
+      let reqObjComments = {"offset": post.offset};
+      let reqStrComments = JSON.stringify(reqObjComments);
+
+      commentsReq.open("POST", "/api/post/"+postId+"/comments", true);
+      commentsReq.setRequestHeader("Content-Type", "application/json");
+      commentsReq.send(reqStrComments);
+
+      post.querySelector(".comments-btn-text").textContent = "Hide comments";
+      post.querySelector(".comments-btn-arrow").src = "assets/images/arrow-up.svg";
+    }
+    else {
+      let comments = post.querySelectorAll('.comment-container');
+      for (var i = 0; i < comments.length; i++) {
+        comments[i].remove();
+      }
+
+      post.querySelector(".comments-btn-text").textContent = "Show comments";
+      post.querySelector(".comments-btn-arrow").src = "assets/images/arrow-down.svg";
+
+      if (post.querySelectorAll(".show-comments-btn")[1] != null) {
+        post.querySelectorAll(".show-comments-btn")[1].remove();
+      }
+
+      post.offset = 0;
+    }
+  });
 
   return post;
 }
