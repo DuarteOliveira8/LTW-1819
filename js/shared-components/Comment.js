@@ -41,7 +41,7 @@ export function getComment(reply, commentId, numVotes, username, commentDate, co
       <div class="replies-btn-text">
         Show replies
       </div>
-      <img class="replies-btn-arrow" alt="" src="assets/images/arrow-down.svg">
+      <img class="replies-btn-arrow" alt="" src="/assets/images/arrow-down.svg">
     </div>
   `;
 
@@ -117,7 +117,7 @@ export function getComment(reply, commentId, numVotes, username, commentDate, co
         repliesReq.send(reqStrReplies);
 
         comment.querySelector(".replies-btn-text").textContent = "Hide replies";
-        comment.querySelector(".replies-btn-arrow").src = "assets/images/arrow-up.svg";
+        comment.querySelector(".replies-btn-arrow").src = "/assets/images/arrow-up.svg";
       }
       else {
         let replies = comment.querySelectorAll('.comment-container');
@@ -126,7 +126,7 @@ export function getComment(reply, commentId, numVotes, username, commentDate, co
         }
 
         comment.querySelector(".replies-btn-text").textContent = "Show replies";
-        comment.querySelector(".replies-btn-arrow").src = "assets/images/arrow-down.svg";
+        comment.querySelector(".replies-btn-arrow").src = "/assets/images/arrow-down.svg";
 
         if (comment.querySelectorAll(".show-replies-btn")[1] != null) {
           comment.querySelectorAll(".show-replies-btn")[1].remove();

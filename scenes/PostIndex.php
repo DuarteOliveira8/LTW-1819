@@ -1,10 +1,15 @@
 <?php
   include_once('includes/Session.php');
+  include_once('database/db-access/story.php');
   include_once('templates/shared-components/Header.php');
   include_once('templates/shared-components/navbar/NavbarIndex.php');
   include_once('templates/scene-templates/post/Post.php');
   include_once('templates/scene-templates/post/Comments.php');
   include_once('templates/shared-components/Footer.php');
+
+  if (($post = getStory($matches['id'])) === false) {
+    die(header('Location: /404'));
+  }
 
   getHeader();
   getNavbar($user['username'], $user['avatar']);
@@ -14,9 +19,11 @@
 
 <div class="container">
   <?php
-    getPost();
-    getComments();
+    getPost($post['title'], $post['description'], $post['date'], $post['username'], $post['avatar'], $post['upvoteRatio'], $post['comments']);
+    getPostComments();
   ?>
 </div>
+
+<script type="module" src="/js/scenes/post/Post.js"></script>
 
 <?php getFooter(); ?>

@@ -24,7 +24,15 @@
     $db = Database::getInstance()->getDB();
 
     try {
-      $stmt = $db->prepare('SELECT title, description, storyDate, USER.username, USER.avatar, upvoteRatio, channel
+      $stmt = $db->prepare('SELECT title,
+                                   description,
+                                   storyDate,
+                                   USER.username,
+                                   USER.avatar,
+                                   upvoteRatio,
+                                   (SELECT count(*)
+                                    FROM STORYCOMMENT
+                                    WHERE STORYCOMMENT.storyId = STORY.id) AS comments
                             FROM STORY, USER
                             WHERE STORY.id = ? AND STORY.idAuthor = USER.id
                           ');
