@@ -18,7 +18,7 @@
            
     }
 
-
+    
 // Delete rule of a channel
 
     function deleteRule($RuleID){
