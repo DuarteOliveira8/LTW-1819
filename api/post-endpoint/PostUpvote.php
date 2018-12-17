@@ -3,30 +3,6 @@
   include_once(__DIR__ . '/../../database/db-access/user.php');
   include_once(__DIR__ . '/../../database/db-access/story.php');
 
-  if (($user = getUser($matches['username'])) === false) {
-    echo json_encode([
-      'success' => false,
-      'error' => 'username'
-    ]);
-    exit;
-  }
-
-  if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    if (($votes = getUserDownvotes($matches['username'])) === false) {
-      echo json_encode([
-        'success' => false,
-        'error' => 'null'
-      ]);
-      exit;
-    }
-
-    echo json_encode([
-      'success' => true,
-      'data' => $votes
-    ]);
-    exit;
-  }
-
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!isset($_SESSION['userID'])) {
       echo json_encode([
@@ -46,11 +22,11 @@
       exit;
     }
 
-    if (hasDownvoted($request['storyId'], $_SESSION['userID'])) {
-      if (deleteDownvote($request['storyId'], $_SESSION['userID'])) {
+    if (hasUpvoted($request['postId'], $_SESSION['userID'])) {
+      if (deleteUpvote($request['postId'], $_SESSION['userID'])) {
         echo json_encode([
           'success' => true,
-          'data' => 'deleted_downvote'
+          'data' => 'deleted_upvote'
         ]);
         exit;
       }
@@ -62,10 +38,10 @@
       exit;
     }
 
-    if (insertDownvote($request['storyId'], $_SESSION['userID']) !== -1) {
+    if (insertUpvote($request['postId'], $_SESSION['userID']) !== -1) {
       echo json_encode([
         'success' => true,
-        'data' => 'downvoted'
+        'data' => 'upvoted'
       ]);
       exit;
     }

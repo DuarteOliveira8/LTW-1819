@@ -87,6 +87,14 @@ switch ($path) {
     require 'post-endpoint/PostComments.php';
     break;
 
+  case (preg_match('#^/api/post/(?P<username>[a-zA-Z0-9-_]+)/upvote$#', $path, $matches) ? true : false):
+    require 'post-endpoint/PostUpvote.php';
+    break;
+
+  case (preg_match('#^/api/post/(?P<username>[a-zA-Z0-9-_]+)/downvote$#', $path, $matches) ? true : false):
+    require 'post-endpoint/PostDownvote.php';
+    break;
+
   case (preg_match('#^/api/comment/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
     require 'comment-endpoint/Comment.php';
     break;
