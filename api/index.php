@@ -50,7 +50,7 @@ switch ($path) {
   case (preg_match('#^/api/user/(?P<username>[a-zA-Z0-9-_]+)/create-channel$#', $path, $matches) ? true : false):
     require 'user-endpoint/UserChannelCreate.php';
     break;
-    
+
   case "/api/home/main-channels":
     require 'home-endpoint/MainChannels.php';
     break;
@@ -77,6 +77,22 @@ switch ($path) {
 
   case (preg_match('#^/api/channel/(?P<channel>[a-zA-Z0-9-_]+)/(?P<author>[a-zA-Z0-9-_]+)/create-post#', $path, $matches) ? true : false):
     require 'channel-endpoint/ChannelPostCreate.php';
+    break;
+
+  case (preg_match('#^/api/post/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
+    require 'post-endpoint/Post.php';
+    break;
+
+  case (preg_match('#^/api/post/(?P<id>[0-9]+)/comments$#', $path, $matches) ? true : false):
+    require 'post-endpoint/PostComments.php';
+    break;
+
+  case (preg_match('#^/api/comment/(?P<id>[0-9]+)$#', $path, $matches) ? true : false):
+    require 'comment-endpoint/Comment.php';
+    break;
+
+  case (preg_match('#^/api/comment/(?P<id>[0-9]+)/replies$#', $path, $matches) ? true : false):
+    require 'comment-endpoint/CommentReplies.php';
     break;
 
   default:

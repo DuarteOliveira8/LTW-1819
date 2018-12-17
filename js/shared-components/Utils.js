@@ -1,5 +1,5 @@
 /**
- * Get cookie function for csrftoken
+ * Get cookie function
  */
 export function getCookie(name) {
    var cookieValue = null;
@@ -14,4 +14,15 @@ export function getCookie(name) {
        }
    }
    return cookieValue;
+}
+
+export function showButton() {
+  let showBtn = document.createElement("div");
+  showBtn.className = "show-comments-btn";
+  showBtn.innerHTML = `
+    <div class="comments-btn-text">Load more</div>
+    <img class="comments-btn-arrow" alt="" src="assets/images/arrow-down.svg">
+  `;
+
+  return showBtn;
 }

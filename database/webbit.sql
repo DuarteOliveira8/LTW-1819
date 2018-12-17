@@ -413,11 +413,11 @@ INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Comment 101010
 INSERT INTO COMMENT (description, commentDate, idAuthor) VALUES ('Maybe she just cant Handel it.','2018-12-16',1);
 
 
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (1,5);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (1,6);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (1,7);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (11,1);
-INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (11,2);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,5);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,6);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,7);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,1);
+INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (60,2);
 INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (11,3);
 INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (21,8);
 INSERT INTO STORYCOMMENT (storyId, commentId) VALUES (21,9);
