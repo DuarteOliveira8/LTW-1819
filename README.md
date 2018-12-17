@@ -8,3 +8,5 @@ Group elements:
 * João Gonçalves - up201604245@fe.up.pt
 * Pedro Gonçalves - up201604643@fe.up.pt
 
+## SQL script:
+sqlite3 -init webbit.sql webbit.db
